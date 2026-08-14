@@ -382,11 +382,18 @@ body{letter-spacing:.01em}button,input{font:inherit}.top{padding:6px 2px 18px;bo
 </section><section class="card full"><div class="section-title"><h3>Panel de administración</h3><span class="eyebrow">Gestión de licencias</span></div><div id="adminMsg" class="muted">Solo visible para administradores.</div><div id="admin" class="hidden"><div class="formrow"><input id="newEmail" class="input" placeholder="Email"><input id="newPass" class="input" placeholder="Contraseña (6+)"><input id="days" class="input" type="number" value="30"></div><button class="btn primary" onclick="createUser()">Crear licencia</button><div style="overflow:auto;margin-top:12px"><table class="table"><thead><tr><th>Email</th><th>Rol</th><th>Vence</th><th>Acción</th></tr></thead><tbody id="users"></tbody></table></div></div></section>
 </div></div>
 <script>
-var token=localStorage.bt_token||"", hands=[], signals=[], pendingSignal=null, cooldownRemaining=0;
+var token=localStorage.bt_token||"", currentUser=null, hands=[], signals=[], pendingSignal=null, cooldownRemaining=0;
+
+function getSessionKey(){
+  if(!currentUser || !currentUser.id)return null;
+  return 'bt_session_user_' + currentUser.id;
+}
 
 function saveSession(){
   try{
-    localStorage.setItem('bt_session',JSON.stringify({
+    const key=getSessionKey();
+    if(!key)return;
+    localStorage.setItem(key,JSON.stringify({
       hands:hands,
       signals:signals,
       pendingId:pendingSignal ? pendingSignal.id : null,
@@ -399,7 +406,10 @@ function saveSession(){
 
 function restoreSession(){
   try{
-    const raw=localStorage.getItem('bt_session');
+    const key=getSessionKey();
+    if(!key)return;
+
+    const raw=localStorage.getItem(key);
     if(!raw)return;
 
     const data=JSON.parse(raw);
@@ -421,13 +431,12 @@ function restoreSession(){
   }
 }
 
-restoreSession();
 const MAX_SIGNAL_ROUNDS=6, BALANCE_START=35, EXTREME_STREAK=9, WIN_COOLDOWN_ROUNDS=3;
 const $=x=>document.getElementById(x);
 
 async function api(url,opt={}){opt.headers={...(opt.headers||{}),...(token?{Authorization:"Bearer "+token}:{})};if(opt.body)opt.headers["Content-Type"]="application/json";let r=await fetch(url,opt);let j=await r.json();if(!r.ok)throw Error(j.error||"Error");return j}
 async function login(){try{let j=await api("/api/login",{method:"POST",body:JSON.stringify({email:$('email').value,password:$('pass').value})});token=j.token;localStorage.bt_token=token;start(j.user)}catch(e){$('err').textContent=e.message}}
-async function start(u){$('login').classList.add('hidden');$('app').classList.remove('hidden');$('who').textContent=u.email;
+async function start(u){currentUser=u;$('login').classList.add('hidden');$('app').classList.remove('hidden');$('who').textContent=u.email;restoreSession();
 updateAccountPanel(u);if(u.role==='admin'){$('admin').classList.remove('hidden');$('adminMsg').classList.add('hidden');loadUsers()}render()}
 async function boot(){if(!token)return;try{let j=await api('/api/me');start(j.user)}catch(e){logout()}}
 function newSession(){
@@ -437,7 +446,8 @@ function newSession(){
   pendingSignal=null;
   cooldownRemaining=0;
 
-  localStorage.removeItem('bt_session');
+  const key=getSessionKey();
+  if(key)localStorage.removeItem(key);
 
   render();
 }
