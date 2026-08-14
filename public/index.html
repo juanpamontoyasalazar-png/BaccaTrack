@@ -13,11 +13,99 @@ body{letter-spacing:.01em}button,input{font:inherit}.top{padding:6px 2px 18px;bo
 .bt33-alert{display:none;margin-top:12px;padding:16px;border-radius:14px;border:1px solid #ff647455;background:linear-gradient(135deg,#2a0b13,#160b10);box-shadow:0 0 25px #ff365515}
 .bt33-alert.show{display:block}.bt33-alert-title{font-size:18px;font-weight:950;color:#ff9aa7}.bt33-alert-sub{margin-top:5px;color:#d6a8b0;font-size:12px;line-height:1.45}
 .bt33-round{font-weight:900}.bt33-good{color:#18d889;font-weight:900}.bt33-bad{color:#ff7c93;font-weight:900}.bt33-warn{color:#ffd24a;font-weight:900}
-@media(max-width:1000px){.bt33-grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:500px){.bt33-grid{grid-template-columns:repeat(2,1fr)}}</style><style>
+@media(max-width:1000px){.bt33-grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:500px){.bt33-grid{grid-template-columns:repeat(2,1fr)}}
+
+
+/* ===== BaccaTrack 3.3 - Ajuste de distribución ===== */
+
+.brand-showcase{
+  display:none!important;
+}
+
+section.card.full:has(#btRoundPerformance){
+  order:20;
+}
+
+section.card.full:has(#btBalancePanel){
+  order:30;
+}
+
+/* Ocultar paneles internos que ya no se muestran en la interfaz */
+section.card.full:has(.bt31-panel){
+  display:none!important;
+}
+
+section.card.full.bt33-panel{
+  display:none!important;
+}
+
+/* ===== Orden del bloque Historial ===== */
+
+.card.full:has(#hist){
+  display:flex;
+  flex-direction:column;
+}
+
+.card.full:has(#hist) > #hist{
+  order:1;
+}
+
+.card.full:has(#hist) > section.card.full{
+  order:2;
+}
+
+.card.full:has(#hist) > .muted{
+  order:3;
+}
+</style> 1 1 1<style>
 .signal-banca{color:#ff3b5c!important;text-shadow:0 0 18px #ff3b5c55}
 .signal-jugador{color:#3d8cff!important;text-shadow:0 0 18px #3d8cff55}
 .signal-esperar{color:#ffd24a!important}
-</style><style id="baccatrack-round-style">
+
+
+
+/* ===== BaccaTrack 3.3 - Ajuste de distribución ===== */
+
+.brand-showcase{
+  display:none!important;
+}
+
+section.card.full:has(#btRoundPerformance){
+  order:20;
+}
+
+section.card.full:has(#btBalancePanel){
+  order:30;
+}
+
+/* Ocultar paneles internos que ya no se muestran en la interfaz */
+section.card.full:has(.bt31-panel){
+  display:none!important;
+}
+
+section.card.full.bt33-panel{
+  display:none!important;
+}
+
+/* ===== Orden del bloque Historial ===== */
+
+.card.full:has(#hist){
+  display:flex;
+  flex-direction:column;
+}
+
+.card.full:has(#hist) > #hist{
+  order:1;
+}
+
+.card.full:has(#hist) > section.card.full{
+  order:2;
+}
+
+.card.full:has(#hist) > .muted{
+  order:3;
+}
+</style> 1 1 1<style id="baccatrack-round-style">
 .signal-round{
   display:inline-flex;
   align-items:center;
@@ -41,7 +129,51 @@ body{letter-spacing:.01em}button,input{font:inherit}.top{padding:6px 2px 18px;bo
     font-size:14px;
   }
 }
-</style><style id="bt-white-action-buttons">
+
+
+
+/* ===== BaccaTrack 3.3 - Ajuste de distribución ===== */
+
+.brand-showcase{
+  display:none!important;
+}
+
+section.card.full:has(#btRoundPerformance){
+  order:20;
+}
+
+section.card.full:has(#btBalancePanel){
+  order:30;
+}
+
+/* Ocultar paneles internos que ya no se muestran en la interfaz */
+section.card.full:has(.bt31-panel){
+  display:none!important;
+}
+
+section.card.full.bt33-panel{
+  display:none!important;
+}
+
+/* ===== Orden del bloque Historial ===== */
+
+.card.full:has(#hist){
+  display:flex;
+  flex-direction:column;
+}
+
+.card.full:has(#hist) > #hist{
+  order:1;
+}
+
+.card.full:has(#hist) > section.card.full{
+  order:2;
+}
+
+.card.full:has(#hist) > .muted{
+  order:3;
+}
+</style> 1 1 1<style id="bt-white-action-buttons">
 #undoBtn,
 #newSessionBtn{
   color:#ffffff !important;
@@ -68,7 +200,51 @@ body{letter-spacing:.01em}button,input{font:inherit}.top{padding:6px 2px 18px;bo
   color:#ffffff !important;
   border-color:#ffffff !important;
 }
-</style>
+
+
+
+/* ===== BaccaTrack 3.3 - Ajuste de distribución ===== */
+
+.brand-showcase{
+  display:none!important;
+}
+
+section.card.full:has(#btRoundPerformance){
+  order:20;
+}
+
+section.card.full:has(#btBalancePanel){
+  order:30;
+}
+
+/* Ocultar paneles internos que ya no se muestran en la interfaz */
+section.card.full:has(.bt31-panel){
+  display:none!important;
+}
+
+section.card.full.bt33-panel{
+  display:none!important;
+}
+
+/* ===== Orden del bloque Historial ===== */
+
+.card.full:has(#hist){
+  display:flex;
+  flex-direction:column;
+}
+
+.card.full:has(#hist) > #hist{
+  order:1;
+}
+
+.card.full:has(#hist) > section.card.full{
+  order:2;
+}
+
+.card.full:has(#hist) > .muted{
+  order:3;
+}
+</style> 1 1 1
 <style id="bt-admin-panel-style">
 
 #admin{
@@ -171,7 +347,51 @@ body{letter-spacing:.01em}button,input{font:inherit}.top{padding:6px 2px 18px;bo
   }
 }
 
-</style>
+
+
+
+/* ===== BaccaTrack 3.3 - Ajuste de distribución ===== */
+
+.brand-showcase{
+  display:none!important;
+}
+
+section.card.full:has(#btRoundPerformance){
+  order:20;
+}
+
+section.card.full:has(#btBalancePanel){
+  order:30;
+}
+
+/* Ocultar paneles internos que ya no se muestran en la interfaz */
+section.card.full:has(.bt31-panel){
+  display:none!important;
+}
+
+section.card.full.bt33-panel{
+  display:none!important;
+}
+
+/* ===== Orden del bloque Historial ===== */
+
+.card.full:has(#hist){
+  display:flex;
+  flex-direction:column;
+}
+
+.card.full:has(#hist) > #hist{
+  order:1;
+}
+
+.card.full:has(#hist) > section.card.full{
+  order:2;
+}
+
+.card.full:has(#hist) > .muted{
+  order:3;
+}
+</style> 1 1 1
 </head><body>
 <div id="login" class="wrap login card"><div class="brand"><img class="logo" src="/baccatrack-logo.jpg" alt="BaccaTrack"><div><h1>BaccaTrack</h1><div class="muted">Acceso privado</div></div></div><h2>Iniciar sesión</h2><input id="email" class="input" placeholder="Correo" type="email"><input id="pass" class="input" placeholder="Contraseña" type="password"><button class="btn primary" style="width:100%" onclick="login()">Entrar</button>
 <button id="showRegisterBtn" class="btn" type="button" style="width:100%;margin-top:10px;color:#fff;border-color:#fff;background:#111722;" onclick="showRegister()">Crear una cuenta</button><p id="err" class="muted"></p></div>
@@ -741,6 +961,7 @@ function resolvePending(x){
 
   pendingSignal.round=(pendingSignal.round||0)+1;
 
+  // La señal gana cuando vuelve a salir EL MISMO COLOR señalado.
   if(x===pendingSignal.s){
 
     pendingSignal.outcome=x;
@@ -758,35 +979,43 @@ function resolvePending(x){
     return 'win';
   }
 
+  // Salió el color contrario:
+  // esta martingala falla, pero la entrada CONTINÚA.
   if(pendingSignal.round>=MAX_SIGNAL_ROUNDS){
 
     pendingSignal.outcome=x;
     pendingSignal.correct=false;
     pendingSignal.closedReason='Se agotaron las 6 martingalas';
+
     pendingSignal=null;
+
+    // Una pérdida no activa el cooldown.
+    cooldownRemaining=0;
 
     saveSession();
     return 'loss';
   }
 
+  // Sigue pendiente para la siguiente martingala.
   saveSession();
   return null;
 }
-function add(x){
 
-  const hadPending=!!pendingSignal;
+function add(x){
 
   const resolved=resolvePending(x);
 
   hands.push(x);
 
-  // Una entrada recién ganada inicia el periodo
-  // de espera. No contamos la misma mano ganadora.
+  // Entrada ganada: iniciar espera de 3 rondas.
   if(resolved==='win'){
     saveSession();
     render();
     return;
   }
+
+  // Después de una pérdida definitiva, NO hay cooldown.
+  // El motor queda disponible para buscar una nueva entrada.
 
   // Esperar 3 rondas B/J después de un acierto.
   // Los empates no consumen una ronda.
@@ -800,6 +1029,14 @@ function add(x){
   }
 
   const a=analyze();
+
+  // Si la entrada sigue activa y el modelo cambia de color,
+  // el nuevo color pasa a ser el objetivo de la siguiente martingala.
+  if(pendingSignal && (a.s==='B'||a.s==='J') && a.s!==pendingSignal.s){
+    pendingSignal.s=a.s;
+    pendingSignal.reason=a.reason;
+    pendingSignal.mode=a.mode||pendingSignal.mode;
+  }
 
   if(a.s==='X'){
 
@@ -816,13 +1053,16 @@ function add(x){
     return;
   }
 
-  if(!hadPending && !pendingSignal && a.s!=='W'){
+  // Si no hay entrada pendiente, buscar una nueva.
+  // Esto también permite continuar después de una pérdida definitiva.
+  if(!pendingSignal && a.s!=='W'){
     openSignal(a);
   }
 
   saveSession();
   render();
 }
+
 function roundSummary(){
   const r=signals.filter(s=>s.correct!==null);
   const r1=r.filter(s=>s.correct&&s.round===1).length;
