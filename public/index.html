@@ -1,0 +1,1406 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080a0f"><link rel="icon" type="image/jpeg" href="/baccatrack-logo.jpg"><link rel="apple-touch-icon" href="/baccatrack-logo.jpg"><title>BaccaTrack 3.3 · Análisis estadístico de sesión</title><style>
+:root{--bg:#05060b;--card:#0b0d15e8;--line:#24283a;--txt:#f7f7fb;--muted:#9aa0b5;--red:#ff2bb5;--blue:#168cff;--green:#18d889;--yellow:#ffd24a;--purple:#b52cff;--cyan:#20d8ff}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 0,#17132b,#05060b 45%),radial-gradient(circle at 100% 20%,#071a31,#05060b 35%);color:var(--txt);font-family:Inter,system-ui,sans-serif;min-height:100vh}.wrap{max-width:1180px;margin:auto;padding:18px}.hidden{display:none!important}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.brand{display:flex;gap:13px;align-items:center}.logo{width:58px;height:58px;border-radius:50%;object-fit:cover;border:1px solid #20d8ff88;box-shadow:0 0 18px #ff2bb566,0 0 24px #168cff44;background:#05060b}.brand h1{font-size:21px;margin:0}.brand-logo{width:64px;height:64px;border-radius:50%;object-fit:cover;border:1px solid #ff2bb588;box-shadow:0 0 20px #ff2bb544,0 0 28px #168cff33}.brand h1{font-size:21px;margin:0}.muted{color:var(--muted);font-size:13px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 18px 45px #0005}.login{max-width:420px;margin:9vh auto;box-shadow:0 0 40px #b52cff12}.login .brand{margin-bottom:10px}.input{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:#0b0f15;color:var(--txt);margin:7px 0 12px}.btn{padding:11px 14px;border-radius:10px;background:#202936;color:white;font-weight:800;border:1px solid var(--line);cursor:pointer}.primary{background:linear-gradient(135deg,var(--blue),#2455b7)}.grid{display:grid;grid-template-columns:1.25fr .75fr;gap:15px}.full{grid-column:1/-1}.signal{padding:20px;border:1px solid var(--line);border-radius:16px;background:#171e29;min-height:180px}.big{font-size:30px;font-weight:900;margin:9px 0}.controls{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}.res{border:0;border-radius:13px;padding:17px;color:white;font-weight:900;cursor:pointer}.r{background:linear-gradient(135deg,#e84b5f,#a82037)}.b{background:linear-gradient(135deg,#3d8cff,#2056b7)}.g{background:linear-gradient(135deg,#31d18b,#168b5a)}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.stat{padding:13px;border:1px solid var(--line);border-radius:12px;background:#0b0f15}.stat b{display:block;font-size:21px;margin-top:4px}.hist{display:grid;grid-auto-flow:column;grid-template-rows:repeat(6,33px);grid-auto-columns:33px;gap:6px;align-items:start;justify-content:start}.chip{width:33px;height:33px;border-radius:9px;display:grid;place-items:center;font-size:11px;font-weight:900}.table{width:100%;border-collapse:collapse}.table td,.table th{padding:9px;border-bottom:1px solid var(--line);text-align:left;font-size:13px}.formrow{display:grid;grid-template-columns:1fr 1fr 120px;gap:8px}.score{height:12px;background:#262d38;border-radius:9px;overflow:hidden}.score>div{height:100%;background:linear-gradient(90deg,var(--yellow),var(--green));transition:.25s}.factors{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:12px}.factor{padding:10px;border:1px solid var(--line);border-radius:12px;background:#0b0f15}.factor b{display:block;font-size:16px;margin-top:3px}.tag{display:inline-block;padding:4px 8px;border-radius:999px;font-size:11px;font-weight:800;background:#232b38}.tag.red{background:#4b1d29}.tag.blue{background:#172e57}.tag.yellow{background:#4a3b12}.tag.green{background:#123e2c}.why{margin-top:12px;padding:12px;border-radius:12px;background:#0b0f15;border:1px dashed var(--line)}.legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.empty{padding:12px;border:1px dashed var(--line);border-radius:12px}.brand-showcase{margin-top:14px;padding:14px;border:1px solid var(--line);border-radius:16px;background:radial-gradient(circle at 50% 0,#17112b,#090b12 62%);text-align:center;overflow:hidden}.brand-showcase img{width:min(100%,280px);aspect-ratio:1;object-fit:cover;border-radius:50%;border:1px solid #20d8ff77;box-shadow:0 0 28px #ff2bb544,0 0 40px #168cff33}.brand-showcase strong{display:block;margin-top:10px;letter-spacing:2px;color:#fff}.brand-showcase span{display:block;margin-top:4px;color:var(--muted);font-size:12px;letter-spacing:1px}.undo{grid-column:1/-1;border-color:#ff2bb588!important;background:linear-gradient(180deg,#110b19,#0b0d15)!important;color:#ff65c9!important;box-shadow:0 0 18px #ff2bb51a}.res.r{background:linear-gradient(135deg,#ff2bb5,#b51670);box-shadow:0 0 18px #ff2bb522}.res.b{background:linear-gradient(135deg,#168cff,#1650c9);box-shadow:0 0 18px #168cff22}.res.g{background:linear-gradient(135deg,#18d889,#087e55);box-shadow:0 0 18px #18d88922}.danger{color:#ff9aa7}@media(max-width:800px){.grid{grid-template-columns:1fr}.full{grid-column:auto}}@media(max-width:500px){.controls{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.formrow{grid-template-columns:1fr}.factors{grid-template-columns:1fr}}
+
+/* BaccaTrack 2.5 — polished product UI */
+body{letter-spacing:.01em}button,input{font:inherit}.top{padding:6px 2px 18px;border-bottom:1px solid #ffffff0b}.brand{gap:14px}.brand-copy{display:flex;flex-direction:column;gap:3px}.brand h1{font-size:24px;letter-spacing:-.03em}.brand .muted{font-size:12px}.brand-status{display:inline-flex;align-items:center;gap:6px;width:max-content;padding:4px 8px;border:1px solid #18d88933;border-radius:999px;background:#18d8890c;color:#8ce9bd;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.status-dot{width:6px;height:6px;border-radius:50%;background:#18d889;box-shadow:0 0 9px #18d889}.top-actions{display:flex;align-items:center;gap:10px}.session-user{display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--line);border-radius:11px;background:#0b0f15}.avatar{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#ff2bb5,#168cff);font-size:11px;font-weight:900}.card{background:linear-gradient(180deg,#0d1119f2,#090c13f2);box-shadow:0 22px 55px #0007, inset 0 1px #ffffff06}.signal{position:relative;overflow:hidden;background:linear-gradient(135deg,#171e29,#10151f);box-shadow:inset 0 1px #ffffff07}.signal:after{content:"";position:absolute;right:-90px;top:-90px;width:210px;height:210px;border-radius:50%;background:radial-gradient(circle,#168cff18,transparent 68%);pointer-events:none}.signal-kicker{display:flex;align-items:center;justify-content:space-between;gap:10px}.live-badge{display:inline-flex;align-items:center;gap:7px;padding:6px 9px;border-radius:999px;background:#ff2bb50d;border:1px solid #ff2bb533;color:#ff8bd8;font-size:10px;font-weight:900;letter-spacing:.08em}.live-badge i{width:6px;height:6px;border-radius:50%;background:#ff2bb5;box-shadow:0 0 10px #ff2bb5;animation:pulse 1.6s infinite}.section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.section-title h3{margin:0}.section-title .eyebrow{font-size:10px;color:#687187;font-weight:900;letter-spacing:.12em;text-transform:uppercase}.stat{background:linear-gradient(180deg,#0d121a,#090c12);transition:transform .2s,border-color .2s}.stat:hover{transform:translateY(-2px);border-color:#ffffff16}.stat b{font-size:24px}.controls{gap:10px}.res{position:relative;overflow:hidden;min-height:56px;letter-spacing:.03em}.res:after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 20%,#ffffff18 50%,transparent 80%);transform:translateX(-120%);transition:transform .45s}.res:hover:after{transform:translateX(120%)}.btn{transition:.2s;box-shadow:0 8px 18px #0003}.btn:hover:not(:disabled){transform:translateY(-1px);filter:brightness(1.08)}.btn:disabled{opacity:.4;cursor:not-allowed;box-shadow:none}.undo{min-height:42px!important}.undo.ready{border-color:#ff2bb5aa!important;box-shadow:0 0 20px #ff2bb51a}.undo-count{margin-left:5px;color:#ff8bd8;font-weight:900}.hist{padding:12px;border:1px solid var(--line);border-radius:13px;background:#080b11;min-height:59px}.chip{box-shadow:0 5px 12px #0004;transition:.15s}.chip:hover{transform:translateY(-2px)}.brand-showcase{position:relative}.brand-showcase:before{content:"MARCA OFICIAL";position:absolute;top:10px;right:10px;padding:4px 7px;border-radius:999px;background:#080a0fcc;border:1px solid #ffffff14;color:#aeb5c8;font-size:9px;font-weight:900;letter-spacing:.1em}.admin-badge{padding:4px 7px;border-radius:999px;background:#168cff12;border:1px solid #168cff33;color:#83baff;font-size:10px;font-weight:900;letter-spacing:.08em}.subtle{color:#747d92;font-size:11px}@keyframes pulse{50%{opacity:.35;transform:scale(.75)}}
+
+/* BaccaTrack 3.3 — statistical evaluation layer */
+.model-note{padding:12px;border:1px dashed var(--line);border-radius:12px;background:#0b0f15;color:var(--muted);font-size:12px;line-height:1.5;margin-bottom:12px}.stats-4{grid-template-columns:repeat(4,1fr)}.model-detail{margin-top:12px;padding:12px;border-radius:12px;background:#0b0f15;border:1px solid var(--line);line-height:1.5}.live-badge{box-shadow:0 0 18px #ff2bb51a}.tag.green{background:#123e2c}.tag.yellow{background:#4a3b12}@media(max-width:800px){.stats-4{grid-template-columns:repeat(2,1fr)}}@media(max-width:500px){.stats-4{grid-template-columns:1fr 1fr}}
+.bt31-panel{margin-top:12px;padding:15px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,#0d1119,#090c13);box-shadow:inset 0 1px #ffffff06}.bt31-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}.bt31-head h3{margin:3px 0 0;font-size:17px}.bt31-eyebrow{font-size:9px;color:#727b91;font-weight:900;letter-spacing:.13em}.bt31-badge{padding:5px 8px;border-radius:999px;font-size:10px;font-weight:900;border:1px solid #ffffff12}.bt31-badge.ok{color:#8ce9bd;background:#18d88912;border-color:#18d88933}.bt31-badge.warn{color:#ffe08a;background:#ffd24a12;border-color:#ffd24a33}.bt31-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}.bt31-stat{padding:11px;border:1px solid var(--line);border-radius:11px;background:#080b11}.bt31-stat span{display:block;color:var(--muted);font-size:10px}.bt31-stat b{display:block;font-size:18px;margin-top:5px}.bt31-note{margin-top:10px;padding:10px 12px;border:1px dashed var(--line);border-radius:11px;color:var(--muted);font-size:11px;line-height:1.45}.bt31-table-wrap{overflow:auto;margin-top:10px}.bt31-table{width:100%;border-collapse:collapse;min-width:520px}.bt31-table th,.bt31-table td{padding:8px;border-bottom:1px solid var(--line);font-size:11px;text-align:left}.bt31-good{color:#18d889;font-weight:900}.bt31-bad{color:#ff7c93;font-weight:900}@media(max-width:1000px){.bt31-grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:500px){.bt31-grid{grid-template-columns:repeat(2,1fr)}}.bt33-panel{margin-top:12px;padding:15px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,#0d1119,#090c13)}
+.bt33-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}.bt33-stat{padding:11px;border:1px solid var(--line);border-radius:11px;background:#080b11}
+.bt33-stat span{display:block;color:var(--muted);font-size:10px}.bt33-stat b{display:block;font-size:18px;margin-top:5px}
+.bt33-note{margin-top:10px;padding:10px 12px;border:1px dashed var(--line);border-radius:11px;color:var(--muted);font-size:11px;line-height:1.45}
+.bt33-alert{display:none;margin-top:12px;padding:16px;border-radius:14px;border:1px solid #ff647455;background:linear-gradient(135deg,#2a0b13,#160b10);box-shadow:0 0 25px #ff365515}
+.bt33-alert.show{display:block}.bt33-alert-title{font-size:18px;font-weight:950;color:#ff9aa7}.bt33-alert-sub{margin-top:5px;color:#d6a8b0;font-size:12px;line-height:1.45}
+.bt33-round{font-weight:900}.bt33-good{color:#18d889;font-weight:900}.bt33-bad{color:#ff7c93;font-weight:900}.bt33-warn{color:#ffd24a;font-weight:900}
+@media(max-width:1000px){.bt33-grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:500px){.bt33-grid{grid-template-columns:repeat(2,1fr)}}</style><style>
+.signal-banca{color:#ff3b5c!important;text-shadow:0 0 18px #ff3b5c55}
+.signal-jugador{color:#3d8cff!important;text-shadow:0 0 18px #3d8cff55}
+.signal-esperar{color:#ffd24a!important}
+</style><style id="baccatrack-round-style">
+.signal-round{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin-left:10px;
+  padding:4px 11px;
+  border-radius:999px;
+  border:1px solid #ff2bb588;
+  background:#ff2bb512;
+  color:#ff8bd8;
+  font-size:17px;
+  font-weight:900;
+  vertical-align:middle;
+  box-shadow:0 0 15px #ff2bb522;
+  letter-spacing:.02em;
+}
+@media(max-width:500px){
+  .signal-round{
+    margin-left:6px;
+    padding:3px 8px;
+    font-size:14px;
+  }
+}
+</style><style id="bt-white-action-buttons">
+#undoBtn,
+#newSessionBtn{
+  color:#ffffff !important;
+  border:1px solid #ffffff !important;
+  font-weight:900 !important;
+}
+
+#undoBtn{
+  background:linear-gradient(180deg,#171b24,#0d1016) !important;
+}
+
+#undoBtn:disabled{
+  color:#ffffff !important;
+  border-color:#ffffff !important;
+  opacity:.65;
+}
+
+#newSessionBtn{
+  background:linear-gradient(180deg,#171b24,#0d1016) !important;
+}
+
+#undoBtn:hover,
+#newSessionBtn:hover{
+  color:#ffffff !important;
+  border-color:#ffffff !important;
+}
+</style>
+<style id="bt-admin-panel-style">
+
+#admin{
+  margin-top:14px;
+}
+
+#admin .formrow{
+  display:grid;
+  grid-template-columns:minmax(180px,2fr) minmax(150px,1fr) 100px auto;
+  gap:10px;
+  align-items:center;
+  padding:14px;
+  border:1px solid #273044;
+  border-radius:14px;
+  background:#0b0f17;
+}
+
+#admin .formrow .input{
+  width:100%;
+  box-sizing:border-box;
+}
+
+#admin .formrow .btn{
+  white-space:nowrap;
+}
+
+#admin table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+#admin th{
+  color:#aeb8c9;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  text-align:left;
+  padding:11px 9px;
+  border-bottom:1px solid #273044;
+}
+
+#admin td{
+  padding:12px 9px;
+  border-bottom:1px solid #1d2533;
+}
+
+#admin tbody tr:hover{
+  background:#101620;
+}
+
+#admin td:nth-child(3){
+  white-space:nowrap;
+}
+
+#admin td:last-child{
+  white-space:nowrap;
+}
+
+#admin td:last-child .btn{
+  color:#ffffff !important;
+  border:1px solid #ffffff !important;
+  background:#111722 !important;
+  font-weight:800;
+}
+
+#admin td:last-child .btn:hover{
+  background:#1a2230 !important;
+}
+
+.bt-admin-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.bt-admin-dot{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:#35e88b;
+  box-shadow:0 0 10px rgba(53,232,139,.45);
+}
+
+@media(max-width:700px){
+
+  #admin .formrow{
+    grid-template-columns:1fr;
+  }
+
+  #admin .formrow .btn{
+    width:100%;
+  }
+
+  #admin{
+    overflow:hidden;
+  }
+
+  #admin table{
+    min-width:600px;
+  }
+}
+
+</style>
+</head><body>
+<div id="login" class="wrap login card"><div class="brand"><img class="logo" src="/baccatrack-logo.jpg" alt="BaccaTrack"><div><h1>BaccaTrack</h1><div class="muted">Acceso privado</div></div></div><h2>Iniciar sesión</h2><input id="email" class="input" placeholder="Correo" type="email"><input id="pass" class="input" placeholder="Contraseña" type="password"><button class="btn primary" style="width:100%" onclick="login()">Entrar</button>
+<button id="showRegisterBtn" class="btn" type="button" style="width:100%;margin-top:10px;color:#fff;border-color:#fff;background:#111722;" onclick="showRegister()">Crear una cuenta</button><p id="err" class="muted"></p></div>
+<div id="register" class="wrap login card hidden">
+
+  <div class="brand">
+    <img class="logo" src="/baccatrack-logo.jpg" alt="BaccaTrack">
+    <div>
+      <h1>BaccaTrack</h1>
+      <div class="muted">Crear cuenta</div>
+    </div>
+  </div>
+
+  <h2>Crear cuenta</h2>
+
+  <input
+    id="registerEmail"
+    class="input"
+    placeholder="Correo electrónico"
+    type="email"
+    autocomplete="email"
+  >
+
+  <input
+    id="registerPass"
+    class="input"
+    placeholder="Contraseña (mínimo 6 caracteres)"
+    type="password"
+    autocomplete="new-password"
+  >
+
+  <input
+    id="registerPass2"
+    class="input"
+    placeholder="Confirmar contraseña"
+    type="password"
+    autocomplete="new-password"
+  >
+
+  <button
+    class="btn primary"
+    style="width:100%"
+    onclick="registerUser()"
+    type="button"
+  >
+    CREAR CUENTA
+  </button>
+
+  <button
+    class="btn"
+    style="width:100%;margin-top:10px;color:#fff;border-color:#fff;background:#111722;"
+    onclick="showLogin()"
+    type="button"
+  >
+    ← VOLVER A INICIAR SESIÓN
+  </button>
+
+  <p id="registerMsg" class="muted"></p>
+
+  <div style="
+    margin-top:12px;
+    padding:10px;
+    border:1px solid #2b3445;
+    border-radius:10px;
+    text-align:center;
+    font-size:12px;
+  ">
+    Cuenta nueva · acceso inicial de 30 días
+  </div>
+
+</div>
+<div id="app" class="wrap hidden"><div class="top"><div class="brand"><img class="logo" src="/baccatrack-logo.jpg" alt="BaccaTrack"><div class="brand-copy"><div class="brand-status"><span class="status-dot"></span>Sistema activo</div><h1>BaccaTrack 3.3</h1><div class="muted">Análisis estadístico · disciplina de sesión · evaluación walk-forward</div></div></div><div class="top-actions"><div class="session-user"><span class="avatar">BT</span><span id="who" class="muted"></span><span class="admin-badge">ADMIN</span></div><button class="btn" onclick="logout()">Salir</button></div></div>
+<section id="accountPanel" class="card full" style="margin-bottom:16px;">
+  <div class="section-title">
+    <h3>Mi cuenta</h3>
+    <span class="eyebrow">LICENCIA</span>
+  </div>
+
+  <div style="
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:10px;
+  ">
+
+    <div class="stat">
+      <span class="muted">Usuario</span>
+      <b id="accountEmail">—</b>
+    </div>
+
+    <div class="stat">
+      <span class="muted">Estado</span>
+      <b id="accountStatus" style="color:#35e88b;">—</b>
+    </div>
+
+    <div class="stat">
+      <span class="muted">Días restantes</span>
+      <b id="accountDays">—</b>
+    </div>
+
+    <div class="stat">
+      <span class="muted">Vencimiento</span>
+      <b id="accountExpires">—</b>
+    </div>
+
+  </div>
+</section>
+<div class="grid"><section class="card"><div class="section-title"><div class="eyebrow">Motor de análisis</div><div class="live-badge"><i></i> En tiempo real</div></div><div class="muted">SEÑAL ACTUAL</div><div id="signal" class="signal"><div id="sigLabel">🟡 ESPERAR</div><div id="sigBig" class="big">Registra resultados</div><div id="reason" class="muted">Mínimo 5 manos sin empates.</div><div id="why" class="why hidden"></div></div><div id="factors" class="factors"></div><div class="controls"><button class="res r" onclick="add('B')">🔴 BANCA</button><button class="res b" onclick="add('J')">🔵 JUGADOR</button><button class="res g" onclick="add('E')">🟢 EMPATE</button>
+<button id="undoBtn" class="btn undo" onclick="undoLast()" type="button" disabled>↩ Deshacer última <span id="undoCount" class="undo-count">· 0 disponibles</span></button><button
+  id="newSessionBtn"
+  class="btn"
+  type="button"
+  onclick="newSession()"
+  style="grid-column:1/-1;border-color:#ff596f;color:#ff8795;background:linear-gradient(180deg,#210d14,#12090d);font-weight:900;">
+  NUEVA SESIÓN · BORRAR REGISTRO
+</button></div><p class="muted">El motor analiza rachas, alternancia, distribución y reglas de sesión. La señal se mantiene como máximo 6 rondas.</p></section>
+<section class="card"><div class="section-title"><h3>Sesión</h3><span class="eyebrow">Resumen</span></div><div class="stats"><div class="stat"><span class="muted">Manos</span><b id="hands">0</b></div><div class="stat"><span class="muted">Señales</span><b id="signals">0</b></div><div class="stat"><span class="muted">Aciertos</span><b id="wins">0</b></div></div><div class="brand-showcase"><img src="/baccatrack-logo.jpg" alt="Logo oficial BaccaTrack"><strong>DATOS · PATRONES · VENTAJA</strong><span>BaccaTrack · análisis y control de sesión</span></div></section>
+<section class="card full">
+  <div class="section-title">
+    <h3>Tendencia de balance</h3>
+    <span class="eyebrow">RESULTADO DE SEÑALES</span>
+  </div>
+
+  <div id="btBalancePanel"
+       style="padding:14px;border:1px solid var(--line);border-radius:16px;background:#080b11">
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+      <div>
+        <div class="muted">Balance de sesión</div>
+        <div class="muted" style="font-size:11px">
+          +1 acierto · −1 fallo
+        </div>
+      </div>
+
+      <div style="text-align:right">
+        <b id="btBalanceValue" style="font-size:22px">0</b>
+        <div class="muted" style="font-size:11px">unidades</div>
+      </div>
+    </div>
+
+    <div id="btBalanceChart"
+         style="width:100%;min-height:180px">
+    </div>
+
+  </div>
+</section>
+<section class="card full"><div class="section-title"><h3>Historial</h3><span class="eyebrow">Registro de manos</span></div><section class="card full">
+  <div class="section-title">
+    <h3>🎯 Rendimiento por ronda</h3>
+    <span class="eyebrow">1/6 → 6/6</span>
+  </div>
+
+  <div id="btRoundPerformance"
+       style="display:flex;flex-direction:column;gap:7px">
+  </div>
+</section>
+<div id="hist" class="hist"></div><div class="muted" style="margin-top:10px">Puedes usar “Deshacer última” varias veces para corregir errores de anotación.</div></section>
+<section class="card full"><div class="section-title"><h3>Rendimiento del modelo</h3><span class="eyebrow">Backtest walk-forward</span></div><div class="model-note">El backtest simula cada señal usando únicamente las manos anteriores a ese punto. No utiliza resultados futuros para construir la señal.</div><div class="stats stats-4"><div class="stat"><span class="muted">Muestras</span><b id="btSamples">0</b></div><div class="stat"><span class="muted">Señales</span><b id="btSignals">0</b></div><div class="stat"><span class="muted">Precisión</span><b id="btAccuracy">—</b></div><div class="stat"><span class="muted">Cobertura</span><b id="btCoverage">—</b></div></div><div id="btDetail" class="model-detail muted">Registra más manos para evaluar el modelo.</div>
+<div class="bt31-panel">
+  <div class="bt31-head"><div><div class="bt31-eyebrow">VALIDACIÓN DEL MODELO</div><h3>Rendimiento histórico</h3></div><span id="bt31SampleBadge" class="bt31-badge warn">Muestra insuficiente</span></div>
+  <div class="bt31-grid">
+    <div class="bt31-stat"><span>Aciertos</span><b id="bt31Wins">0</b></div>
+    <div class="bt31-stat"><span>Errores</span><b id="bt31Losses">0</b></div>
+    <div class="bt31-stat"><span>Precisión total</span><b id="bt31Accuracy">—</b></div>
+    <div class="bt31-stat"><span>Cobertura</span><b id="bt31Coverage">—</b></div>
+    <div class="bt31-stat"><span>Precisión Banca</span><b id="bt31BAcc">—</b></div>
+    <div class="bt31-stat"><span>Precisión Jugador</span><b id="bt31JAcc">—</b></div>
+  </div>
+  <div id="bt31Note" class="bt31-note">La precisión es histórica; una muestra pequeña no demuestra una ventaja futura.</div>
+  <div class="bt31-table-wrap"><table class="bt31-table"><thead><tr><th>Señal</th><th>Resultado</th><th>Estado</th></tr></thead><tbody id="bt31Rows"><tr><td colspan="4" class="muted">Todavía no hay señales evaluadas.</td></tr></tbody></table></div>
+</div></section>
+
+<section class="card full bt33-panel">
+  <div class="section-title">
+    <div>
+      <h3>Registro de entradas</h3>
+      <div class="muted">Entrada actual y seguimiento de martingala</div>
+    </div>
+    <span class="eyebrow">HISTORIAL</span>
+  </div>
+
+  <div id="bt33Active" class="model-detail">
+    Sin entrada activa.
+  </div>
+
+  <div style="overflow:auto;margin-top:12px">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Entrada</th>
+          <th>Color</th>
+          <th>Martingala</th>
+          <th>Resultado</th>
+          <th>Estado</th>
+          <th>Motivo</th>
+        </tr>
+      </thead>
+      <tbody id="bt33Rows">
+        <tr>
+          <td colspan="6" class="muted">Todavía no hay entradas registradas.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="muted" style="margin-top:10px">
+    Máximo permitido por entrada: 6 rondas.
+  </div>
+</section><section class="card full"><div class="section-title"><h3>Panel de administración</h3><span class="eyebrow">Gestión de licencias</span></div><div id="adminMsg" class="muted">Solo visible para administradores.</div><div id="admin" class="hidden"><div class="formrow"><input id="newEmail" class="input" placeholder="Email"><input id="newPass" class="input" placeholder="Contraseña (6+)"><input id="days" class="input" type="number" value="30"></div><button class="btn primary" onclick="createUser()">Crear licencia</button><div style="overflow:auto;margin-top:12px"><table class="table"><thead><tr><th>Email</th><th>Rol</th><th>Vence</th><th>Acción</th></tr></thead><tbody id="users"></tbody></table></div></div></section>
+</div></div>
+<script>
+var token=localStorage.bt_token||"", hands=[], signals=[], pendingSignal=null, cooldownRemaining=0;
+
+function saveSession(){
+  try{
+    localStorage.setItem('bt_session',JSON.stringify({
+      hands:hands,
+      signals:signals,
+      pendingId:pendingSignal ? pendingSignal.id : null,
+      cooldownRemaining:cooldownRemaining
+    }));
+  }catch(e){
+    console.warn('No se pudo guardar la sesión',e);
+  }
+}
+
+function restoreSession(){
+  try{
+    const raw=localStorage.getItem('bt_session');
+    if(!raw)return;
+
+    const data=JSON.parse(raw);
+
+    if(Array.isArray(data.hands))hands=data.hands;
+    if(Array.isArray(data.signals))signals=data.signals;
+    if(Number.isFinite(data.cooldownRemaining))cooldownRemaining=data.cooldownRemaining;
+
+    if(data.pendingId!==null && data.pendingId!==undefined){
+      pendingSignal=signals.find(s=>s.id===data.pendingId) || null;
+    }else{
+      pendingSignal=null;
+    }
+  }catch(e){
+    console.warn('No se pudo restaurar la sesión',e);
+    hands=[];
+    signals=[];
+    pendingSignal=null;
+  }
+}
+
+restoreSession();
+const MAX_SIGNAL_ROUNDS=6, BALANCE_START=35, EXTREME_STREAK=9, WIN_COOLDOWN_ROUNDS=3;
+const $=x=>document.getElementById(x);
+
+async function api(url,opt={}){opt.headers={...(opt.headers||{}),...(token?{Authorization:"Bearer "+token}:{})};if(opt.body)opt.headers["Content-Type"]="application/json";let r=await fetch(url,opt);let j=await r.json();if(!r.ok)throw Error(j.error||"Error");return j}
+async function login(){try{let j=await api("/api/login",{method:"POST",body:JSON.stringify({email:$('email').value,password:$('pass').value})});token=j.token;localStorage.bt_token=token;start(j.user)}catch(e){$('err').textContent=e.message}}
+async function start(u){$('login').classList.add('hidden');$('app').classList.remove('hidden');$('who').textContent=u.email;
+updateAccountPanel(u);if(u.role==='admin'){$('admin').classList.remove('hidden');$('adminMsg').classList.add('hidden');loadUsers()}render()}
+async function boot(){if(!token)return;try{let j=await api('/api/me');start(j.user)}catch(e){logout()}}
+function newSession(){
+
+  hands=[];
+  signals=[];
+  pendingSignal=null;
+  cooldownRemaining=0;
+
+  localStorage.removeItem('bt_session');
+
+  render();
+}
+function logout(){token="";localStorage.removeItem('bt_token');location.reload()}
+
+function nonTies(){return hands.filter(x=>x!=='E')}
+function currentStreak(a,t){let n=0;for(let i=a.length-1;i>=0&&a[i]===t;i--)n++;return n}
+function previousStreak(a,t){
+  let i=a.length-1;
+  while(i>=0&&a[i]===t)i--;
+  if(i<0)return 0;
+  let n=0;
+  for(;i>=0&&a[i]===a[a.length-1];i--)n++;
+  return n;
+}
+function lastStreakBeforeSwitch(a,t){
+  if(!a.length)return 0;
+  let i=a.length-1;
+  const last=a[i];
+  while(i>=0&&a[i]===last)i--;
+  if(i<0)return 0;
+  const color=a[i];
+  let n=0;
+  for(;i>=0&&a[i]===color;i--)n++;
+  return n;
+}
+function longestStreak(a,t){
+  let best=0,n=0;
+  for(const x of a){if(x===t){n++;best=Math.max(best,n)}else n=0}
+  return best;
+}
+function isAlternating(a){
+  if(a.length<4)return false;
+  const w=a.slice(-6);
+  for(let i=1;i<w.length;i++)if(w[i]===w[i-1])return false;
+  return true;
+}
+function altExpected(a){
+  const w=a.slice(-6);
+  return w.length?w[w.length-1]==='B'?'J':'B':null;
+}
+function extreme(a){
+  if(!a.length)return {active:false,color:null,len:0};
+  const color=a[a.length-1],len=currentStreak(a,color);
+  return {active:len>=EXTREME_STREAK,color,len};
+}
+
+function distributionRule(a){
+  const b=a.filter(x=>x==='B').length,j=a.filter(x=>x==='J').length;
+  const diff=Math.abs(b-j), dominant=b>=j?'B':'J', minority=dominant==='B'?'J':'B';
+  if(a.length<BALANCE_START)return {mode:'normal',b,j,diff,pick:dominant};
+  // 20/15: mantener el dominante. 20/10: activar sesgo hacia el menos frecuente.
+  if(diff>=10)return {mode:'balance',b,j,diff,pick:minority};
+  return {mode:'normal',b,j,diff,pick:dominant};
+}
+
+function analyzeSequence(a){
+
+  if(a.length < 4){
+    return {
+      s:'W',
+      reason:'Esperar: registra al menos 4 manos sin empate.',
+      extreme:false,
+      mode:'wait',
+      factors:null
+    };
+  }
+
+  // ==========================================================
+  // REGLA 1 — RACHA EXTREMA 9+
+  // ==========================================================
+
+  const ex=extreme(a);
+
+  if(!pendingSignal && cooldownRemaining>0){
+
+    $('bt33Active').innerHTML=
+      `<b>ESPERAR DESPUÉS DE ACIERTO</b>
+       <div class="muted" style="margin-top:6px">
+       Faltan ${cooldownRemaining} rondas para buscar una nueva entrada.
+       </div>`;
+
+}
+else if(ex.active){
+    return {
+      s:'X',
+      reason:`NO SEGUIR OPERANDO EN ESTE CUADRO. Racha extrema de ${ex.len} ${ex.color==='B'?'BANCA':'JUGADOR'}.`,
+      extreme:true,
+      extremeColor:ex.color,
+      extremeLen:ex.len,
+      mode:'extreme',
+      factors:{
+        streak:ex.len,
+        banca:a.filter(x=>x==='B').length,
+        jugador:a.filter(x=>x==='J').length
+      }
+    };
+  }
+
+  const last=a[a.length-1];
+  const lastLen=currentStreak(a,last);
+
+  const banca=a.filter(x=>x==='B').length;
+  const jugador=a.filter(x=>x==='J').length;
+
+  // ==========================================================
+  // REGLA 2 — ALTERNANCIA 1-1
+  // ==========================================================
+
+  if(isAlternating(a)){
+
+    if(lastLen>=3){
+      return {
+        s:'W',
+        reason:'Alternancia cortada por racha de 3. Señal cancelada; buscar nueva entrada.',
+        extreme:false,
+        mode:'alternancia_cortada',
+        factors:{
+          streak:lastLen,
+          banca,
+          jugador,
+          pattern:'1-1'
+        }
+      };
+    }
+
+    const pick=altExpected(a);
+
+    return {
+      s:pick,
+      reason:`Alternancia 1-1 detectada. Seguir con ${pick==='B'?'BANCA':'JUGADOR'} mientras continúe el patrón.`,
+      extreme:false,
+      mode:'alternating',
+      factors:{
+        streak:lastLen,
+        banca,
+        jugador,
+        pattern:'1-1'
+      }
+    };
+  }
+
+  // ==========================================================
+  // REGLA 3 — RACHA LARGA + CAMBIO CORTO
+  // ==========================================================
+
+  if(lastLen<=2){
+
+    const previousStreak=lastStreakBeforeSwitch(a,last);
+
+    if(previousStreak>=3){
+
+      const oldColor=last==='B'?'J':'B';
+
+      return {
+        s:oldColor,
+        reason:`Racha larga de ${previousStreak} en ${oldColor==='B'?'BANCA':'JUGADOR'} seguida por cambio de ${lastLen}. Mantener ${oldColor==='B'?'BANCA':'JUGADOR'}.`,
+        extreme:false,
+        mode:'long_streak',
+        factors:{
+          streak:lastLen,
+          previousStreak,
+          banca,
+          jugador,
+          pattern:'racha_larga'
+        }
+      };
+    }
+  }
+
+  // ==========================================================
+// REGLA 4 — DESDE LA MANO 35
+// ==========================================================
+//
+// Desde la mano 35:
+// mantener el lado dominante.
+// No utiliza score.
+// No utiliza diferencia de puntos.
+// ==========================================================
+
+if(a.length>=35){
+
+  const pick=banca>=jugador?'B':'J';
+
+  return {
+    s:pick,
+    reason:`Después de 35 manos: Banca ${banca} / Jugador ${jugador}. Se mantiene el dominante: ${pick==='B'?'BANCA':'JUGADOR'}.`,
+    extreme:false,
+    mode:'balance_dominant',
+    factors:{
+      streak:lastLen,
+      banca:banca,
+      jugador:jugador,
+      pattern:'balance_dominante'
+    }
+  };
+}
+
+// ==========================================================
+// REGLA 5 — RACHA ACTUAL
+  // ==========================================================
+
+  if(lastLen>=3){
+
+    return {
+      s:last,
+      reason:`Racha activa de ${lastLen} en ${last==='B'?'BANCA':'JUGADOR'}. Mantener el color.`,
+      extreme:false,
+      mode:'streak',
+      factors:{
+        streak:lastLen,
+        banca,
+        jugador,
+        pattern:'racha_actual'
+      }
+    };
+  }
+
+  // ==========================================================
+  // SIN PATRON
+  // ==========================================================
+
+  return {
+    s:'W',
+    reason:'Esperar nueva confirmación de patrón.',
+    extreme:false,
+    mode:'wait',
+    factors:{
+      streak:lastLen,
+      banca,
+      jugador,
+      pattern:'sin_patron'
+    }
+  };
+}
+function analyze(){
+
+  // Después de un acierto, bloquear nuevas señales
+  // durante 3 rondas sin empate.
+  if(cooldownRemaining>0){
+
+    return {
+      s:'W',
+      reason:`Esperar después de acierto. Faltan ${cooldownRemaining} rondas para buscar una nueva entrada.`,
+      extreme:false,
+      mode:'cooldown',
+      factors:{
+        cooldown:cooldownRemaining
+      }
+    };
+  }
+
+  return analyzeSequence(nonTies());
+}
+function backtest(){
+  const a=nonTies(),total=Math.max(0,a.length-5);
+  let signals=0,wins=0,bSignals=0,jSignals=0,bWins=0,jWins=0;
+  for(let i=5;i<a.length;i++){
+    const r=analyzeSequence(a.slice(0,i));
+    if(r.s==='W'||r.s==='X')continue;
+    signals++;if(r.s==='B')bSignals++;else jSignals++;
+    if(r.s===a[i]){wins++;if(r.s==='B')bWins++;else jWins++;}
+  }
+  const accuracy=signals?wins/signals*100:0,coverage=total?signals/total*100:0;
+  return {total,signals,wins,accuracy,coverage,bSignals,jSignals,bWins,jWins};
+}
+
+function factorHtml(label,value,detail){return `<div class="factor"><span class="muted">${label}</span><b>${value}</b><div class="muted">${detail}</div></div>`}
+
+function openSignal(a){
+  const sig={
+    id:signals.length+1,
+    s:a.s,
+    handIndex:hands.length-1,
+    outcome:null,
+    correct:null,
+    round:0,
+    maxRounds:MAX_SIGNAL_ROUNDS,
+    reason:a.reason,
+    closedReason:null,
+    mode:a.mode||"normal"
+  };
+
+  signals.push(sig);
+  pendingSignal=sig;
+  saveSession();
+}
+
+function resolvePending(x){
+  if(!pendingSignal || x==='E') return null;
+
+  pendingSignal.round=(pendingSignal.round||0)+1;
+
+  if(x===pendingSignal.s){
+
+    pendingSignal.outcome=x;
+    pendingSignal.correct=true;
+    pendingSignal.closedReason=
+      `Acertó en martingala ${pendingSignal.round}`;
+
+    pendingSignal=null;
+
+    // Después de una entrada ganada,
+    // esperar 3 rondas antes de buscar una nueva.
+    cooldownRemaining=WIN_COOLDOWN_ROUNDS;
+
+    saveSession();
+    return 'win';
+  }
+
+  if(pendingSignal.round>=MAX_SIGNAL_ROUNDS){
+
+    pendingSignal.outcome=x;
+    pendingSignal.correct=false;
+    pendingSignal.closedReason='Se agotaron las 6 martingalas';
+    pendingSignal=null;
+
+    saveSession();
+    return 'loss';
+  }
+
+  saveSession();
+  return null;
+}
+function add(x){
+
+  const hadPending=!!pendingSignal;
+
+  const resolved=resolvePending(x);
+
+  hands.push(x);
+
+  // Una entrada recién ganada inicia el periodo
+  // de espera. No contamos la misma mano ganadora.
+  if(resolved==='win'){
+    saveSession();
+    render();
+    return;
+  }
+
+  // Esperar 3 rondas B/J después de un acierto.
+  // Los empates no consumen una ronda.
+  if(!pendingSignal && x!=='E' && cooldownRemaining>0){
+
+    cooldownRemaining--;
+
+    saveSession();
+    render();
+    return;
+  }
+
+  const a=analyze();
+
+  if(a.s==='X'){
+
+    if(pendingSignal){
+      pendingSignal.correct=false;
+      pendingSignal.closedReason='Cancelada por racha extrema';
+      pendingSignal=null;
+    }
+
+    cooldownRemaining=0;
+
+    saveSession();
+    render();
+    return;
+  }
+
+  if(!hadPending && !pendingSignal && a.s!=='W'){
+    openSignal(a);
+  }
+
+  saveSession();
+  render();
+}
+function roundSummary(){
+  const r=signals.filter(s=>s.correct!==null);
+  const r1=r.filter(s=>s.correct&&s.round===1).length;
+  const r2=r.filter(s=>s.correct&&s.round===2).length;
+  const r3=r.filter(s=>s.correct&&s.round===3).length;
+  const r46=r.filter(s=>s.correct&&s.round>=4).length;
+  const fails=r.filter(s=>s.correct===false).length;
+  const avg=r.length?r.reduce((n,s)=>n+(s.round||0),0)/r.length:0;
+  const max=r.reduce((n,s)=>Math.max(n,s.round||0),0);
+  return {r,r1,r2,r3,r46,fails,avg,max};
+}
+
+function renderBalanceTrend(){
+  const box=$('btBalanceChart');
+  const value=$('btBalanceValue');
+
+  if(!box || !value)return;
+
+  const closed=signals.filter(s=>s.correct===true || s.correct===false);
+
+  let balance=0;
+  const points=[0];
+
+  closed.forEach(s=>{
+    balance += s.correct===true ? 1 : -1;
+    points.push(balance);
+  });
+
+  value.textContent=(balance>0?'+':'')+balance;
+
+  if(!closed.length){
+    box.innerHTML=`
+      <div class="muted"
+           style="height:160px;display:flex;align-items:center;justify-content:center">
+        Aún no hay señales cerradas.
+      </div>
+    `;
+    return;
+  }
+
+  const W=760;
+  const H=180;
+  const PX=18;
+  const PY=22;
+
+  let min=Math.min(...points,0);
+  let max=Math.max(...points,0);
+
+  if(min===max){
+    min--;
+    max++;
+  }
+
+  const range=max-min;
+
+  const X=i=>{
+    return PX+(i/(points.length-1))*(W-PX*2);
+  };
+
+  const Y=v=>{
+    return H-PY-((v-min)/range)*(H-PY*2);
+  };
+
+  const coords=points
+    .map((v,i)=>`${X(i).toFixed(1)},${Y(v).toFixed(1)}`)
+    .join(' ');
+
+  const zero=Y(0);
+  const lastX=X(points.length-1);
+  const lastY=Y(points[points.length-1]);
+
+  box.innerHTML=`
+    <svg viewBox="0 0 ${W} ${H}"
+         style="width:100%;height:180px;display:block">
+
+      <line
+        x1="${PX}"
+        y1="${zero}"
+        x2="${W-PX}"
+        y2="${zero}"
+        stroke="#ffffff18"
+        stroke-dasharray="5 5"/>
+
+      <polyline
+        points="${coords}"
+        fill="none"
+        stroke="#20d8ff"
+        stroke-width="3"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+      <circle
+        cx="${lastX}"
+        cy="${lastY}"
+        r="5"
+        fill="#20d8ff"/>
+
+      <text
+        x="${W-PX}"
+        y="${Math.max(16,lastY-10)}"
+        text-anchor="end"
+        fill="#f7f7fb"
+        font-size="13"
+        font-weight="800">
+        ${balance>0?'+':''}${balance}
+      </text>
+
+    </svg>
+  `;
+}
+function renderRoundPerformance(){
+
+  const box=$('btRoundPerformance');
+
+  if(!box)return;
+
+  const closed=signals.filter(
+    s=>s.correct===true || s.correct===false
+  );
+
+  let rows='';
+
+  for(let r=1;r<=MAX_SIGNAL_ROUNDS;r++){
+
+    const wins=closed.filter(
+      s=>s.correct===true && s.round===r
+    ).length;
+
+    const fails=closed.filter(
+      s=>s.correct===false && s.round===r
+    ).length;
+
+    const total=wins+fails;
+
+    const pct=total
+      ? Math.round((wins/total)*100)
+      : null;
+
+    const pctText=pct===null ? '—' : pct+'%';
+
+    const barWidth=pct===null ? 0 : pct;
+
+    rows+=`
+      <div style="
+        display:grid;
+        grid-template-columns:55px 1fr 1fr 150px;
+        gap:12px;
+        align-items:center;
+        padding:10px 12px;
+        border:1px solid var(--line);
+        border-radius:10px;
+        background:#0b0f15;
+      ">
+
+        <b>${r}/6</b>
+
+        <span style="color:#20d878;font-weight:800">
+          🟢 ${wins} acierto${wins===1?'':'s'}
+        </span>
+
+        <span style="color:#ff5964;font-weight:800">
+          🔴 ${fails} fallo${fails===1?'':'s'}
+        </span>
+
+        <div style="display:flex;align-items:center;gap:8px">
+
+          <div style="
+            flex:1;
+            height:8px;
+            border-radius:20px;
+            background:#1b2230;
+            overflow:hidden;
+          ">
+            <div style="
+              width:${barWidth}%;
+              height:100%;
+              border-radius:20px;
+              background:#20d878;
+              transition:width .3s ease;
+            "></div>
+          </div>
+
+          <b style="
+            min-width:42px;
+            text-align:right;
+          ">
+            ${pctText}
+          </b>
+
+        </div>
+
+      </div>
+    `;
+  }
+
+  box.innerHTML=rows;
+}
+function render(){
+  const a=analyze(), rs=roundSummary();
+  const ub=$('undoBtn'),uc=$('undoCount');
+  if(ub){ub.disabled=hands.length===0;ub.classList.toggle('ready',hands.length>0);if(uc)uc.textContent='· '+hands.length+' disponible'+(hands.length===1?'':'s')}
+
+  $('hands').textContent=hands.length;
+  $('signals').textContent=signals.length;
+  $('wins').textContent=rs.r.filter(s=>s.correct).length;
+
+  if(a.s==='X'){
+    $('sigLabel').textContent='ðŸš¨ BLOQUEADO';
+    $('sigBig').textContent='NO SEGUIR OPERANDO';
+    $('reason').textContent=a.reason;
+  }else{
+
+  $('sigLabel').textContent =
+    a.s==='B'
+      ? '🔴 BANCA'
+      : a.s==='J'
+        ? '🔵 JUGADOR'
+        : '🟡 ESPERAR';
+
+  const sigBig = $('sigBig');
+
+  sigBig.classList.remove(
+    'signal-banca',
+    'signal-jugador',
+    'signal-esperar'
+  );
+
+  if(a.s==='B'){
+    sigBig.textContent='SEÑAL BANCA '+Math.min((pendingSignal?.round||0)+1,MAX_SIGNAL_ROUNDS)+'/'+MAX_SIGNAL_ROUNDS;
+    sigBig.classList.add('signal-banca');
+  }
+  else if(a.s==='J'){
+    sigBig.textContent='SEÑAL JUGADOR '+Math.min((pendingSignal?.round||0)+1,MAX_SIGNAL_ROUNDS)+'/'+MAX_SIGNAL_ROUNDS;
+    sigBig.classList.add('signal-jugador');
+  }
+  else{
+    sigBig.textContent='ESPERAR';
+    sigBig.classList.add('signal-esperar');
+  }
+
+  $('reason').textContent=a.reason;
+}
+
+  if(a.factors){
+    $('why').classList.remove('hidden');
+
+    let lectura = '';
+
+    if(a.mode === 'alternating'){
+      lectura = 'Patron 1-1 detectado. Seguir alternando mientras el patron se mantenga.';
+    }
+    else if(a.mode === 'alternancia_cortada'){
+      lectura = 'La alternancia fue cortada por una racha de 3. Señal cancelada; buscar nueva entrada.';
+    }
+    else if(a.mode === 'long_streak'){
+      lectura = `Racha larga de ${a.factors.previousStreak} seguida por cambio corto de ${a.factors.streak}. Mantener el color de la racha larga.`;
+    }
+    else if(a.mode === 'balance_dominant'){
+      lectura = `Despues de 35 manos: Banca ${a.factors.banca} y Jugador ${a.factors.jugador}. Aplicando regla de distribucion.`;
+    }
+    else if(a.mode === 'streak'){
+      lectura = `Racha activa de ${a.factors.streak} consecutivas. Mantener el color.`;
+    }
+    else{
+      lectura = 'Esperar nueva confirmacion de patron.';
+    }
+
+    $('why').innerHTML = `<b>Lectura del modelo:</b> ${lectura}`;
+
+    let html = '';
+
+    if(a.factors.streak !== undefined){
+      html += factorHtml('🔥 Racha actual', a.factors.streak, `${a.factors.streak} consecutivas`);
+    }
+
+    if(a.factors.previousStreak !== undefined){
+      html += factorHtml('📌 Racha anterior', a.factors.previousStreak, 'racha larga detectada');
+    }
+
+    if(a.factors.pattern){
+      html += factorHtml('🔎 Patron', a.factors.pattern, 'patron detectado');
+    }
+
+    if(a.factors.banca !== undefined){
+      html += factorHtml('🔴 Banca', a.factors.banca, 'total acumulado');
+    }
+
+    if(a.factors.jugador !== undefined){
+      html += factorHtml('🔵 Jugador', a.factors.jugador, 'total acumulado');
+    }
+
+    $('factors').innerHTML = html;
+  }else{
+    $('why').classList.add('hidden');
+    $('factors').innerHTML = '<div class="empty muted">Introduce al menos 4 manos sin empate para activar el analisis.</div>';
+  }
+
+  renderBalanceTrend();
+  renderRoundPerformance();
+  hist.innerHTML=hands.map((x,i)=>`<span class="chip ${x==='B'?'r':x==='J'?'b':'g'}" title="Mano ${i+1}">${x}</span>`).join('')||'<span class="muted">Sin manos registradas.</span>';
+
+  const n=hands.length,b=hands.filter(x=>x==='B').length,j=hands.filter(x=>x==='J').length,e=hands.filter(x=>x==='E').length;
+  $('dist').innerHTML=`ðŸ”´ Banca: ${b} (${n?Math.round(b/n*100):0}%)<br>ðŸ”µ Jugador: ${j} (${n?Math.round(j/n*100):0}%)<br>ðŸŸ¢ Empate: ${e} (${n?Math.round(e/n*100):0}%)`;
+
+  const bt=backtest();
+  $('btSamples').textContent=bt.total;$('btSignals').textContent=bt.signals;$('btAccuracy').textContent=bt.signals?bt.accuracy.toFixed(1)+'%':'â€”';$('btCoverage').textContent=bt.total?bt.coverage.toFixed(1)+'%':'â€”';
+  $('bt31Wins').textContent=bt.wins;$('bt31Losses').textContent=Math.max(0,bt.signals-bt.wins);$('bt31Accuracy').textContent=bt.signals?bt.accuracy.toFixed(1)+'%':'â€”';$('bt31Coverage').textContent=bt.total?bt.coverage.toFixed(1)+'%':'â€”';$('bt31BAcc').textContent=bt.bSignals>=5?(bt.bWins/bt.bSignals*100).toFixed(1)+'%':'â€”';$('bt31JAcc').textContent=bt.jSignals>=5?(bt.jWins/bt.jSignals*100).toFixed(1)+'%':'â€”';
+
+  const ex=extreme(nonTies());
+  const alert=$('bt33Alert');
+  if(alert)alert.classList.toggle('show',ex.active);
+
+  const setText=(id,value)=>{
+    const el=$(id);
+    if(el) el.textContent=value;
+  };
+
+  setText('bt33Signals',signals.length);
+  setText('bt33R1',rs.r1);
+  setText('bt33R2',rs.r2);
+  setText('bt33R3',rs.r3);
+  setText('bt33R46',rs.r46);
+  setText('bt33Fails',rs.fails);
+  const roundStats=$('bt33RoundStats'); if(roundStats) roundStats.textContent=`Promedio de rondas: ${rs.r.length?rs.avg.toFixed(2):'â€”'} · Máximo utilizado: ${rs.max||'â€”'} · Máximo permitido: ${MAX_SIGNAL_ROUNDS}`;
+
+  if(pendingSignal){
+    $('bt33Active').innerHTML=`<b> Señal activa: ${pendingSignal.s==='B'?'BANCA':'JUGADOR'}</b> · <span class="bt33-round">Ronda ${Math.min(pendingSignal.round+1,MAX_SIGNAL_ROUNDS)}/${MAX_SIGNAL_ROUNDS}</span>`;
+  }else{
+    $('bt33Active').textContent=ex.active?'Seguimiento cancelado por racha extrema.':'Sin señal activa.';
+  }
+
+  $('bt33Rows').innerHTML=signals.slice(-20).reverse().map(s=>{
+    const label=s.s==='B'?'BANCA':'JUGADOR';
+    const state=s.correct===true?'âœ“ ACIERTO':s.correct===false?'âœ• FALLO':'â³ PENDIENTE';
+    const cls=s.correct===true?'bt33-good':s.correct===false?'bt33-bad':'bt33-warn';
+    return `<tr><td>#${s.id} · ${label}</td><td>${Math.min((s.round||0)+(s.correct===null?1:0),MAX_SIGNAL_ROUNDS)}/${MAX_SIGNAL_ROUNDS}</td><td>${s.closedReason||s.reason}</td><td class="${cls}">${state}</td></tr>`;
+  }).join('')||'<tr><td colspan="5" class="muted">Todavía no hay señales.</td></tr>';
+
+  $('bt31Note').textContent=bt.signals?`Hay ${bt.signals} señales evaluadas. El backtest mide comportamiento histórico; no garantiza la próxima mano.`:`Registra más manos para evaluar el modelo.`;
+  $('bt31Rows').innerHTML=signals.slice(-12).reverse().map(s=>`<tr><td>${s.s==='B'?'BANCA':'JUGADOR'}</td><td>${s.outcome==='B'?'BANCA':s.outcome==='J'?'JUGADOR':s.outcome==='E'?'EMPATE':'â€”'}</td><td class="${s.correct?'bt31-good':s.correct===false?'bt31-bad':''}">${s.correct===true?'âœ“ ACIERTO':s.correct===false?'âœ• ERROR':'PENDIENTE'}</td></tr>`).join('')||'<tr><td colspan="4" class="muted">Todavía no hay señales evaluadas.</td></tr>';
+
+  $('btDetail').textContent=bt.signals?`Aciertos ${bt.wins}/${bt.signals}. Banca: ${btWinsText(bt.bWins,bt.bSignals)} · Jugador: ${btWinsText(bt.jWins,bt.jSignals)}. El backtest no predice la próxima mano.`:'Registra al menos 4 manos sin empate para comenzar.';
+}
+function btWinsText(w,n){return n?`${w}/${n} (${(w/n*100).toFixed(1)}%)`:'â€”'}
+async function loadUsers(){
+  let u=await api('/api/users');
+
+  $('users').innerHTML=u.map(x=>{
+
+    const expiration=x.license_expires
+      ? new Date(x.license_expires)
+      : null;
+
+    const now=new Date();
+
+    const days=expiration
+      ? Math.max(0,Math.ceil((expiration-now)/86400000))
+      : 0;
+
+    let status='';
+    let statusStyle='';
+
+    if(x.role==='admin'){
+      status='ADMINISTRADOR';
+      statusStyle='color:#ffffff';
+    }else if(days>0){
+      status='🟢 ACTIVA';
+      statusStyle='color:#35e88b';
+    }else{
+      status='🔴 VENCIDA';
+      statusStyle='color:#ff596f';
+    }
+
+    const expirationText=expiration
+      ? expiration.toLocaleDateString()
+      : '—';
+
+    const daysText=x.role==='admin'
+      ? '—'
+      : days+' día'+(days===1?'':'s');
+
+    const action=x.role==='user'
+      ? `<button class="btn" onclick="renew(${x.id})">+30 días</button>`
+      : '—';
+
+    return `
+      <tr>
+        <td>${x.email}</td>
+        <td>${x.role}</td>
+        <td style="${statusStyle};font-weight:900">${status}</td>
+        <td>${daysText}</td>
+        <td>${expirationText}</td>
+        <td>${action}</td>
+      </tr>
+    `;
+
+  }).join('');
+}
+async function createUser(){try{await api('/api/users',{method:'POST',body:JSON.stringify({email:$('newEmail').value,password:$('newPass').value,days:$('days').value})});$('newEmail').value='';$('newPass').value='';loadUsers()}catch(e){alert(e.message)}}
+async function renew(id){await api('/api/users/'+id+'/license',{method:'PATCH',body:JSON.stringify({days:30})});loadUsers()}
+boot();
+</script>
+<script>
+(function(){
+  window.undoLast=function(){
+    if(!hands||hands.length===0){render();return;}
+    const removedIndex=hands.length-1;
+    hands.pop();
+
+    let restored=null;
+    signals=(signals||[]).filter(function(s){
+      if(s.handIndex===removedIndex)return false;
+      if(s.handIndex>removedIndex)return false;
+
+      if(s.resolutionHandIndex===removedIndex){
+        s.outcome=null;
+        s.correct=null;
+        s.round=Math.max(0,(s.round||1)-1);
+        s.closedReason=null;
+        restored=s;
+      }
+      return true;
+    });
+
+    // Si se deshizo una mano de la señal inicial, eliminar esa señal.
+    if(restored)pendingSignal=restored;
+    else if(pendingSignal && pendingSignal.handIndex>=hands.length)pendingSignal=null;
+
+    saveSession();
+    render();
+  };
+})();
+</script>
+<script>document.addEventListener('keydown',function(e){if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'&&!e.shiftKey){e.preventDefault();if(typeof undoLast==='function'&&hands.length)undoLast();}});</script>
+<script id="bt-register-functions">
+function showRegister(){
+  const login=document.getElementById('login');
+  const register=document.getElementById('register');
+
+  if(login) login.classList.add('hidden');
+  if(register) register.classList.remove('hidden');
+
+  const msg=document.getElementById('registerMsg');
+  if(msg) msg.textContent='';
+}
+
+function showLogin(){
+  const login=document.getElementById('login');
+  const register=document.getElementById('register');
+
+  if(register) register.classList.add('hidden');
+  if(login) login.classList.remove('hidden');
+
+  const msg=document.getElementById('registerMsg');
+  if(msg) msg.textContent='';
+}
+
+async function registerUser(){
+
+  const email=document.getElementById('registerEmail').value.trim().toLowerCase();
+  const password=document.getElementById('registerPass').value;
+  const password2=document.getElementById('registerPass2').value;
+  const msg=document.getElementById('registerMsg');
+
+  if(!email || !email.includes('@')){
+    msg.textContent='Ingresa un correo electrónico válido.';
+    return;
+  }
+
+  if(password.length<6){
+    msg.textContent='La contraseña debe tener mínimo 6 caracteres.';
+    return;
+  }
+
+  if(password!==password2){
+    msg.textContent='Las contraseñas no coinciden.';
+    return;
+  }
+
+  msg.textContent='Creando cuenta...';
+
+  try{
+
+    const response=await fetch('/api/register',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify({
+        email,
+        password
+      })
+    });
+
+    const data=await response.json();
+
+    if(!response.ok){
+      msg.textContent=data.error||'No se pudo crear la cuenta.';
+      return;
+    }
+
+    localStorage.setItem('bt_token',data.token);
+
+    msg.textContent='Cuenta creada correctamente.';
+
+    setTimeout(()=>{
+      location.reload();
+    },500);
+
+  }catch(error){
+
+    console.error(error);
+    msg.textContent='No se pudo conectar con el servidor.';
+  }
+}
+</script>
+<script id="bt-account-functions">
+function updateAccountPanel(u){
+
+  const email=document.getElementById('accountEmail');
+  const status=document.getElementById('accountStatus');
+  const days=document.getElementById('accountDays');
+  const expires=document.getElementById('accountExpires');
+
+  if(!email) return;
+
+  email.textContent=u.email||'—';
+
+  if(u.role==='admin'){
+    status.textContent='ADMINISTRADOR';
+    status.style.color='#ffffff';
+  }else{
+
+    if(!u.license_expires){
+      status.textContent='SIN LICENCIA';
+      status.style.color='#ff596f';
+      days.textContent='—';
+      expires.textContent='—';
+      return;
+    }
+
+    const expiration=new Date(u.license_expires);
+    const now=new Date();
+
+    const remaining=Math.max(
+      0,
+      Math.ceil((expiration-now)/86400000)
+    );
+
+    if(remaining>0){
+
+      status.textContent='LICENCIA ACTIVA';
+      status.style.color='#35e88b';
+
+    }else{
+
+      status.textContent='LICENCIA VENCIDA';
+      status.style.color='#ff596f';
+    }
+
+    days.textContent=remaining;
+    expires.textContent=expiration.toLocaleDateString();
+  }
+}
+</script>
+</body></html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

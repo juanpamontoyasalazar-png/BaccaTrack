@@ -1,0 +1,9 @@
+node_modules/
+.env
+*.db
+*.db-shm
+*.db-wal
+*.bak
+*.bak-*
+server.js.bak*
+public/*.bak*
