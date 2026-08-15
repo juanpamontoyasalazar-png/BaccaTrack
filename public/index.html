@@ -1,10 +1,10 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080a0f"><link rel="icon" type="image/jpeg" href="/baccatrack-logo.jpg"><link rel="apple-touch-icon" href="/baccatrack-logo.jpg"><title>BaccaTrack 3.3 · Análisis estadístico de sesión</title><style>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080a0f"><link rel="icon" type="image/jpeg" href="/baccatrack-logo.jpg"><link rel="apple-touch-icon" href="/baccatrack-logo.jpg"><title>BaccaTrack · Análisis estadístico de sesión</title><style>
 :root{--bg:#05060b;--card:#0b0d15e8;--line:#24283a;--txt:#f7f7fb;--muted:#9aa0b5;--red:#ff2bb5;--blue:#168cff;--green:#18d889;--yellow:#ffd24a;--purple:#b52cff;--cyan:#20d8ff}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 0,#17132b,#05060b 45%),radial-gradient(circle at 100% 20%,#071a31,#05060b 35%);color:var(--txt);font-family:Inter,system-ui,sans-serif;min-height:100vh}.wrap{max-width:1180px;margin:auto;padding:18px}.hidden{display:none!important}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.brand{display:flex;gap:13px;align-items:center}.logo{width:58px;height:58px;border-radius:50%;object-fit:cover;border:1px solid #20d8ff88;box-shadow:0 0 18px #ff2bb566,0 0 24px #168cff44;background:#05060b}.brand h1{font-size:21px;margin:0}.brand-logo{width:64px;height:64px;border-radius:50%;object-fit:cover;border:1px solid #ff2bb588;box-shadow:0 0 20px #ff2bb544,0 0 28px #168cff33}.brand h1{font-size:21px;margin:0}.muted{color:var(--muted);font-size:13px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 18px 45px #0005}.login{max-width:420px;margin:9vh auto;box-shadow:0 0 40px #b52cff12}.login .brand{margin-bottom:10px}.input{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:#0b0f15;color:var(--txt);margin:7px 0 12px}.btn{padding:11px 14px;border-radius:10px;background:#202936;color:white;font-weight:800;border:1px solid var(--line);cursor:pointer}.primary{background:linear-gradient(135deg,var(--blue),#2455b7)}.grid{display:grid;grid-template-columns:1.25fr .75fr;gap:15px}.full{grid-column:1/-1}.signal{padding:20px;border:1px solid var(--line);border-radius:16px;background:#171e29;min-height:180px}.big{font-size:30px;font-weight:900;margin:9px 0}.controls{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}.res{border:0;border-radius:13px;padding:17px;color:white;font-weight:900;cursor:pointer}.r{background:linear-gradient(135deg,#e84b5f,#a82037)}.b{background:linear-gradient(135deg,#3d8cff,#2056b7)}.g{background:linear-gradient(135deg,#31d18b,#168b5a)}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.stat{padding:13px;border:1px solid var(--line);border-radius:12px;background:#0b0f15}.stat b{display:block;font-size:21px;margin-top:4px}.hist{display:grid;grid-auto-flow:column;grid-template-rows:repeat(6,33px);grid-auto-columns:33px;gap:6px;align-items:start;justify-content:start}.chip{width:33px;height:33px;border-radius:9px;display:grid;place-items:center;font-size:11px;font-weight:900}.table{width:100%;border-collapse:collapse}.table td,.table th{padding:9px;border-bottom:1px solid var(--line);text-align:left;font-size:13px}.formrow{display:grid;grid-template-columns:1fr 1fr 120px;gap:8px}.score{height:12px;background:#262d38;border-radius:9px;overflow:hidden}.score>div{height:100%;background:linear-gradient(90deg,var(--yellow),var(--green));transition:.25s}.factors{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:12px}.factor{padding:10px;border:1px solid var(--line);border-radius:12px;background:#0b0f15}.factor b{display:block;font-size:16px;margin-top:3px}.tag{display:inline-block;padding:4px 8px;border-radius:999px;font-size:11px;font-weight:800;background:#232b38}.tag.red{background:#4b1d29}.tag.blue{background:#172e57}.tag.yellow{background:#4a3b12}.tag.green{background:#123e2c}.why{margin-top:12px;padding:12px;border-radius:12px;background:#0b0f15;border:1px dashed var(--line)}.legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.empty{padding:12px;border:1px dashed var(--line);border-radius:12px}.brand-showcase{margin-top:14px;padding:14px;border:1px solid var(--line);border-radius:16px;background:radial-gradient(circle at 50% 0,#17112b,#090b12 62%);text-align:center;overflow:hidden}.brand-showcase img{width:min(100%,280px);aspect-ratio:1;object-fit:cover;border-radius:50%;border:1px solid #20d8ff77;box-shadow:0 0 28px #ff2bb544,0 0 40px #168cff33}.brand-showcase strong{display:block;margin-top:10px;letter-spacing:2px;color:#fff}.brand-showcase span{display:block;margin-top:4px;color:var(--muted);font-size:12px;letter-spacing:1px}.undo{grid-column:1/-1;border-color:#ff2bb588!important;background:linear-gradient(180deg,#110b19,#0b0d15)!important;color:#ff65c9!important;box-shadow:0 0 18px #ff2bb51a}.res.r{background:linear-gradient(135deg,#ff2bb5,#b51670);box-shadow:0 0 18px #ff2bb522}.res.b{background:linear-gradient(135deg,#168cff,#1650c9);box-shadow:0 0 18px #168cff22}.res.g{background:linear-gradient(135deg,#18d889,#087e55);box-shadow:0 0 18px #18d88922}.danger{color:#ff9aa7}@media(max-width:800px){.grid{grid-template-columns:1fr}.full{grid-column:auto}}@media(max-width:500px){.controls{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.formrow{grid-template-columns:1fr}.factors{grid-template-columns:1fr}}
 
 /* BaccaTrack 2.5 — polished product UI */
 body{letter-spacing:.01em}button,input{font:inherit}.top{padding:6px 2px 18px;border-bottom:1px solid #ffffff0b}.brand{gap:14px}.brand-copy{display:flex;flex-direction:column;gap:3px}.brand h1{font-size:24px;letter-spacing:-.03em}.brand .muted{font-size:12px}.brand-status{display:inline-flex;align-items:center;gap:6px;width:max-content;padding:4px 8px;border:1px solid #18d88933;border-radius:999px;background:#18d8890c;color:#8ce9bd;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.status-dot{width:6px;height:6px;border-radius:50%;background:#18d889;box-shadow:0 0 9px #18d889}.top-actions{display:flex;align-items:center;gap:10px}.session-user{display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--line);border-radius:11px;background:#0b0f15}.avatar{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#ff2bb5,#168cff);font-size:11px;font-weight:900}.card{background:linear-gradient(180deg,#0d1119f2,#090c13f2);box-shadow:0 22px 55px #0007, inset 0 1px #ffffff06}.signal{position:relative;overflow:hidden;background:linear-gradient(135deg,#171e29,#10151f);box-shadow:inset 0 1px #ffffff07}.signal:after{content:"";position:absolute;right:-90px;top:-90px;width:210px;height:210px;border-radius:50%;background:radial-gradient(circle,#168cff18,transparent 68%);pointer-events:none}.signal-kicker{display:flex;align-items:center;justify-content:space-between;gap:10px}.live-badge{display:inline-flex;align-items:center;gap:7px;padding:6px 9px;border-radius:999px;background:#ff2bb50d;border:1px solid #ff2bb533;color:#ff8bd8;font-size:10px;font-weight:900;letter-spacing:.08em}.live-badge i{width:6px;height:6px;border-radius:50%;background:#ff2bb5;box-shadow:0 0 10px #ff2bb5;animation:pulse 1.6s infinite}.section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.section-title h3{margin:0}.section-title .eyebrow{font-size:10px;color:#687187;font-weight:900;letter-spacing:.12em;text-transform:uppercase}.stat{background:linear-gradient(180deg,#0d121a,#090c12);transition:transform .2s,border-color .2s}.stat:hover{transform:translateY(-2px);border-color:#ffffff16}.stat b{font-size:24px}.controls{gap:10px}.res{position:relative;overflow:hidden;min-height:56px;letter-spacing:.03em}.res:after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 20%,#ffffff18 50%,transparent 80%);transform:translateX(-120%);transition:transform .45s}.res:hover:after{transform:translateX(120%)}.btn{transition:.2s;box-shadow:0 8px 18px #0003}.btn:hover:not(:disabled){transform:translateY(-1px);filter:brightness(1.08)}.btn:disabled{opacity:.4;cursor:not-allowed;box-shadow:none}.undo{min-height:42px!important}.undo.ready{border-color:#ff2bb5aa!important;box-shadow:0 0 20px #ff2bb51a}.undo-count{margin-left:5px;color:#ff8bd8;font-weight:900}.hist{padding:12px;border:1px solid var(--line);border-radius:13px;background:#080b11;min-height:59px}.chip{box-shadow:0 5px 12px #0004;transition:.15s}.chip:hover{transform:translateY(-2px)}.brand-showcase{position:relative}.brand-showcase:before{content:"MARCA OFICIAL";position:absolute;top:10px;right:10px;padding:4px 7px;border-radius:999px;background:#080a0fcc;border:1px solid #ffffff14;color:#aeb5c8;font-size:9px;font-weight:900;letter-spacing:.1em}.admin-badge{padding:4px 7px;border-radius:999px;background:#168cff12;border:1px solid #168cff33;color:#83baff;font-size:10px;font-weight:900;letter-spacing:.08em}.subtle{color:#747d92;font-size:11px}@keyframes pulse{50%{opacity:.35;transform:scale(.75)}}
 
-/* BaccaTrack 3.3 — statistical evaluation layer */
+/* BaccaTrack — statistical evaluation layer */
 .model-note{padding:12px;border:1px dashed var(--line);border-radius:12px;background:#0b0f15;color:var(--muted);font-size:12px;line-height:1.5;margin-bottom:12px}.stats-4{grid-template-columns:repeat(4,1fr)}.model-detail{margin-top:12px;padding:12px;border-radius:12px;background:#0b0f15;border:1px solid var(--line);line-height:1.5}.live-badge{box-shadow:0 0 18px #ff2bb51a}.tag.green{background:#123e2c}.tag.yellow{background:#4a3b12}@media(max-width:800px){.stats-4{grid-template-columns:repeat(2,1fr)}}@media(max-width:500px){.stats-4{grid-template-columns:1fr 1fr}}
 .bt31-panel{margin-top:12px;padding:15px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,#0d1119,#090c13);box-shadow:inset 0 1px #ffffff06}.bt31-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}.bt31-head h3{margin:3px 0 0;font-size:17px}.bt31-eyebrow{font-size:9px;color:#727b91;font-weight:900;letter-spacing:.13em}.bt31-badge{padding:5px 8px;border-radius:999px;font-size:10px;font-weight:900;border:1px solid #ffffff12}.bt31-badge.ok{color:#8ce9bd;background:#18d88912;border-color:#18d88933}.bt31-badge.warn{color:#ffe08a;background:#ffd24a12;border-color:#ffd24a33}.bt31-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}.bt31-stat{padding:11px;border:1px solid var(--line);border-radius:11px;background:#080b11}.bt31-stat span{display:block;color:var(--muted);font-size:10px}.bt31-stat b{display:block;font-size:18px;margin-top:5px}.bt31-note{margin-top:10px;padding:10px 12px;border:1px dashed var(--line);border-radius:11px;color:var(--muted);font-size:11px;line-height:1.45}.bt31-table-wrap{overflow:auto;margin-top:10px}.bt31-table{width:100%;border-collapse:collapse;min-width:520px}.bt31-table th,.bt31-table td{padding:8px;border-bottom:1px solid var(--line);font-size:11px;text-align:left}.bt31-good{color:#18d889;font-weight:900}.bt31-bad{color:#ff7c93;font-weight:900}@media(max-width:1000px){.bt31-grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:500px){.bt31-grid{grid-template-columns:repeat(2,1fr)}}.bt33-panel{margin-top:12px;padding:15px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,#0d1119,#090c13)}
 .bt33-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}.bt33-stat{padding:11px;border:1px solid var(--line);border-radius:11px;background:#080b11}
@@ -16,7 +16,7 @@ body{letter-spacing:.01em}button,input{font:inherit}.top{padding:6px 2px 18px;bo
 @media(max-width:1000px){.bt33-grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:500px){.bt33-grid{grid-template-columns:repeat(2,1fr)}}
 
 
-/* ===== BaccaTrack 3.3 - Ajuste de distribución ===== */
+/* ===== BaccaTrack - Ajuste de distribución ===== */
 
 .brand-showcase{
   display:none!important;
@@ -57,14 +57,14 @@ section.card.full.bt33-panel{
 .card.full:has(#hist) > .muted{
   order:3;
 }
-</style> 1 1 1<style>
+</style><style>
 .signal-banca{color:#ff3b5c!important;text-shadow:0 0 18px #ff3b5c55}
 .signal-jugador{color:#3d8cff!important;text-shadow:0 0 18px #3d8cff55}
 .signal-esperar{color:#ffd24a!important}
 
 
 
-/* ===== BaccaTrack 3.3 - Ajuste de distribución ===== */
+/* ===== BaccaTrack - Ajuste de distribución ===== */
 
 .brand-showcase{
   display:none!important;
@@ -105,7 +105,7 @@ section.card.full.bt33-panel{
 .card.full:has(#hist) > .muted{
   order:3;
 }
-</style> 1 1 1<style id="baccatrack-round-style">
+</style><style id="baccatrack-round-style">
 .signal-round{
   display:inline-flex;
   align-items:center;
@@ -132,7 +132,7 @@ section.card.full.bt33-panel{
 
 
 
-/* ===== BaccaTrack 3.3 - Ajuste de distribución ===== */
+/* ===== BaccaTrack - Ajuste de distribución ===== */
 
 .brand-showcase{
   display:none!important;
@@ -173,7 +173,7 @@ section.card.full.bt33-panel{
 .card.full:has(#hist) > .muted{
   order:3;
 }
-</style> 1 1 1<style id="bt-white-action-buttons">
+</style><style id="bt-white-action-buttons">
 #undoBtn,
 #newSessionBtn{
   color:#ffffff !important;
@@ -203,7 +203,7 @@ section.card.full.bt33-panel{
 
 
 
-/* ===== BaccaTrack 3.3 - Ajuste de distribución ===== */
+/* ===== BaccaTrack - Ajuste de distribución ===== */
 
 .brand-showcase{
   display:none!important;
@@ -244,7 +244,7 @@ section.card.full.bt33-panel{
 .card.full:has(#hist) > .muted{
   order:3;
 }
-</style> 1 1 1
+</style>
 <style id="bt-admin-panel-style">
 
 #admin{
@@ -350,7 +350,7 @@ section.card.full.bt33-panel{
 
 
 
-/* ===== BaccaTrack 3.3 - Ajuste de distribución ===== */
+/* ===== BaccaTrack - Ajuste de distribución ===== */
 
 .brand-showcase{
   display:none!important;
@@ -391,8 +391,2561 @@ section.card.full.bt33-panel{
 .card.full:has(#hist) > .muted{
   order:3;
 }
-</style> 1 1 1
-</head><body>
+</style>
+<style id="baccatrack-mi-cuenta-neon">
+/* ===== BACCATRACK — MI CUENTA ===== */
+
+#accountPanel{
+  background:#080c14 !important;
+  border:1px solid #202b3d !important;
+  border-radius:18px !important;
+  box-shadow:0 12px 35px #0008 !important;
+}
+
+/* Título */
+#accountPanel h3{
+  color:#ffffff !important;
+  font-size:18px !important;
+  font-weight:850 !important;
+}
+
+/* LICENCIA */
+#accountPanel .eyebrow{
+  color:#ff20b8 !important;
+  font-size:10px !important;
+  font-weight:900 !important;
+  letter-spacing:.14em !important;
+}
+
+/* Las 4 tarjetas */
+#accountPanel .account-info-card{
+  background:linear-gradient(145deg,#0d1420,#080c14) !important;
+  border:1px solid #263247 !important;
+  border-radius:14px !important;
+  padding:14px !important;
+  min-width:0 !important;
+  overflow:hidden !important;
+}
+
+/* Etiquetas */
+#accountPanel .account-info-card .account-label{
+  display:block !important;
+  color:#ff20b8 !important;
+  font-size:9px !important;
+  font-weight:900 !important;
+  letter-spacing:.10em !important;
+  text-transform:uppercase !important;
+  margin-bottom:6px !important;
+}
+
+/* Valores */
+#accountPanel .account-info-card .account-value{
+  display:block !important;
+  color:#ffffff !important;
+  font-size:13px !important;
+  line-height:1.2 !important;
+  font-weight:750 !important;
+  max-width:100% !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+  white-space:nowrap !important;
+}
+
+/* Email más pequeño para que nunca se salga */
+#accountPanel .account-email{
+  font-size:11px !important;
+}
+
+/* Iconos */
+#accountPanel .account-icon{
+  color:#00d9ff !important;
+  margin-bottom:8px !important;
+  filter:drop-shadow(0 0 7px #00d9ff55);
+}
+
+/* Estado */
+#accountPanel .account-status{
+  color:#9b5cff !important;
+}
+
+/* Hover */
+#accountPanel .account-info-card:hover{
+  border-color:#168cff66 !important;
+  box-shadow:0 0 18px #168cff18 !important;
+}
+
+/* Responsive */
+@media(max-width:900px){
+  #accountPanel .account-info-card .account-value{
+    font-size:12px !important;
+  }
+}
+
+@media(max-width:600px){
+  #accountPanel .account-info-card .account-value{
+    font-size:11px !important;
+  }
+}
+</style><style id="baccatrack-estilo-final">
+
+/* ==========================================
+   BACCATRACK — IDENTIDAD VISUAL
+   ========================================== */
+
+/* TITULO PRINCIPAL */
+#app .brand-copy h1{
+    margin:0 !important;
+    font-size:34px !important;
+    line-height:1 !important;
+    font-weight:900 !important;
+    letter-spacing:-1px !important;
+
+    background:linear-gradient(
+        90deg,
+        #ff20b8 0%,
+        #b34cff 40%,
+        #168cff 72%,
+        #00d9ff 100%
+    ) !important;
+
+    -webkit-background-clip:text !important;
+    background-clip:text !important;
+    color:transparent !important;
+
+    text-shadow:
+        0 0 18px rgba(255,32,184,.20),
+        0 0 30px rgba(0,217,255,.12) !important;
+}
+
+/* SUBTITULO */
+#app .brand-copy .muted{
+    font-size:11px !important;
+    color:#aebbd0 !important;
+}
+
+/* SISTEMA ACTIVO */
+#app .brand-status{
+    font-size:10px !important;
+    color:#18d889 !important;
+}
+
+/* ==========================================
+   MI CUENTA
+   ========================================== */
+
+#accountPanel{
+    background:
+        linear-gradient(
+            145deg,
+            #0b1019,
+            #070b12
+        ) !important;
+
+    border:1px solid #263247 !important;
+    border-radius:18px !important;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.45),
+        inset 0 1px rgba(255,255,255,.03) !important;
+}
+
+/* TITULO MI CUENTA */
+#accountPanel .section-title h3{
+    color:#ffffff !important;
+    font-size:18px !important;
+    font-weight:850 !important;
+}
+
+/* LICENCIA */
+#accountPanel .section-title .eyebrow{
+    color:#ff20b8 !important;
+    font-size:9px !important;
+    font-weight:900 !important;
+    letter-spacing:.16em !important;
+}
+
+/* ==========================================
+   LAS CUATRO TARJETAS
+   ========================================== */
+
+#accountPanel .stat{
+    background:
+        linear-gradient(
+            145deg,
+            #0d1420,
+            #090e17
+        ) !important;
+
+    border:1px solid #263247 !important;
+    border-radius:13px !important;
+
+    padding:11px 13px !important;
+
+    min-width:0 !important;
+    overflow:hidden !important;
+
+    box-sizing:border-box !important;
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.025),
+        0 6px 18px rgba(0,0,0,.25) !important;
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        transform .2s ease !important;
+}
+
+/* HOVER */
+#accountPanel .stat:hover{
+    border-color:#168cff66 !important;
+
+    box-shadow:
+        0 0 20px rgba(22,140,255,.12),
+        inset 0 1px rgba(255,255,255,.04) !important;
+
+    transform:translateY(-1px);
+}
+
+/* ==========================================
+   ETIQUETAS:
+   USUARIO
+   ESTADO
+   DÍAS RESTANTES
+   VENCIMIENTO
+   ========================================== */
+
+#accountPanel .stat > span{
+    display:block !important;
+
+    color:#ff20b8 !important;
+
+    font-size:9px !important;
+    line-height:1.15 !important;
+
+    font-weight:900 !important;
+
+    letter-spacing:.10em !important;
+
+    text-transform:uppercase !important;
+
+    margin-bottom:6px !important;
+}
+
+/* ==========================================
+   VALORES
+   ========================================== */
+
+#accountPanel .stat > b{
+    display:block !important;
+
+    color:#ffffff !important;
+
+    font-size:13px !important;
+    line-height:1.2 !important;
+
+    font-weight:750 !important;
+
+    max-width:100% !important;
+
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+
+    white-space:nowrap !important;
+}
+
+/* EMAIL — MÁS PEQUEÑO */
+#accountEmail{
+    font-size:11px !important;
+    color:#ffffff !important;
+    letter-spacing:0 !important;
+}
+
+/* ADMINISTRADOR */
+#accountStatus{
+    font-size:12px !important;
+    color:#ffffff !important;
+}
+
+/* DÍAS */
+#accountDays{
+    font-size:13px !important;
+}
+
+/* VENCIMIENTO */
+#accountExpires{
+    font-size:12px !important;
+}
+
+/* ==========================================
+   COLORES ESPECIALES
+   ========================================== */
+
+/* Estado activo */
+#accountStatus[style*="35e88b"]{
+    color:#18d889 !important;
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+@media(max-width:900px){
+
+    #app .brand-copy h1{
+        font-size:28px !important;
+    }
+
+    #accountPanel .stat > b{
+        font-size:12px !important;
+    }
+
+    #accountEmail{
+        font-size:10px !important;
+    }
+}
+
+@media(max-width:600px){
+
+    #app .brand-copy h1{
+        font-size:24px !important;
+    }
+
+    #accountPanel .stat{
+        padding:10px !important;
+    }
+
+    #accountPanel .stat > span{
+        font-size:8px !important;
+    }
+
+    #accountPanel .stat > b{
+        font-size:11px !important;
+    }
+
+    #accountEmail{
+        font-size:10px !important;
+    }
+}
+
+</style><style id="baccatrack-frase-brand">
+#app .brand-copy > .muted{
+    font-size:14px !important;
+    line-height:1.35 !important;
+    font-weight:700 !important;
+    letter-spacing:.01em !important;
+    background:linear-gradient(
+        90deg,
+        #ff20b8 0%,
+        #b34cff 40%,
+        #168cff 72%,
+        #00d9ff 100%
+    ) !important;
+    -webkit-background-clip:text !important;
+    background-clip:text !important;
+    color:transparent !important;
+    text-shadow:
+        0 0 12px rgba(255,32,184,.15),
+        0 0 20px rgba(0,217,255,.10) !important;
+}
+</style><style id="baccatrack-botones-neon">
+
+/* ==========================================
+   BACCATRACK — BOTONES DE SESIÓN
+   ========================================== */
+
+/* DESHACER */
+#undoBtn{
+    background:linear-gradient(
+        135deg,
+        #ff20b8 0%,
+        #b34cff 55%,
+        #168cff 100%
+    ) !important;
+
+    color:#ffffff !important;
+
+    border:1px solid #ff55ca !important;
+    border-radius:12px !important;
+
+    font-weight:850 !important;
+    letter-spacing:.02em !important;
+
+    box-shadow:
+        0 0 14px rgba(255,32,184,.22),
+        0 0 25px rgba(22,140,255,.12),
+        inset 0 1px rgba(255,255,255,.15) !important;
+
+    transition:
+        transform .18s ease,
+        box-shadow .18s ease,
+        filter .18s ease !important;
+}
+
+/* HOVER DESHACER */
+#undoBtn:hover:not(:disabled){
+    transform:translateY(-2px) !important;
+
+    filter:brightness(1.12) !important;
+
+    box-shadow:
+        0 0 20px rgba(255,32,184,.38),
+        0 0 35px rgba(22,140,255,.20),
+        inset 0 1px rgba(255,255,255,.20) !important;
+}
+
+/* DESHABILITADO */
+#undoBtn:disabled{
+    opacity:.38 !important;
+    filter:grayscale(.35) !important;
+    box-shadow:none !important;
+    cursor:not-allowed !important;
+}
+
+
+/* ==========================================
+   BORRAR REGISTRO
+   ========================================== */
+
+#newSessionBtn{
+    background:linear-gradient(
+        135deg,
+        #9b5cff 0%,
+        #168cff 55%,
+        #00d9ff 100%
+    ) !important;
+
+    color:#ffffff !important;
+
+    border:1px solid #5ebcff !important;
+    border-radius:12px !important;
+
+    font-weight:850 !important;
+    letter-spacing:.02em !important;
+
+    box-shadow:
+        0 0 14px rgba(155,92,255,.22),
+        0 0 25px rgba(0,217,255,.12),
+        inset 0 1px rgba(255,255,255,.15) !important;
+
+    transition:
+        transform .18s ease,
+        box-shadow .18s ease,
+        filter .18s ease !important;
+}
+
+/* HOVER BORRAR REGISTRO */
+#newSessionBtn:hover{
+    transform:translateY(-2px) !important;
+
+    filter:brightness(1.12) !important;
+
+    box-shadow:
+        0 0 20px rgba(155,92,255,.38),
+        0 0 35px rgba(0,217,255,.20),
+        inset 0 1px rgba(255,255,255,.20) !important;
+}
+
+/* EFECTO AL PRESIONAR */
+#undoBtn:active:not(:disabled),
+#newSessionBtn:active{
+    transform:translateY(0) scale(.98) !important;
+}
+
+</style><style id="baccatrack-sesion-neon">
+
+/* ==========================================
+   BACCATRACK — SESIÓN / RESUMEN
+   ========================================== */
+
+#app .card .section-title h3{
+    color:#ffffff !important;
+    font-weight:850 !important;
+}
+
+/* "Resumen" */
+#app .card .section-title .eyebrow{
+    color:#ff20b8 !important;
+    font-size:9px !important;
+    font-weight:900 !important;
+    letter-spacing:.14em !important;
+}
+
+/* TARJETAS MANOS / SEÑALES / ACIERTOS */
+#app .stats .stat{
+    background:linear-gradient(
+        145deg,
+        #0d1420,
+        #080d16
+    ) !important;
+
+    border:1px solid #263247 !important;
+    border-radius:13px !important;
+
+    padding:13px 15px !important;
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.03),
+        0 7px 20px rgba(0,0,0,.28) !important;
+
+    transition:
+        transform .18s ease,
+        border-color .18s ease,
+        box-shadow .18s ease !important;
+}
+
+/* EFECTO AL PASAR EL MOUSE */
+#app .stats .stat:hover{
+    transform:translateY(-2px) !important;
+
+    border-color:#168cff66 !important;
+
+    box-shadow:
+        0 0 20px rgba(255,32,184,.10),
+        0 0 28px rgba(22,140,255,.14),
+        inset 0 1px rgba(255,255,255,.05) !important;
+}
+
+/* ETIQUETAS */
+#app .stats .stat > span{
+    color:#ff20b8 !important;
+
+    font-size:9px !important;
+    font-weight:900 !important;
+
+    letter-spacing:.10em !important;
+    text-transform:uppercase !important;
+}
+
+/* NÚMEROS */
+#app .stats .stat > b{
+    display:block !important;
+
+    margin-top:5px !important;
+
+    font-size:25px !important;
+    line-height:1 !important;
+
+    font-weight:900 !important;
+
+    background:linear-gradient(
+        90deg,
+        #ff20b8 0%,
+        #b34cff 40%,
+        #168cff 72%,
+        #00d9ff 100%
+    ) !important;
+
+    -webkit-background-clip:text !important;
+    background-clip:text !important;
+
+    color:transparent !important;
+
+    text-shadow:
+        0 0 15px rgba(22,140,255,.15) !important;
+}
+
+/* ==========================================
+   BLOQUE INFERIOR
+   DATOS · PATRONES · VENTAJA
+   ========================================== */
+
+#app .brand-showcase strong{
+    background:linear-gradient(
+        90deg,
+        #ff20b8,
+        #b34cff,
+        #168cff,
+        #00d9ff
+    ) !important;
+
+    -webkit-background-clip:text !important;
+    background-clip:text !important;
+
+    color:transparent !important;
+
+    font-weight:900 !important;
+}
+
+/* Texto inferior */
+#app .brand-showcase span{
+    color:#aebbd0 !important;
+    font-size:11px !important;
+}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+
+    #app .stats .stat{
+        padding:11px !important;
+    }
+
+    #app .stats .stat > b{
+        font-size:21px !important;
+    }
+
+}
+
+</style><style id="baccatrack-rendimiento-pro">
+
+/* ==========================================
+   BACCATRACK — RENDIMIENTO POR RONDA
+   DISEÑO PREMIUM
+   ========================================== */
+
+/* CONTENEDOR PRINCIPAL */
+#btRoundPerformance{
+    gap:9px !important;
+    margin-top:12px !important;
+}
+
+/* CADA RONDA */
+#btRoundPerformance > div{
+    position:relative !important;
+
+    display:grid !important;
+    grid-template-columns:
+        58px
+        minmax(150px,1fr)
+        minmax(150px,1fr)
+        minmax(120px,160px) !important;
+
+    align-items:center !important;
+    gap:18px !important;
+
+    min-height:58px !important;
+    padding:10px 14px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(13,20,32,.96),
+            rgba(7,11,18,.96)
+        ) !important;
+
+    border:1px solid #202d42 !important;
+    border-radius:13px !important;
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.025),
+        0 6px 18px rgba(0,0,0,.22) !important;
+
+    transition:
+        transform .18s ease,
+        border-color .18s ease,
+        box-shadow .18s ease !important;
+}
+
+/* HOVER */
+#btRoundPerformance > div:hover{
+    transform:translateY(-2px) !important;
+
+    border-color:#9b5cff88 !important;
+
+    box-shadow:
+        0 0 18px rgba(255,32,184,.10),
+        0 0 28px rgba(22,140,255,.12),
+        inset 0 1px rgba(255,255,255,.05) !important;
+}
+
+/* PRIMER ELEMENTO = 1/6, 2/6, ETC. */
+#btRoundPerformance > div > :first-child{
+    color:#ffffff !important;
+
+    font-size:14px !important;
+    font-weight:900 !important;
+
+    letter-spacing:.02em !important;
+}
+
+/* ACERTADOS */
+#btRoundPerformance > div > :nth-child(2){
+    color:#18d889 !important;
+
+    font-size:13px !important;
+    font-weight:850 !important;
+}
+
+/* FALLOS */
+#btRoundPerformance > div > :nth-child(3){
+    color:#ff596f !important;
+
+    font-size:13px !important;
+    font-weight:850 !important;
+}
+
+/* PORCENTAJE */
+#btRoundPerformance > div > :last-child{
+    color:#ffffff !important;
+
+    font-size:13px !important;
+    font-weight:900 !important;
+
+    text-align:right !important;
+}
+
+/* BARRAS DE PROGRESO */
+#btRoundPerformance > div progress{
+    width:100% !important;
+    height:7px !important;
+
+    border:none !important;
+    border-radius:999px !important;
+
+    overflow:hidden !important;
+
+    background:#182131 !important;
+}
+
+/* Chrome / Edge */
+#btRoundPerformance > div progress::-webkit-progress-bar{
+    background:#182131 !important;
+    border-radius:999px !important;
+}
+
+#btRoundPerformance > div progress::-webkit-progress-value{
+    background:linear-gradient(
+        90deg,
+        #ff20b8,
+        #b34cff,
+        #168cff,
+        #00d9ff
+    ) !important;
+
+    border-radius:999px !important;
+
+    box-shadow:
+        0 0 10px rgba(0,217,255,.35) !important;
+}
+
+/* Firefox */
+#btRoundPerformance > div progress::-moz-progress-bar{
+    background:linear-gradient(
+        90deg,
+        #ff20b8,
+        #b34cff,
+        #168cff,
+        #00d9ff
+    ) !important;
+
+    border-radius:999px !important;
+}
+
+/* ==========================================
+   ENCABEZADO
+   ========================================== */
+
+#app .card.full .section-title h3{
+    color:#ffffff !important;
+    font-weight:900 !important;
+}
+
+#app .card.full .section-title .eyebrow{
+    color:#ff20b8 !important;
+    font-size:9px !important;
+    font-weight:900 !important;
+    letter-spacing:.14em !important;
+}
+
+/* ==========================================
+   TEXTO INFERIOR
+   ========================================== */
+
+#btRoundPerformance + div{
+    color:#8190a8 !important;
+    font-size:10px !important;
+    line-height:1.4 !important;
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+@media(max-width:800px){
+
+    #btRoundPerformance > div{
+        grid-template-columns:
+            45px
+            1fr
+            1fr !important;
+
+        gap:10px !important;
+    }
+
+    #btRoundPerformance > div > :last-child{
+        grid-column:2 / 4 !important;
+        text-align:left !important;
+    }
+}
+
+@media(max-width:520px){
+
+    #btRoundPerformance > div{
+        grid-template-columns:45px 1fr !important;
+        gap:7px !important;
+    }
+
+    #btRoundPerformance > div > :nth-child(3),
+    #btRoundPerformance > div > :last-child{
+        grid-column:2 !important;
+    }
+
+}
+
+</style><style id="baccatrack-rendimiento-premium">
+
+/* =====================================================
+   BACCATRACK
+   RENDIMIENTO POR RONDA — PREMIUM
+   ===================================================== */
+
+/* CONTENEDOR DE LAS RONDAS */
+#btRoundPerformance{
+    position:relative !important;
+    overflow:hidden !important;
+
+    gap:9px !important;
+    margin-top:12px !important;
+
+    padding:14px !important;
+
+    border:1px solid #263247 !important;
+    border-radius:16px !important;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(155,92,255,.10),
+            transparent 38%
+        ),
+        radial-gradient(
+            circle at 15% 80%,
+            rgba(255,32,184,.07),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(0,217,255,.07),
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            #0b111b,
+            #070b12
+        ) !important;
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.035),
+        0 15px 40px rgba(0,0,0,.40) !important;
+}
+
+/* =====================================================
+   LOGO GRANDE COMO MARCA DE AGUA
+   ===================================================== */
+
+#btRoundPerformance::before{
+    content:"" !important;
+
+    position:absolute !important;
+
+    width:330px !important;
+    height:330px !important;
+
+    left:50% !important;
+    top:50% !important;
+
+    transform:translate(-50%,-50%) !important;
+
+    background-image:url("/baccatrack-logo.jpg") !important;
+    background-size:contain !important;
+    background-repeat:no-repeat !important;
+    background-position:center !important;
+
+    opacity:.055 !important;
+
+    filter:
+        saturate(1.5)
+        contrast(1.1)
+        drop-shadow(0 0 30px rgba(155,92,255,.30)) !important;
+
+    pointer-events:none !important;
+
+    z-index:0 !important;
+}
+
+/* BRILLO DECORATIVO */
+#btRoundPerformance::after{
+    content:"" !important;
+
+    position:absolute !important;
+
+    left:10% !important;
+    right:10% !important;
+    bottom:0 !important;
+
+    height:2px !important;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        #ff20b8,
+        #b34cff,
+        #168cff,
+        #00d9ff,
+        transparent
+    ) !important;
+
+    opacity:.65 !important;
+
+    box-shadow:
+        0 0 14px rgba(255,32,184,.35),
+        0 0 18px rgba(0,217,255,.25) !important;
+
+    z-index:2 !important;
+}
+
+/* =====================================================
+   CADA FILA
+   ===================================================== */
+
+#btRoundPerformance > div{
+    position:relative !important;
+    z-index:1 !important;
+
+    display:grid !important;
+
+    grid-template-columns:
+        58px
+        minmax(150px,1fr)
+        minmax(150px,1fr)
+        minmax(120px,160px) !important;
+
+    align-items:center !important;
+
+    gap:18px !important;
+
+    min-height:58px !important;
+
+    padding:10px 14px !important;
+
+    border:1px solid rgba(38,50,71,.95) !important;
+    border-radius:13px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(13,20,32,.94),
+            rgba(7,11,18,.91)
+        ) !important;
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.025),
+        0 5px 16px rgba(0,0,0,.22) !important;
+
+    backdrop-filter:blur(5px) !important;
+
+    transition:
+        transform .18s ease,
+        border-color .18s ease,
+        box-shadow .18s ease,
+        background .18s ease !important;
+}
+
+/* =====================================================
+   HOVER
+   ===================================================== */
+
+#btRoundPerformance > div:hover{
+    transform:translateX(3px) !important;
+
+    border-color:rgba(155,92,255,.65) !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(20,22,38,.98),
+            rgba(8,13,23,.96)
+        ) !important;
+
+    box-shadow:
+        0 0 18px rgba(255,32,184,.08),
+        0 0 28px rgba(22,140,255,.12),
+        inset 0 1px rgba(255,255,255,.05) !important;
+}
+
+/* =====================================================
+   PRIMERA RONDA — DESTACADA
+   ===================================================== */
+
+#btRoundPerformance > div:first-child{
+    border-color:rgba(255,32,184,.55) !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,32,184,.08),
+            rgba(155,92,255,.07),
+            rgba(22,140,255,.06)
+        ) !important;
+
+    box-shadow:
+        0 0 20px rgba(255,32,184,.08),
+        inset 0 1px rgba(255,255,255,.04) !important;
+}
+
+/* INDICADOR LATERAL */
+#btRoundPerformance > div:first-child::before{
+    content:"" !important;
+
+    position:absolute !important;
+
+    left:-1px !important;
+    top:10px !important;
+    bottom:10px !important;
+
+    width:3px !important;
+
+    border-radius:0 4px 4px 0 !important;
+
+    background:linear-gradient(
+        180deg,
+        #ff20b8,
+        #b34cff,
+        #168cff,
+        #00d9ff
+    ) !important;
+
+    box-shadow:
+        0 0 10px rgba(255,32,184,.45) !important;
+}
+
+/* =====================================================
+   NUMERO DE RONDA
+   ===================================================== */
+
+#btRoundPerformance > div > :first-child{
+    color:#ffffff !important;
+
+    font-size:15px !important;
+    font-weight:950 !important;
+
+    letter-spacing:.03em !important;
+
+    text-shadow:
+        0 0 10px rgba(255,255,255,.10) !important;
+}
+
+/* =====================================================
+   ACIERTOS
+   ===================================================== */
+
+#btRoundPerformance > div > :nth-child(2){
+    color:#18d889 !important;
+
+    font-size:13px !important;
+    font-weight:850 !important;
+
+    text-shadow:
+        0 0 10px rgba(24,216,137,.18) !important;
+}
+
+/* =====================================================
+   FALLOS
+   ===================================================== */
+
+#btRoundPerformance > div > :nth-child(3){
+    color:#ff596f !important;
+
+    font-size:13px !important;
+    font-weight:850 !important;
+
+    text-shadow:
+        0 0 10px rgba(255,89,111,.16) !important;
+}
+
+/* =====================================================
+   PORCENTAJE
+   ===================================================== */
+
+#btRoundPerformance > div > :last-child{
+    color:#ffffff !important;
+
+    font-size:14px !important;
+    font-weight:950 !important;
+
+    text-align:right !important;
+}
+
+/* =====================================================
+   BARRA DE PROGRESO
+   ===================================================== */
+
+#btRoundPerformance progress{
+    width:100% !important;
+
+    height:7px !important;
+
+    border:0 !important;
+
+    border-radius:999px !important;
+
+    overflow:hidden !important;
+
+    background:#182131 !important;
+
+    box-shadow:
+        inset 0 1px rgba(0,0,0,.45) !important;
+}
+
+#btRoundPerformance progress::-webkit-progress-bar{
+    background:#182131 !important;
+
+    border-radius:999px !important;
+}
+
+#btRoundPerformance progress::-webkit-progress-value{
+    background:linear-gradient(
+        90deg,
+        #ff20b8 0%,
+        #b34cff 38%,
+        #168cff 70%,
+        #00d9ff 100%
+    ) !important;
+
+    border-radius:999px !important;
+
+    box-shadow:
+        0 0 10px rgba(0,217,255,.40),
+        0 0 16px rgba(255,32,184,.18) !important;
+}
+
+#btRoundPerformance progress::-moz-progress-bar{
+    background:linear-gradient(
+        90deg,
+        #ff20b8 0%,
+        #b34cff 38%,
+        #168cff 70%,
+        #00d9ff 100%
+    ) !important;
+
+    border-radius:999px !important;
+}
+
+/* =====================================================
+   TITULO
+   ===================================================== */
+
+#btRoundPerformance{
+    scrollbar-width:none !important;
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media(max-width:850px){
+
+    #btRoundPerformance > div{
+        grid-template-columns:
+            48px
+            1fr
+            1fr !important;
+
+        gap:10px !important;
+    }
+
+    #btRoundPerformance > div > :last-child{
+        grid-column:2 / 4 !important;
+
+        text-align:left !important;
+    }
+
+}
+
+@media(max-width:550px){
+
+    #btRoundPerformance{
+        padding:9px !important;
+    }
+
+    #btRoundPerformance::before{
+        width:230px !important;
+        height:230px !important;
+    }
+
+    #btRoundPerformance > div{
+        grid-template-columns:
+            42px
+            1fr !important;
+
+        gap:7px !important;
+
+        min-height:52px !important;
+
+        padding:9px 10px !important;
+    }
+
+    #btRoundPerformance > div > :nth-child(3),
+    #btRoundPerformance > div > :last-child{
+        grid-column:2 !important;
+    }
+
+}
+
+</style><style id="baccatrack-balance-premium">
+
+/* =====================================================
+   BACCATRACK — TENDENCIA DE BALANCE
+   ===================================================== */
+
+#btBalancePanel{
+    position:relative !important;
+    overflow:hidden !important;
+
+    padding:18px !important;
+
+    border:1px solid #263247 !important;
+    border-radius:17px !important;
+
+    background:
+        radial-gradient(
+            circle at 15% 85%,
+            rgba(255,32,184,.10),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(0,217,255,.09),
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            #0b111b,
+            #070b12
+        ) !important;
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.035),
+        0 15px 40px rgba(0,0,0,.40) !important;
+}
+
+/* LOGO DE FONDO */
+#btBalancePanel::before{
+    content:"" !important;
+
+    position:absolute !important;
+
+    width:300px !important;
+    height:300px !important;
+
+    left:50% !important;
+    top:50% !important;
+
+    transform:translate(-50%,-50%) !important;
+
+    background-image:url("/baccatrack-logo.jpg") !important;
+    background-size:contain !important;
+    background-repeat:no-repeat !important;
+    background-position:center !important;
+
+    opacity:.045 !important;
+
+    filter:
+        saturate(1.5)
+        drop-shadow(0 0 30px rgba(155,92,255,.3)) !important;
+
+    pointer-events:none !important;
+}
+
+/* CONTENIDO POR ENCIMA DEL LOGO */
+#btBalancePanel > *{
+    position:relative !important;
+    z-index:1 !important;
+}
+
+/* TEXTOS */
+#btBalancePanel .muted{
+    color:#aebbd0 !important;
+}
+
+#btBalancePanel .muted:first-child{
+    color:#ffffff !important;
+    font-size:14px !important;
+    font-weight:850 !important;
+}
+
+/* +1 ACIERTO / -1 FALLO */
+#btBalancePanel .muted[style]{
+    color:#74839b !important;
+    font-size:10px !important;
+}
+
+/* BORDE INFERIOR NEON */
+#btBalancePanel::after{
+    content:"" !important;
+
+    position:absolute !important;
+
+    left:12% !important;
+    right:12% !important;
+    bottom:0 !important;
+
+    height:2px !important;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        #ff20b8,
+        #b34cff,
+        #168cff,
+        #00d9ff,
+        transparent
+    ) !important;
+
+    opacity:.65 !important;
+
+    box-shadow:
+        0 0 15px rgba(255,32,184,.3),
+        0 0 20px rgba(0,217,255,.2) !important;
+}
+
+/* =====================================================
+   TITULO DE LA SECCION
+   ===================================================== */
+
+#app section.card.full:has(#btBalancePanel) .section-title h3{
+    color:#ffffff !important;
+    font-weight:900 !important;
+}
+
+#app section.card.full:has(#btBalancePanel) .section-title .eyebrow{
+    color:#ff20b8 !important;
+    font-size:9px !important;
+    font-weight:900 !important;
+    letter-spacing:.14em !important;
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media(max-width:600px){
+
+    #btBalancePanel{
+        padding:12px !important;
+    }
+
+    #btBalancePanel::before{
+        width:220px !important;
+        height:220px !important;
+    }
+}
+
+</style><style id="baccatrack-logo-global">
+
+/* =====================================================
+   BACCATRACK — IDENTIDAD VISUAL GLOBAL
+   LOGO COMO MARCA DE AGUA EN TODOS LOS PANELES
+   ===================================================== */
+
+/* TODOS LOS PANELES DE LA APP */
+#app .card{
+    position:relative !important;
+    overflow:hidden !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0b1019,
+            #070b12
+        ) !important;
+
+    border-color:#263247 !important;
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.025),
+        0 12px 35px rgba(0,0,0,.30) !important;
+}
+
+/* =====================================================
+   LOGO GLOBAL
+   ===================================================== */
+
+#app .card::before{
+    content:"" !important;
+
+    position:absolute !important;
+
+    width:260px !important;
+    height:260px !important;
+
+    left:50% !important;
+    top:50% !important;
+
+    transform:translate(-50%,-50%) !important;
+
+    background-image:url("/baccatrack-logo.jpg") !important;
+    background-size:contain !important;
+    background-repeat:no-repeat !important;
+    background-position:center !important;
+
+    opacity:.025 !important;
+
+    filter:
+        saturate(1.5)
+        contrast(1.05)
+        drop-shadow(
+            0 0 30px rgba(155,92,255,.25)
+        ) !important;
+
+    pointer-events:none !important;
+
+    z-index:0 !important;
+}
+
+/* =====================================================
+   CONTENIDO SIEMPRE ENCIMA DEL LOGO
+   ===================================================== */
+
+#app .card > *{
+    position:relative;
+    z-index:1;
+}
+
+/* =====================================================
+   HALOS DE COLOR EN LOS PANELES
+   ===================================================== */
+
+#app .card::after{
+    content:"" !important;
+
+    position:absolute !important;
+
+    width:280px !important;
+    height:180px !important;
+
+    right:-100px !important;
+    top:-100px !important;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0,217,255,.055),
+            transparent 65%
+        ) !important;
+
+    pointer-events:none !important;
+
+    z-index:0 !important;
+}
+
+/* =====================================================
+   TITULOS DE LOS PANELES
+   ===================================================== */
+
+#app .card .section-title h3{
+    color:#ffffff !important;
+
+    font-weight:900 !important;
+
+    letter-spacing:-.01em !important;
+
+    text-shadow:
+        0 0 12px rgba(255,255,255,.06) !important;
+}
+
+/* =====================================================
+   EYEBROWS
+   ===================================================== */
+
+#app .card .section-title .eyebrow{
+    color:#ff20b8 !important;
+
+    font-size:9px !important;
+
+    font-weight:900 !important;
+
+    letter-spacing:.14em !important;
+
+    text-shadow:
+        0 0 10px rgba(255,32,184,.25) !important;
+}
+
+/* =====================================================
+   BORDE NEÓN MUY SUTIL
+   ===================================================== */
+
+#app .card:hover{
+    border-color:#35445d !important;
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.035),
+        0 15px 40px rgba(0,0,0,.38),
+        0 0 25px rgba(22,140,255,.035) !important;
+}
+
+/* =====================================================
+   LOGO UN POCO MÁS VISIBLE EN PANELES IMPORTANTES
+   ===================================================== */
+
+/* Mi cuenta */
+#accountPanel::before{
+    opacity:.035 !important;
+}
+
+/* Tendencia de balance */
+#btBalancePanel::before{
+    opacity:.045 !important;
+}
+
+/* Rendimiento por ronda */
+#btRoundPerformance::before{
+    opacity:.055 !important;
+}
+
+/* =====================================================
+   PANEL DE CLIENTES
+   ===================================================== */
+
+#app .admin-panel::before,
+#app #adminPanel::before{
+    opacity:.035 !important;
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media(max-width:700px){
+
+    #app .card::before{
+        width:210px !important;
+        height:210px !important;
+
+        opacity:.022 !important;
+    }
+
+}
+
+</style><style id="baccatrack-dashboard-v1">
+
+/* =====================================================
+   BACCATRACK — DASHBOARD V1
+   MOTOR DE ANÁLISIS + SESIÓN
+   ===================================================== */
+
+/* =====================================================
+   GRID PRINCIPAL
+   ===================================================== */
+
+#app > .grid{
+    gap:16px !important;
+    align-items:stretch !important;
+}
+
+/* =====================================================
+   PANEL MOTOR DE ANÁLISIS
+   ===================================================== */
+
+#app > .grid > section.card:first-child{
+    position:relative !important;
+    overflow:hidden !important;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(255,32,184,.07),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(0,217,255,.06),
+            transparent 32%
+        ),
+        linear-gradient(
+            145deg,
+            #0b111b,
+            #070b12
+        ) !important;
+
+    border:1px solid #263247 !important;
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.035),
+        0 15px 40px rgba(0,0,0,.38) !important;
+}
+
+/* LOGO DE FONDO */
+#app > .grid > section.card:first-child::before{
+    content:"" !important;
+
+    position:absolute !important;
+
+    width:360px !important;
+    height:360px !important;
+
+    left:50% !important;
+    top:50% !important;
+
+    transform:translate(-50%,-50%) !important;
+
+    background-image:url("/baccatrack-logo.jpg") !important;
+    background-size:contain !important;
+    background-repeat:no-repeat !important;
+    background-position:center !important;
+
+    opacity:.035 !important;
+
+    filter:
+        saturate(1.5)
+        drop-shadow(
+            0 0 30px rgba(155,92,255,.25)
+        ) !important;
+
+    pointer-events:none !important;
+
+    z-index:0 !important;
+}
+
+/* CONTENIDO SOBRE EL LOGO */
+#app > .grid > section.card:first-child > *{
+    position:relative !important;
+    z-index:1 !important;
+}
+
+/* =====================================================
+   ENCABEZADO MOTOR
+   ===================================================== */
+
+#app > .grid > section.card:first-child .section-title{
+    margin-bottom:13px !important;
+}
+
+#app > .grid > section.card:first-child .eyebrow{
+    color:#ff20b8 !important;
+
+    font-size:10px !important;
+
+    font-weight:900 !important;
+
+    letter-spacing:.14em !important;
+}
+
+/* EN TIEMPO REAL */
+#app .live-badge{
+    border:1px solid rgba(255,32,184,.35) !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,32,184,.08),
+            rgba(155,92,255,.07)
+        ) !important;
+
+    color:#ff63ca !important;
+
+    box-shadow:
+        0 0 14px rgba(255,32,184,.10) !important;
+}
+
+#app .live-badge i{
+    background:#18d889 !important;
+
+    box-shadow:
+        0 0 8px rgba(24,216,137,.75) !important;
+}
+
+/* =====================================================
+   SEÑAL ACTUAL
+   ===================================================== */
+
+#signal{
+    position:relative !important;
+    overflow:hidden !important;
+
+    margin-top:8px !important;
+
+    padding:22px !important;
+
+    border-radius:17px !important;
+
+    border:1px solid #263247 !important;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(155,92,255,.10),
+            transparent 55%
+        ),
+        linear-gradient(
+            145deg,
+            #111a28,
+            #090e17
+        ) !important;
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.035),
+        0 10px 30px rgba(0,0,0,.28) !important;
+}
+
+/* LÍNEA NEÓN */
+#signal::after{
+    content:"" !important;
+
+    position:absolute !important;
+
+    left:15% !important;
+    right:15% !important;
+    bottom:0 !important;
+
+    height:2px !important;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        #ff20b8,
+        #b34cff,
+        #168cff,
+        #00d9ff,
+        transparent
+    ) !important;
+
+    opacity:.65 !important;
+
+    box-shadow:
+        0 0 14px rgba(255,32,184,.30) !important;
+}
+
+/* TEXTO SEÑAL */
+#sigLabel{
+    font-size:14px !important;
+
+    font-weight:850 !important;
+
+    color:#ffffff !important;
+}
+
+/* SEÑAL GRANDE */
+#sigBig{
+    margin-top:8px !important;
+
+    font-size:34px !important;
+
+    line-height:1.05 !important;
+
+    font-weight:950 !important;
+
+    letter-spacing:-.02em !important;
+
+    text-shadow:
+        0 0 20px rgba(255,255,255,.08) !important;
+}
+
+/* EXPLICACIÓN */
+#reason{
+    margin-top:10px !important;
+
+    color:#aebbd0 !important;
+
+    font-size:12px !important;
+
+    line-height:1.45 !important;
+}
+
+/* LECTURA DEL MODELO */
+#why{
+    margin-top:12px !important;
+
+    padding:12px 14px !important;
+
+    border:1px dashed #35445d !important;
+
+    border-radius:11px !important;
+
+    background:
+        rgba(5,9,15,.65) !important;
+
+    color:#d7deea !important;
+
+    font-size:12px !important;
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.02) !important;
+}
+
+/* =====================================================
+   BOTONES BANCA / JUGADOR / EMPATE
+   ===================================================== */
+
+#app .controls{
+    gap:10px !important;
+
+    margin-top:13px !important;
+}
+
+#app .controls .res{
+    min-height:54px !important;
+
+    border-radius:13px !important;
+
+    border:1px solid rgba(255,255,255,.12) !important;
+
+    font-size:14px !important;
+
+    font-weight:900 !important;
+
+    letter-spacing:.02em !important;
+
+    box-shadow:
+        0 7px 20px rgba(0,0,0,.25),
+        inset 0 1px rgba(255,255,255,.15) !important;
+
+    transition:
+        transform .18s ease,
+        filter .18s ease,
+        box-shadow .18s ease !important;
+}
+
+#app .controls .res:hover{
+    transform:translateY(-2px) !important;
+
+    filter:brightness(1.10) !important;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.35),
+        0 0 18px rgba(155,92,255,.12),
+        inset 0 1px rgba(255,255,255,.20) !important;
+}
+
+#app .controls .res:active{
+    transform:scale(.98) !important;
+}
+
+/* =====================================================
+   DESHACER / NUEVA SESIÓN
+   ===================================================== */
+
+#undoBtn,
+#newSessionBtn{
+    min-height:48px !important;
+
+    border-radius:12px !important;
+
+    font-size:12px !important;
+
+    letter-spacing:.02em !important;
+}
+
+/* =====================================================
+   TEXTO INFORMATIVO DEL MOTOR
+   ===================================================== */
+
+#app > .grid > section.card:first-child > p.muted{
+    margin-top:12px !important;
+
+    color:#71819a !important;
+
+    font-size:10px !important;
+
+    line-height:1.45 !important;
+}
+
+/* =====================================================
+   PANEL SESIÓN
+   ===================================================== */
+
+#app > .grid > section.card:nth-child(2){
+    position:relative !important;
+    overflow:hidden !important;
+
+    background:
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(0,217,255,.07),
+            transparent 38%
+        ),
+        radial-gradient(
+            circle at 10% 90%,
+            rgba(255,32,184,.05),
+            transparent 38%
+        ),
+        linear-gradient(
+            145deg,
+            #0b111b,
+            #070b12
+        ) !important;
+
+    border:1px solid #263247 !important;
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.035),
+        0 15px 40px rgba(0,0,0,.35) !important;
+}
+
+/* LOGO EN SESIÓN */
+#app > .grid > section.card:nth-child(2)::before{
+    content:"" !important;
+
+    position:absolute !important;
+
+    width:300px !important;
+    height:300px !important;
+
+    left:50% !important;
+    top:55% !important;
+
+    transform:translate(-50%,-50%) !important;
+
+    background-image:url("/baccatrack-logo.jpg") !important;
+    background-size:contain !important;
+    background-repeat:no-repeat !important;
+
+    opacity:.03 !important;
+
+    filter:
+        saturate(1.5)
+        drop-shadow(
+            0 0 30px rgba(0,217,255,.25)
+        ) !important;
+
+    pointer-events:none !important;
+
+    z-index:0 !important;
+}
+
+#app > .grid > section.card:nth-child(2) > *{
+    position:relative !important;
+
+    z-index:1 !important;
+}
+
+/* TÍTULO SESIÓN */
+#app > .grid > section.card:nth-child(2) .section-title h3{
+    font-size:18px !important;
+
+    font-weight:900 !important;
+}
+
+#app > .grid > section.card:nth-child(2) .section-title .eyebrow{
+    color:#ff20b8 !important;
+
+    font-size:9px !important;
+
+    font-weight:900 !important;
+
+    letter-spacing:.14em !important;
+}
+
+/* =====================================================
+   TARJETAS MANOS / SEÑALES / ACIERTOS
+   ===================================================== */
+
+#app > .grid > section.card:nth-child(2) .stats{
+    gap:9px !important;
+
+    margin-top:14px !important;
+}
+
+#app > .grid > section.card:nth-child(2) .stats .stat{
+    padding:14px !important;
+
+    border-radius:13px !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(13,20,32,.95),
+            rgba(7,11,18,.92)
+        ) !important;
+
+    border:1px solid #263247 !important;
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.025),
+        0 7px 20px rgba(0,0,0,.25) !important;
+
+    transition:
+        transform .18s ease,
+        border-color .18s ease !important;
+}
+
+#app > .grid > section.card:nth-child(2) .stats .stat:hover{
+    transform:translateY(-2px) !important;
+
+    border-color:#9b5cff66 !important;
+}
+
+/* ETIQUETAS */
+#app > .grid > section.card:nth-child(2) .stats .stat > span{
+    color:#ff20b8 !important;
+
+    font-size:9px !important;
+
+    font-weight:900 !important;
+
+    letter-spacing:.09em !important;
+
+    text-transform:uppercase !important;
+}
+
+/* NÚMEROS */
+#app > .grid > section.card:nth-child(2) .stats .stat > b{
+    display:block !important;
+
+    margin-top:7px !important;
+
+    font-size:28px !important;
+
+    line-height:1 !important;
+
+    font-weight:950 !important;
+
+    background:linear-gradient(
+        90deg,
+        #ff20b8,
+        #b34cff,
+        #168cff,
+        #00d9ff
+    ) !important;
+
+    -webkit-background-clip:text !important;
+
+    background-clip:text !important;
+
+    color:transparent !important;
+}
+
+/* BRAND SHOWCASE */
+#app .brand-showcase{
+    border-color:#263247 !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,32,184,.04),
+            rgba(0,217,255,.035)
+        ) !important;
+
+    border-radius:13px !important;
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.025) !important;
+}
+
+#app .brand-showcase strong{
+    background:linear-gradient(
+        90deg,
+        #ff20b8,
+        #b34cff,
+        #168cff,
+        #00d9ff
+    ) !important;
+
+    -webkit-background-clip:text !important;
+
+    background-clip:text !important;
+
+    color:transparent !important;
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media(max-width:800px){
+
+    #sigBig{
+        font-size:28px !important;
+    }
+
+    #app > .grid > section.card:nth-child(2) .stats .stat > b{
+        font-size:23px !important;
+    }
+
+}
+
+@media(max-width:600px){
+
+    #app > .grid{
+        gap:12px !important;
+    }
+
+    #signal{
+        padding:16px !important;
+    }
+
+    #sigBig{
+        font-size:25px !important;
+    }
+
+    #app .controls .res{
+        min-height:50px !important;
+
+        font-size:12px !important;
+    }
+
+}
+
+</style><style id="baccatrack-proteccion-estrategia">
+
+/* =====================================================
+   BACCATRACK — PROTECCIÓN DE ESTRATEGIA
+   OCULTAR RAZONAMIENTO INTERNO DEL MODELO
+   ===================================================== */
+
+/* Explicación de la señal */
+#reason{
+    display:none !important;
+}
+
+/* Lectura del modelo */
+#why{
+    display:none !important;
+}
+
+/* Factores internos utilizados por el motor */
+#factors{
+    display:none !important;
+}
+
+/* Texto que explica cómo funciona el motor */
+#app > .grid > section.card:first-child > p.muted{
+    display:none !important;
+}
+
+/* Mantener la señal como protagonista */
+#signal{
+    padding-bottom:22px !important;
+}
+
+/* Evitar espacios vacíos después de ocultar elementos */
+#signal #sigBig{
+    margin-bottom:0 !important;
+}
+
+/* =====================================================
+   MENSAJE VISUAL LIMPIO
+   ===================================================== */
+
+#sigBig{
+    letter-spacing:.01em !important;
+}
+
+/* En móvil */
+@media(max-width:600px){
+
+    #signal{
+        padding-bottom:18px !important;
+    }
+
+}
+
+
+/* ==========================================================
+   BACCATRACK — PANEL DE CLIENTES PREMIUM
+   ========================================================== */
+
+#app #adminPanelCard{
+  position:relative;
+  overflow:hidden;
+  border:1px solid #ffffff12 !important;
+  background:
+    radial-gradient(circle at 0% 0%,#ff2bb512,transparent 30%),
+    radial-gradient(circle at 100% 0%,#168cff12,transparent 32%),
+    linear-gradient(180deg,#0d111bf5,#080b12f5) !important;
+  box-shadow:
+    0 24px 70px #0008,
+    inset 0 1px #ffffff08,
+    0 0 45px #168cff08 !important;
+}
+
+#app #adminPanelCard::before{
+  content:"";
+  position:absolute;
+  width:260px;
+  height:260px;
+  right:-130px;
+  top:-130px;
+  border-radius:50%;
+  background:radial-gradient(circle,#168cff18,transparent 68%);
+  pointer-events:none;
+}
+
+#app #adminPanelCard .section-title{
+  position:relative;
+  z-index:2;
+}
+
+#app #adminPanelCard .section-title h3{
+  font-size:19px;
+  letter-spacing:-.02em;
+  background:linear-gradient(90deg,#ffffff,#8cc8ff,#ff8bd8);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+#app #adminPanelCard .section-title .muted{
+  font-size:11px;
+  letter-spacing:.04em;
+}
+
+#app #adminPanelCard .eyebrow{
+  color:#7dc4ff !important;
+}
+
+/* Métricas superiores */
+
+#app #adminPanelCard .admin-stats{
+  position:relative;
+  z-index:2;
+}
+
+#app #adminPanelCard .bt31-stat{
+  position:relative;
+  overflow:hidden;
+  min-height:72px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  background:
+    linear-gradient(145deg,#111827,#080c14) !important;
+  border:1px solid #ffffff10 !important;
+  box-shadow:
+    inset 0 1px #ffffff06,
+    0 10px 25px #0004;
+  transition:.2s ease;
+}
+
+#app #adminPanelCard .bt31-stat:hover{
+  transform:translateY(-2px);
+  border-color:#168cff55 !important;
+  box-shadow:
+    0 12px 30px #0006,
+    0 0 20px #168cff12;
+}
+
+#app #adminPanelCard .bt31-stat span{
+  color:#8994aa !important;
+  font-size:9px !important;
+  font-weight:900;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+#app #adminPanelCard .bt31-stat b{
+  margin-top:5px;
+  font-size:23px !important;
+  background:linear-gradient(90deg,#ffffff,#6fc4ff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+/* Buscador y filtros */
+
+#app #adminPanelCard #userSearch,
+#app #adminPanelCard #userFilter{
+  background:#080c14 !important;
+  border:1px solid #ffffff12 !important;
+  color:#f7f7fb !important;
+  box-shadow:inset 0 1px #ffffff05;
+}
+
+#app #adminPanelCard #userSearch:focus,
+#app #adminPanelCard #userFilter:focus{
+  outline:none;
+  border-color:#168cff66 !important;
+  box-shadow:0 0 0 3px #168cff0d,0 0 20px #168cff10;
+}
+
+/* Tabla */
+
+#app #adminPanelCard .table{
+  border-collapse:separate;
+  border-spacing:0 5px;
+}
+
+#app #adminPanelCard .table thead th{
+  color:#6f7c94 !important;
+  font-size:9px !important;
+  font-weight:900;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  border-bottom:1px solid #ffffff0c !important;
+}
+
+#app #adminPanelCard .table tbody tr{
+  background:linear-gradient(90deg,#0c111a,#090d14);
+  transition:.18s ease;
+}
+
+#app #adminPanelCard .table tbody tr:hover{
+  background:linear-gradient(90deg,#101827,#0c111b);
+  box-shadow:0 0 20px #168cff0a;
+}
+
+#app #adminPanelCard .table td{
+  border-bottom:1px solid #ffffff08 !important;
+  color:#dce3ef;
+  font-size:11px !important;
+  vertical-align:middle;
+}
+
+#app #adminPanelCard .table td:first-child{
+  color:#59657a;
+  font-weight:900;
+}
+
+/* Estados */
+
+#app #adminPanelCard .bt31-session,
+#app #adminPanelCard .bt31-state{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:76px;
+  padding:5px 9px;
+  border-radius:999px;
+  font-size:9px !important;
+  font-weight:950;
+  letter-spacing:.08em;
+  border:1px solid transparent;
+}
+
+#app #adminPanelCard .bt31-session.online{
+  color:#79f2bb !important;
+  background:#18d88912;
+  border-color:#18d88938;
+  box-shadow:0 0 12px #18d88910;
+}
+
+#app #adminPanelCard .bt31-session.idle{
+  color:#ffd875 !important;
+  background:#ffd24a0d;
+  border-color:#ffd24a30;
+}
+
+#app #adminPanelCard .bt31-session.offline{
+  color:#ff8195 !important;
+  background:#ff596f0d;
+  border-color:#ff596f30;
+}
+
+#app #adminPanelCard .bt31-session.never{
+  color:#8b96aa !important;
+  background:#ffffff06;
+  border-color:#ffffff10;
+}
+
+#app #adminPanelCard .bt31-state.state-active{
+  color:#75c8ff !important;
+  background:#168cff10;
+  border-color:#168cff35;
+}
+
+#app #adminPanelCard .bt31-state.state-blocked{
+  color:#ff8799 !important;
+  background:#ff596f10;
+  border-color:#ff596f35;
+}
+
+/* Botones de administración */
+
+#app #adminPanelCard .table .btn{
+  padding:7px 9px !important;
+  margin:2px;
+  border-radius:8px;
+  font-size:9px !important;
+  font-weight:900;
+  background:#101722 !important;
+  border-color:#ffffff12 !important;
+  color:#cdd8e8 !important;
+}
+
+#app #adminPanelCard .table .btn:hover{
+  border-color:#168cff55 !important;
+  color:#7dc4ff !important;
+  box-shadow:0 0 15px #168cff12;
+}
+
+/* Renovar */
+
+#app #adminPanelCard .table .btn:first-child{
+  color:#78efb9 !important;
+  border-color:#18d88925 !important;
+}
+
+/* Eliminar */
+
+#app #adminPanelCard .table .btn:last-child{
+  color:#ff8195 !important;
+  border-color:#ff596f20 !important;
+}
+
+@media(max-width:800px){
+  #app #adminPanelCard .admin-stats{
+    grid-template-columns:repeat(3,minmax(100px,1fr)) !important;
+  }
+}
+
+@media(max-width:500px){
+  #app #adminPanelCard .admin-stats{
+    grid-template-columns:repeat(2,1fr) !important;
+  }
+
+  #app #adminPanelCard .table{
+    min-width:900px;
+  }
+}</style><style id="baccatrack-admin-dashboard-premium">
+
+/* ==========================================================
+   BACCATRACK — DASHBOARD ADMINISTRATIVO PREMIUM
+   ========================================================== */
+
+#adminPanelCard .bt-admin-dashboard{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(280px,360px);
+  gap:14px;
+  margin-top:14px;
+}
+
+#adminPanelCard .bt-admin-activity{
+  position:relative;
+  overflow:hidden;
+  padding:16px;
+  border:1px solid #ffffff10;
+  border-radius:16px;
+  background:
+    radial-gradient(circle at 100% 0%,#168cff12,transparent 42%),
+    linear-gradient(145deg,#0d1420,#080c13);
+  box-shadow:
+    inset 0 1px #ffffff06,
+    0 15px 40px #0005;
+}
+
+#adminPanelCard .bt-admin-activity::after{
+  content:"";
+  position:absolute;
+  width:180px;
+  height:180px;
+  right:-90px;
+  bottom:-90px;
+  border-radius:50%;
+  background:radial-gradient(circle,#ff2bb512,transparent 68%);
+  pointer-events:none;
+}
+
+#adminPanelCard .bt-admin-activity-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:12px;
+}
+
+#adminPanelCard .bt-admin-activity-title{
+  font-size:11px;
+  font-weight:950;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#e9f3ff;
+}
+
+#adminPanelCard .bt-admin-live{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  color:#72efb4;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+
+#adminPanelCard .bt-admin-live i{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#18d889;
+  box-shadow:0 0 12px #18d889;
+  animation:btPulse 1.8s infinite;
+}
+
+@keyframes btPulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.45;transform:scale(.8)}
+}
+
+#app #adminPanelCard .bt-admin-recent{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+#app #adminPanelCard .bt-admin-user{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:9px 10px;
+  border:1px solid #ffffff08;
+  border-radius:10px;
+  background:#ffffff03;
+}
+
+#app #adminPanelCard .bt-admin-user:hover{
+  border-color:#168cff30;
+  background:#168cff08;
+}
+
+#app #adminPanelCard .bt-admin-user-main{
+  min-width:0;
+}
+
+#app #adminPanelCard .bt-admin-user-email{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  color:#dce8f7;
+  font-size:10px;
+  font-weight:800;
+}
+
+#app #adminPanelCard .bt-admin-user-date{
+  margin-top:2px;
+  color:#68758a;
+  font-size:9px;
+}
+
+#app #adminPanelCard .bt-admin-online{
+  flex:0 0 auto;
+  padding:4px 7px;
+  border-radius:999px;
+  color:#75efb5;
+  background:#18d8890d;
+  border:1px solid #18d88925;
+  font-size:8px;
+  font-weight:950;
+  letter-spacing:.06em;
+}
+
+#app #adminPanelCard .bt-admin-offline{
+  flex:0 0 auto;
+  padding:4px 7px;
+  border-radius:999px;
+  color:#7d8a9f;
+  background:#ffffff05;
+  border:1px solid #ffffff0d;
+  font-size:8px;
+  font-weight:950;
+}
+
+@media(max-width:900px){
+  #adminPanelCard .bt-admin-dashboard{
+    grid-template-columns:1fr;
+  }
+}
+
+</style></head><body>
 <div id="login" class="wrap login card"><div class="brand"><img class="logo" src="/baccatrack-logo.jpg" alt="BaccaTrack"><div><h1>BaccaTrack</h1><div class="muted">Acceso privado</div></div></div><h2>Iniciar sesión</h2><input id="email" class="input" placeholder="Correo" type="email"><input id="pass" class="input" placeholder="Contraseña" type="password"><button class="btn primary" style="width:100%" onclick="login()">Entrar</button>
 <button id="showRegisterBtn" class="btn" type="button" style="width:100%;margin-top:10px;color:#fff;border-color:#fff;background:#111722;" onclick="showRegister()">Crear una cuenta</button><p id="err" class="muted"></p></div>
 <div id="register" class="wrap login card hidden">
@@ -463,7 +3016,7 @@ section.card.full.bt33-panel{
   </div>
 
 </div>
-<div id="app" class="wrap hidden"><div class="top"><div class="brand"><img class="logo" src="/baccatrack-logo.jpg" alt="BaccaTrack"><div class="brand-copy"><div class="brand-status"><span class="status-dot"></span>Sistema activo</div><h1>BaccaTrack 3.3</h1><div class="muted">Análisis estadístico · disciplina de sesión · evaluación walk-forward</div></div></div><div class="top-actions"><div class="session-user"><span class="avatar">BT</span><span id="who" class="muted"></span><span class="admin-badge">ADMIN</span></div><button class="btn" onclick="logout()">Salir</button></div></div>
+<div id="app" class="wrap hidden"><div class="top"><div class="brand"><img class="logo" src="/baccatrack-logo.jpg" alt="BaccaTrack"><div class="brand-copy"><div class="brand-status"><span class="status-dot"></span>Sistema activo</div><h1>BaccaTrack</h1><div class="muted">Volverán a ver cómo se hace y seguirán preguntándose cómo lo hizo</div></div></div><div class="top-actions"><div class="session-user"><span class="avatar">BT</span><span id="who" class="muted"></span><span class="admin-badge">ADMIN</span></div><button class="btn" onclick="logout()">Salir</button></div></div>
 <section id="accountPanel" class="card full" style="margin-bottom:16px;">
   <div class="section-title">
     <h3>Mi cuenta</h3>
@@ -482,7 +3035,7 @@ section.card.full.bt33-panel{
     </div>
 
     <div class="stat">
-      <span class="muted">Estado</span>
+      <span class="muted">ESTADO</span>
       <b id="accountStatus" style="color:#35e88b;">—</b>
     </div>
 
@@ -537,7 +3090,7 @@ section.card.full.bt33-panel{
 
   </div>
 </section>
-<section class="card full"><div class="section-title"><h3>Historial</h3><span class="eyebrow">Registro de manos</span></div><section class="card full">
+<section class="card full"><div class="section-title"><h3>Historial</h3><span class="eyebrow">REGISTRO de manos</span></div><section class="card full">
   <div class="section-title">
     <h3>🎯 Rendimiento por ronda</h3>
     <span class="eyebrow">1/6 → 6/6</span>
@@ -560,13 +3113,13 @@ section.card.full.bt33-panel{
     <div class="bt31-stat"><span>Precisión Jugador</span><b id="bt31JAcc">—</b></div>
   </div>
   <div id="bt31Note" class="bt31-note">La precisión es histórica; una muestra pequeña no demuestra una ventaja futura.</div>
-  <div class="bt31-table-wrap"><table class="bt31-table"><thead><tr><th>Señal</th><th>Resultado</th><th>Estado</th></tr></thead><tbody id="bt31Rows"><tr><td colspan="4" class="muted">Todavía no hay señales evaluadas.</td></tr></tbody></table></div>
+  <div class="bt31-table-wrap"><table class="bt31-table"><thead><tr><th>Señal</th><th>Resultado</th><th>ESTADO</th></tr></thead><tbody id="bt31Rows"><tr><td colspan="4" class="muted">Todavía no hay señales evaluadas.</td></tr></tbody></table></div>
 </div></section>
 
 <section class="card full bt33-panel">
   <div class="section-title">
     <div>
-      <h3>Registro de entradas</h3>
+      <h3>REGISTRO de entradas</h3>
       <div class="muted">Entrada actual y seguimiento de martingala</div>
     </div>
     <span class="eyebrow">HISTORIAL</span>
@@ -584,7 +3137,7 @@ section.card.full.bt33-panel{
           <th>Color</th>
           <th>Martingala</th>
           <th>Resultado</th>
-          <th>Estado</th>
+          <th>ESTADO</th>
           <th>Motivo</th>
         </tr>
       </thead>
@@ -599,7 +3152,69 @@ section.card.full.bt33-panel{
   <div class="muted" style="margin-top:10px">
     Máximo permitido por entrada: 6 rondas.
   </div>
-</section><section class="card full"><div class="section-title"><h3>Panel de administración</h3><span class="eyebrow">Gestión de licencias</span></div><div id="adminMsg" class="muted">Solo visible para administradores.</div><div id="admin" class="hidden"><div class="formrow"><input id="newEmail" class="input" placeholder="Email"><input id="newPass" class="input" placeholder="Contraseña (6+)"><input id="days" class="input" type="number" value="30"></div><button class="btn primary" onclick="createUser()">Crear licencia</button><div style="overflow:auto;margin-top:12px"><table class="table"><thead><tr><th>Email</th><th>Rol</th><th>Vence</th><th>Acción</th></tr></thead><tbody id="users"></tbody></table></div></div></section>
+</section><section class="card full" id="adminPanelCard">
+  <div class="section-title">
+    <div>
+      <h3>Panel de clientes</h3>
+      <div class="muted">Control de registros, licencias y uso</div>
+    </div>
+    <span class="eyebrow">ADMINISTRACIÃ“N</span>
+  </div>
+
+  <div id="adminMsg" class="muted">Solo visible para administradores.</div>
+
+  <div id="admin" class="hidden">
+<div id="btOnlineCounter" style="margin:12px 0 14px;padding:14px 18px;border:1px solid #263247;border-radius:16px;background:linear-gradient(135deg,#0d1420,#080d16);display:flex;align-items:center;justify-content:space-between;gap:15px;box-shadow:0 0 25px rgba(0,220,255,.06)"><div><div style="font-size:11px;font-weight:900;letter-spacing:.14em;color:#8d9ab3">USO EN TIEMPO REAL</div><div id="btOnlineTitle" style="margin-top:5px;font-size:22px;font-weight:900;color:#ffffff">0 CLIENTES EN LÍNEA</div><div id="btOnlineSub" style="margin-top:3px;font-size:12px;color:#8d9ab3">Actualización automática</div></div><div id="btOnlineDot" style="width:15px;height:15px;border-radius:50%;background:#263247;box-shadow:0 0 0 5px rgba(38,50,71,.15)"></div></div>
+    <div class="admin-stats" style="display:grid;grid-template-columns:repeat(6,minmax(120px,1fr));gap:10px;margin:14px 0">
+      <div class="bt31-stat"><span>Total</span><b id="admTotal">0</b></div>
+      <div class="bt31-stat"><span>Activos</span><b id="admActive">0</b></div>
+      <div class="bt31-stat"><span>Vencidos</span><b id="admExpired">0</b></div>
+      <div class="bt31-stat"><span>POR VENCER</span><b id="admSoon">0</b></div>
+      <div class="bt31-stat"><span>Usaron hoy</span><b id="admToday">0</b></div>
+      <div class="bt31-stat"><span>Nunca entraron</span><b id="admNever">0</b></div>
+    </div>
+
+<div id="btAdminActivity" class="bt-admin-dashboard"><div class="bt-admin-activity"><div class="bt-admin-activity-head"><span class="bt-admin-activity-title">Actividad reciente</span><span class="bt-admin-live"><i></i> EN TIEMPO REAL</span></div><div id="btAdminRecent" class="bt-admin-recent"><div class="bt-admin-user"><div class="bt-admin-user-main"><div class="bt-admin-user-email">Cargando actividad...</div><div class="bt-admin-user-date">Consultando usuarios</div></div></div></div></div><div class="bt-admin-activity"><div class="bt-admin-activity-head"><span class="bt-admin-activity-title">Estado del sistema</span><span class="bt-admin-live"><i></i> ACTIVO</span></div><div class="bt-admin-user"><div class="bt-admin-user-main"><div class="bt-admin-user-email">Control de acceso</div><div class="bt-admin-user-date">Usuarios y licencias protegidos</div></div><span class="bt-admin-online">OK</span></div><div class="bt-admin-user" style="margin-top:7px"><div class="bt-admin-user-main"><div class="bt-admin-user-email">Actividad</div><div class="bt-admin-user-date">Últimos accesos registrados</div></div><span class="bt-admin-online">OK</span></div></div></div>    <div class="formrow" style="flex-wrap:wrap">
+      <input id="newEmail" class="input" placeholder="Email del cliente">
+      <input id="newPass" class="input" placeholder="ContraseÃ±a (6+)">
+      <input id="days" class="input" type="number" min="1" value="30" placeholder="DÃ­as">
+      <button class="btn primary" onclick="createUser()">Crear cliente</button>
+    </div>
+
+    <div class="formrow" style="margin-top:10px;flex-wrap:wrap">
+      <input id="userSearch" class="input" placeholder="Buscar por correo..." oninput="renderUsers()">
+      <select id="userFilter" class="input" onchange="renderUsers()">
+        <option value="all">Todos</option>
+        <option value="using">ðŸŸ¢ En uso ahora</option>
+        <option value="today">Usaron hoy</option>
+        <option value="never">Nunca han entrado</option>
+        <option value="active">Activos</option>
+        <option value="inactive">BLOQUEADOs</option>
+        <option value="expired">Vencidos</option>
+        <option value="soon">POR VENCER</option>
+      </select>
+      <button class="btn" onclick="loadUsers()">Actualizar</button>
+    </div>
+
+    <div style="overflow:auto;margin-top:14px">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>CLIENTE</th>
+            <th>REGISTRO</th>
+            <th>ULTIMO ACCESO</th>
+            <th>ULTIMA ACTIVIDAD</th>
+            <th>LICENCIA</th>
+            <th>ESTADO</th>
+            <th>ACCIONES</th>
+          </tr>
+        </thead>
+        <tbody id="users"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
 </div></div>
 <script>
 var token=localStorage.bt_token||"", currentUser=null, hands=[], signals=[], pendingSignal=null, cooldownRemaining=0;
@@ -657,7 +3272,13 @@ const $=x=>document.getElementById(x);
 async function api(url,opt={}){opt.headers={...(opt.headers||{}),...(token?{Authorization:"Bearer "+token}:{})};if(opt.body)opt.headers["Content-Type"]="application/json";let r=await fetch(url,opt);let j=await r.json();if(!r.ok)throw Error(j.error||"Error");return j}
 async function login(){try{let j=await api("/api/login",{method:"POST",body:JSON.stringify({email:$('email').value,password:$('pass').value})});token=j.token;localStorage.bt_token=token;start(j.user)}catch(e){$('err').textContent=e.message}}
 async function start(u){currentUser=u;$('login').classList.add('hidden');$('app').classList.remove('hidden');$('who').textContent=u.email;restoreSession();
-updateAccountPanel(u);if(u.role==='admin'){$('admin').classList.remove('hidden');$('adminMsg').classList.add('hidden');loadUsers()}render()}
+updateAccountPanel(u);if(u.role==='admin'){$('admin').classList.remove('hidden');$('adminMsg').classList.add('hidden');loadUsers();startAdminAutoRefresh()}render()}
+async function sendActivity(){
+  try{
+    if(token) await api("/api/activity",{method:"POST"});
+  }catch(e){}
+}
+setInterval(sendActivity,60000);
 async function boot(){if(!token)return;try{let j=await api('/api/me');start(j.user)}catch(e){logout()}}
 function newSession(){
 
@@ -724,6 +3345,37 @@ function distributionRule(a){
   return {mode:'normal',b,j,diff,pick:dominant};
 }
 
+async function btServerAnalyze(sequence){
+  try{
+    const valid=Array.isArray(sequence)
+      ? sequence.filter(x=>x==="B"||x==="J")
+      : [];
+
+    if(valid.length<4){
+      return {
+        s:"W",
+        reason:"Esperar: registra al menos 4 manos sin empate.",
+        extreme:false,
+        mode:"wait",
+        factors:null
+      };
+    }
+
+    return await api("/api/analyze",{
+      method:"POST",
+      body:JSON.stringify({sequence:valid})
+    });
+  }catch(e){
+    console.error("BT SERVER ANALYZE:",e);
+    return {
+      s:"W",
+      reason:"No fue posible consultar el motor del servidor.",
+      extreme:false,
+      mode:"server_error",
+      factors:null
+    };
+  }
+}
 function analyzeSequence(a){
 
   if(a.length < 4){
@@ -957,110 +3609,197 @@ function openSignal(a){
 }
 
 function resolvePending(x){
+
   if(!pendingSignal || x==='E') return null;
 
-  pendingSignal.round=(pendingSignal.round||0)+1;
+  // Guardamos la misma referencia de la entrada.
+  // Esta entrada NO se reinicia mientras esté dentro de las 6 martingalas.
+  const sig=pendingSignal;
 
-  // La señal gana cuando vuelve a salir EL MISMO COLOR señalado.
-  if(x===pendingSignal.s){
+  // Cada B/J registrado consume exactamente una martingala.
+  sig.round=(Number(sig.round)||0)+1;
 
-    pendingSignal.outcome=x;
-    pendingSignal.correct=true;
-    pendingSignal.closedReason=
-      `Acertó en martingala ${pendingSignal.round}`;
+  // ==========================================================
+  // ACIERTO
+  // ==========================================================
+  if(x===sig.s){
 
+    sig.outcome=x;
+    sig.correct=true;
+    sig.closedRound=sig.round;
+    sig.closedReason=`Acertó en martingala ${sig.round}`;
+
+    // La entrada queda cerrada, pero permanece dentro de
+    // signals para que el historial la muestre como ACIERTO.
     pendingSignal=null;
 
-    // Después de una entrada ganada,
-    // esperar 3 rondas antes de buscar una nueva.
+    // Después de ganar, esperar 3 resultados B/J.
     cooldownRemaining=WIN_COOLDOWN_ROUNDS;
 
     saveSession();
+
     return 'win';
   }
 
-  // Salió el color contrario:
-  // esta martingala falla, pero la entrada CONTINÚA.
-  if(pendingSignal.round>=MAX_SIGNAL_ROUNDS){
+  // ==========================================================
+  // PÉRDIDA PARCIAL
+  // ==========================================================
+  if(sig.round < MAX_SIGNAL_ROUNDS){
 
-    pendingSignal.outcome=x;
-    pendingSignal.correct=false;
-    pendingSignal.closedReason='Se agotaron las 6 martingalas';
-
-    pendingSignal=null;
-
-    // Una pérdida no activa el cooldown.
-    cooldownRemaining=0;
-
+    // IMPORTANTE:
+    // sig sigue siendo pendingSignal.
+    // No se crea otra entrada.
     saveSession();
-    return 'loss';
+
+    return 'continue';
   }
 
-  // Sigue pendiente para la siguiente martingala.
+  // ==========================================================
+  // PÉRDIDA DEFINITIVA 6/6
+  // ==========================================================
+  sig.outcome=x;
+  sig.correct=false;
+  sig.closedRound=sig.round;
+  sig.closedReason='Se agotaron las 6 martingalas';
+
+  pendingSignal=null;
+  cooldownRemaining=0;
+
   saveSession();
-  return null;
+
+  return 'loss';
 }
 
 function add(x){
 
-  const resolved=resolvePending(x);
+  // ==========================================================
+  // 1. SI EXISTE UNA ENTRADA ACTIVA
+  // ==========================================================
+  // La entrada activa tiene prioridad absoluta.
+  // El nuevo resultado solamente puede:
+  //   - ganar la entrada
+  //   - avanzar una martingala
+  //   - cerrar definitivamente en 6/6
+  //
+  // Nunca se genera una señal nueva mientras exista pendingSignal.
 
-  hands.push(x);
+  if(pendingSignal){
 
-  // Entrada ganada: iniciar espera de 3 rondas.
-  if(resolved==='win'){
+    const resolved=resolvePending(x);
+
+    hands.push(x);
+
+    // ==========================================================
+    // ACIERTO
+    // ==========================================================
+    if(resolved==='win'){
+      saveSession();
+      render();
+      refreshServerAnalysis();
+      return;
+    }
+
+    // ==========================================================
+    // PERDIDA DEFINITIVA
+    // ==========================================================
+    if(resolved==='loss'){
+      saveSession();
+      render();
+      refreshServerAnalysis();
+      return;
+    }
+
+    // ==========================================================
+    // PERDIDA PARCIAL
+    // ==========================================================
+    // La entrada SIGUE ACTIVA.
+    // La martingala NO vuelve a 1.
+    //
+    // Después de registrar la pérdida analizamos la nueva
+    // secuencia y, si el modelo cambió de color, cambiamos
+    // solamente el objetivo.
+    //
+    // Ejemplo:
+    // BANCA 1/6 -> pierde
+    // JUGADOR 2/6 -> pierde
+    // BANCA 3/6
+    //
+    // El contador siempre pertenece a la misma entrada.
+    if(resolved==='continue'){
+
+      const nextAnalysis=analyze();
+
+      if(
+        pendingSignal &&
+        (nextAnalysis.s==='B'||nextAnalysis.s==='J') &&
+        nextAnalysis.s!==pendingSignal.s
+      ){
+        pendingSignal.s=nextAnalysis.s;
+        pendingSignal.reason=nextAnalysis.reason;
+        pendingSignal.mode=nextAnalysis.mode||pendingSignal.mode;
+      }
+
+      saveSession();
+      render();
+      refreshServerAnalysis();
+      return;
+    }
+
+    // ==========================================================
+    // EMPATE
+    // ==========================================================
+    // El empate no consume martingala ni cambia el objetivo.
     saveSession();
     render();
     return;
   }
 
-  // Después de una pérdida definitiva, NO hay cooldown.
-  // El motor queda disponible para buscar una nueva entrada.
+  // ==========================================================
+  // 2. NO HAY ENTRADA ACTIVA
+  // ==========================================================
 
-  // Esperar 3 rondas B/J después de un acierto.
-  // Los empates no consumen una ronda.
-  if(!pendingSignal && x!=='E' && cooldownRemaining>0){
+  hands.push(x);
+
+  // ==========================================================
+  // 3. COOLDOWN DESPUÉS DE ACIERTO
+  // ==========================================================
+
+  if(x!=='E' && cooldownRemaining>0){
 
     cooldownRemaining--;
 
     saveSession();
     render();
+    refreshServerAnalysis();
     return;
   }
 
+  // ==========================================================
+  // 4. BUSCAR NUEVA SEÑAL
+  // ==========================================================
+
   const a=analyze();
 
-  // Si la entrada sigue activa y el modelo cambia de color,
-  // el nuevo color pasa a ser el objetivo de la siguiente martingala.
-  if(pendingSignal && (a.s==='B'||a.s==='J') && a.s!==pendingSignal.s){
-    pendingSignal.s=a.s;
-    pendingSignal.reason=a.reason;
-    pendingSignal.mode=a.mode||pendingSignal.mode;
-  }
-
+  // Una racha extrema bloquea una nueva entrada.
   if(a.s==='X'){
-
-    if(pendingSignal){
-      pendingSignal.correct=false;
-      pendingSignal.closedReason='Cancelada por racha extrema';
-      pendingSignal=null;
-    }
 
     cooldownRemaining=0;
 
     saveSession();
     render();
+    refreshServerAnalysis();
     return;
   }
 
-  // Si no hay entrada pendiente, buscar una nueva.
-  // Esto también permite continuar después de una pérdida definitiva.
-  if(!pendingSignal && a.s!=='W'){
+  // Crear una nueva entrada solamente cuando
+  // NO existe ninguna pendiente.
+  if(a.s!=='W'){
     openSignal(a);
   }
 
   saveSession();
   render();
+  refreshServerAnalysis();
 }
 
 function roundSummary(){
@@ -1260,8 +3999,39 @@ function renderRoundPerformance(){
 
   box.innerHTML=rows;
 }
+let btServerResult=null;
+
+async function refreshServerAnalysis(){
+  try{
+    const sequence=hands.filter(x=>x==="B"||x==="J");
+
+    if(sequence.length<4){
+      btServerResult=null;
+      return;
+    }
+
+    btServerResult=await btServerAnalyze(sequence);
+    render();
+  }catch(e){
+    console.error("SERVER ENGINE ERROR:",e);
+  }
+}
 function render(){
-  const a=analyze(), rs=roundSummary();
+
+  const baseAnalysis = btServerResult || analyze();
+
+  const a = pendingSignal
+    ? {
+        ...baseAnalysis,
+        s: pendingSignal.s,
+        reason: pendingSignal.reason || baseAnalysis.reason,
+        mode: pendingSignal.mode || baseAnalysis.mode
+      }
+    : (cooldownRemaining>0
+        ? analyze()
+        : baseAnalysis);
+
+  const rs=roundSummary();
   const ub=$('undoBtn'),uc=$('undoCount');
   if(ub){ub.disabled=hands.length===0;ub.classList.toggle('ready',hands.length>0);if(uc)uc.textContent='· '+hands.length+' disponible'+(hands.length===1?'':'s')}
 
@@ -1291,11 +4061,11 @@ function render(){
   );
 
   if(a.s==='B'){
-    sigBig.textContent='SEÑAL BANCA '+Math.min((pendingSignal?.round||0)+1,MAX_SIGNAL_ROUNDS)+'/'+MAX_SIGNAL_ROUNDS;
+    sigBig.textContent='SEÑAL BANCA '+Math.min(Math.max((Number(pendingSignal?.round)||0)+1,1),MAX_SIGNAL_ROUNDS)+'/'+MAX_SIGNAL_ROUNDS;
     sigBig.classList.add('signal-banca');
   }
   else if(a.s==='J'){
-    sigBig.textContent='SEÑAL JUGADOR '+Math.min((pendingSignal?.round||0)+1,MAX_SIGNAL_ROUNDS)+'/'+MAX_SIGNAL_ROUNDS;
+    sigBig.textContent='SEÑAL JUGADOR '+Math.min(Math.max((Number(pendingSignal?.round)||0)+1,1),MAX_SIGNAL_ROUNDS)+'/'+MAX_SIGNAL_ROUNDS;
     sigBig.classList.add('signal-jugador');
   }
   else{
@@ -1387,11 +4157,20 @@ function render(){
   setText('bt33R46',rs.r46);
   setText('bt33Fails',rs.fails);
   const roundStats=$('bt33RoundStats'); if(roundStats) roundStats.textContent=`Promedio de rondas: ${rs.r.length?rs.avg.toFixed(2):'â€”'} · Máximo utilizado: ${rs.max||'â€”'} · Máximo permitido: ${MAX_SIGNAL_ROUNDS}`;
-
   if(pendingSignal){
-    $('bt33Active').innerHTML=`<b> Señal activa: ${pendingSignal.s==='B'?'BANCA':'JUGADOR'}</b> · <span class="bt33-round">Ronda ${Math.min(pendingSignal.round+1,MAX_SIGNAL_ROUNDS)}/${MAX_SIGNAL_ROUNDS}</span>`;
+    const martingalaActual=Math.min(
+      (Number(pendingSignal.round)||0)+1,
+      MAX_SIGNAL_ROUNDS
+    );
+
+    $('bt33Active').innerHTML=
+      `<b>Señal activa: ${pendingSignal.s==='B'?'BANCA':'JUGADOR'}</b>
+       · <span class="bt33-round">Martingala ${martingalaActual}/${MAX_SIGNAL_ROUNDS}</span>`;
   }else{
-    $('bt33Active').textContent=ex.active?'Seguimiento cancelado por racha extrema.':'Sin señal activa.';
+    $('bt33Active').textContent=
+      ex.active
+        ? 'Seguimiento cancelado por racha extrema.'
+        : 'Sin señal activa.';
   }
 
   $('bt33Rows').innerHTML=signals.slice(-20).reverse().map(s=>{
@@ -1407,62 +4186,207 @@ function render(){
   $('btDetail').textContent=bt.signals?`Aciertos ${bt.wins}/${bt.signals}. Banca: ${btWinsText(bt.bWins,bt.bSignals)} · Jugador: ${btWinsText(bt.jWins,bt.jSignals)}. El backtest no predice la próxima mano.`:'Registra al menos 4 manos sin empate para comenzar.';
 }
 function btWinsText(w,n){return n?`${w}/${n} (${(w/n*100).toFixed(1)}%)`:'â€”'}
-async function loadUsers(){
-  let u=await api('/api/users');
+let adminUsers=[];
 
-  $('users').innerHTML=u.map(x=>{
+function daysLeft(date){
+  if(!date)return null;
+  return Math.ceil((new Date(date).getTime()-Date.now())/86400000);
+}
 
-    const expiration=x.license_expires
-      ? new Date(x.license_expires)
-      : null;
+function userStatus(x){
+  if(Number(x.active)===0)return ["BLOQUEADO","inactive"];
+  const d=daysLeft(x.license_expires);
+  if(d!==null && d<0)return ["Vencido","expired"];
+  if(d!==null && d<=7)return ["POR VENCER","soon"];
+  return ["Activo","active"];
+}
 
-    const now=new Date();
+function escapeHtml(v){
+  return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+}
 
-    const days=expiration
-      ? Math.max(0,Math.ceil((expiration-now)/86400000))
-      : 0;
+function escapeJs(v){
+  return String(v??"").replace(/\\/g,"\\\\").replace(/'/g,"\\'");
+}
 
-    let status='';
-    let statusStyle='';
+function formatDate(v){
+  if(!v)return "Nunca";
+  const d=new Date(v);
+  if(Number.isNaN(d.getTime()))return v;
+  return d.toLocaleString();
+}
+function isToday(v){
+  if(!v)return false;
+  const d=new Date(v), n=new Date();
+  return d.getFullYear()===n.getFullYear() && d.getMonth()===n.getMonth() && d.getDate()===n.getDate();
+}
+function isUsingNow(v){
+  if(!v)return false;
+  const t=new Date(v).getTime();
+  return Number.isFinite(t) && (Date.now()-t)<=5*60*1000;
+}
 
-    if(x.role==='admin'){
-      status='ADMINISTRADOR';
-      statusStyle='color:#ffffff';
-    }else if(days>0){
-      status='🟢 ACTIVA';
-      statusStyle='color:#35e88b';
-    }else{
-      status='🔴 VENCIDA';
-      statusStyle='color:#ff596f';
+function fmtDate(v){
+  if(!v)return "Nunca";
+  const d=new Date(v);
+  return Number.isNaN(d.getTime())?String(v):d.toLocaleString();
+}
+function today(v){
+  if(!v)return false;
+  const d=new Date(v),n=new Date();
+  return d.getFullYear()===n.getFullYear()&&d.getMonth()===n.getMonth()&&d.getDate()===n.getDate();
+}
+function usingNow(v){
+  if(!v)return false;
+  const t=new Date(v).getTime();
+  return Number.isFinite(t)&&(Date.now()-t)<=5*60*1000;
+}
+function fmtDate(v){
+  if(!v)return "Nunca";
+  const d=new Date(v);
+  return Number.isNaN(d.getTime())?String(v):d.toLocaleString();
+}
+function isToday(v){
+  if(!v)return false;
+  const d=new Date(v),n=new Date();
+  return d.getFullYear()===n.getFullYear()&&d.getMonth()===n.getMonth()&&d.getDate()===n.getDate();
+}
+function isUsingNow(v){
+  if(!v)return false;
+  const t=new Date(v).getTime();
+  return Number.isFinite(t)&&(Date.now()-t)<=5*60*1000;
+}
+function sessionBadge(x){
+  if(Number(x.active)===0)return "<span class='bt31-session offline'>BLOQUEADO</span>";
+  if(isUsingNow(x.last_activity))return "<span class='bt31-session online'>EN LINEA</span>";
+  if(x.last_login)return "<span class='bt31-session idle'>INACTIVO</span>";
+  return "<span class='bt31-session never'>SIN ACCESO</span>";
+}function renderAdminRecent(){const box=$("btAdminRecent");if(!box)return;const users=Array.isArray(adminUsers)?adminUsers.slice().sort((a,b)=>new Date(b.last_activity||b.last_login||0)-new Date(a.last_activity||a.last_login||0)).slice(0,6):[];if(!users.length){box.innerHTML="<div class='bt-admin-user'><div class='bt-admin-user-main'><div class='bt-admin-user-email'>Sin actividad registrada</div><div class='bt-admin-user-date'>Todavía no hay accesos de clientes</div></div></div>";return}box.innerHTML=users.map(u=>{const online=isUsingNow(u.last_activity);const date=u.last_activity||u.last_login;const text=date?new Date(date).toLocaleString("es-CO",{dateStyle:"short",timeStyle:"short"}):"Sin acceso";return `<div class="bt-admin-user"><div class="bt-admin-user-main"><div class="bt-admin-user-email">${String(u.email||"Usuario")}</div><div class="bt-admin-user-date">${text}</div></div><span class="${online?"bt-admin-online":"bt-admin-offline"}">${online?"ACTIVO AHORA":"INACTIVO"}</span></div>`}).join("")}
+function updateOnlineCounter(){const title=$("btOnlineTitle"),sub=$("btOnlineSub"),dot=$("btOnlineDot");if(!title||!sub||!dot)return;const clients=Array.isArray(adminUsers)?adminUsers.filter(x=>x.role==="user"):[];const online=clients.filter(x=>isUsingNow(x.last_activity));const n=online.length;title.textContent=n===1?"1 CLIENTE EN LÍNEA":`${n} CLIENTES EN LÍNEA`;sub.textContent=`${clients.length} clientes registrados · actualización automática`;dot.style.background=n>0?"#20e68a":"#263247";dot.style.boxShadow=n>0?"0 0 18px rgba(32,230,138,.75),0 0 0 5px rgba(32,230,138,.12)":"0 0 0 5px rgba(38,50,71,.15)"}
+function renderUsers(){renderAdminRecent();updateOnlineCounter();
+  const body=$("users"); if(!body)return;
+  const q=String($("userSearch")?.value||"").toLowerCase().trim();
+  const f=$("userFilter")?.value||"all";
+
+  const rows=adminUsers.filter(x=>{
+    const d=daysLeft(x.license_expires);
+    const online=isUsingNow(x.last_activity);
+    const today=isToday(x.last_activity||x.last_login);
+    const never=!x.last_login;
+    let ok=true;
+
+    if(f==="using")ok=online;
+    else if(f==="today")ok=today;
+    else if(f==="never")ok=never;
+    else if(f==="active")ok=Number(x.active)!==0;
+    else if(f==="inactive")ok=Number(x.active)===0;
+    else if(f==="expired")ok=Number(x.active)!==0&&d!==null&&d<0;
+    else if(f==="soon")ok=Number(x.active)!==0&&d!==null&&d>=0&&d<=7;
+
+    return (!q||String(x.email||"").toLowerCase().includes(q))&&ok;
+  });
+
+  body.innerHTML=rows.map(x=>{
+    const d=daysLeft(x.license_expires);
+    const disabled=Number(x.active)===0;
+
+    let sessionText="SIN ACCESO";
+    let sessionClass="never";
+
+    if(disabled){
+      sessionText="BLOQUEADO";
+      sessionClass="offline";
+    }else if(isUsingNow(x.last_activity)){
+      sessionText="EN LINEA";
+      sessionClass="online";
+    }else if(x.last_login){
+      sessionText="INACTIVO";
+      sessionClass="idle";
     }
 
-    const expirationText=expiration
-      ? expiration.toLocaleDateString()
-      : '—';
+    const stateText=disabled?"BLOQUEADO":"ACTIVO";
+    const stateClass=disabled?"state-blocked":"state-active";
 
-    const daysText=x.role==='admin'
-      ? '—'
-      : days+' día'+(days===1?'':'s');
+    return `<tr>
+      <td>#${x.id}</td>
+      <td><b>${escapeHtml(x.email)}</b><br><span class="muted">${x.role}</span></td>
+      <td>${fmtDate(x.created_at)}</td>
+      <td>${x.last_login?fmtDate(x.last_login):"<span class='muted'>Nunca</span>"}</td>
+      <td>${x.last_activity?fmtDate(x.last_activity):"<span class='muted'>Nunca</span>"}</td>
+      <td>${x.license_expires?new Date(x.license_expires).toLocaleDateString():"â€”"}<br><span class="muted">${d===null?"":d+" dias"}</span></td>
+      <td><span class="bt31-session ${sessionClass}">${sessionText}</span></td>
+      <td><span class="bt31-state ${stateClass}">${stateText}</span></td>
+      <td style="white-space:nowrap">${x.role!=="admin"?`
+        <button class="btn" onclick="renew(${x.id})">+30 dias</button>
+        <button class="btn" onclick="setUserStatus(${x.id},${disabled?1:0})">${disabled?"Activar":"Desactivar"}</button>
+        <button class="btn" onclick="deleteUser(${x.id},'${escapeJs(x.email)}')">Eliminar</button>
+      `:"Administrador"}</td>
+    </tr>`;
+  }).join("")||`<tr><td colspan="10" class="muted">No hay clientes.</td></tr>`;
 
-    const action=x.role==='user'
-      ? `<button class="btn" onclick="renew(${x.id})">+30 días</button>`
-      : '—';
-
-    return `
-      <tr>
-        <td>${x.email}</td>
-        <td>${x.role}</td>
-        <td style="${statusStyle};font-weight:900">${status}</td>
-        <td>${daysText}</td>
-        <td>${expirationText}</td>
-        <td>${action}</td>
-      </tr>
-    `;
-
-  }).join('');
+  const c=adminUsers.filter(x=>x.role==="user");
+  $("admTotal").textContent=c.length;
+  $("admActive").textContent=c.filter(x=>Number(x.active)!==0).length;
+  $("admExpired").textContent=c.filter(x=>Number(x.active)!==0&&daysLeft(x.license_expires)<0).length;
+  $("admSoon").textContent=c.filter(x=>Number(x.active)!==0&&daysLeft(x.license_expires)>=0&&daysLeft(x.license_expires)<=7).length;
+  if($("admToday"))$("admToday").textContent=c.filter(x=>isToday(x.last_activity||x.last_login)).length;
+  if($("admNever"))$("admNever").textContent=c.filter(x=>!x.last_login).length;
 }
-async function createUser(){try{await api('/api/users',{method:'POST',body:JSON.stringify({email:$('newEmail').value,password:$('newPass').value,days:$('days').value})});$('newEmail').value='';$('newPass').value='';loadUsers()}catch(e){alert(e.message)}}
-async function renew(id){await api('/api/users/'+id+'/license',{method:'PATCH',body:JSON.stringify({days:30})});loadUsers()}
+let btAdminRefreshTimer=null; function startAdminAutoRefresh(){if(btAdminRefreshTimer)clearInterval(btAdminRefreshTimer);btAdminRefreshTimer=setInterval(()=>{if(currentUser&&currentUser.role==="admin")loadUsers()},10000)}
+async function loadUsers(){
+  try{
+    adminUsers=await api("/api/users");
+    renderUsers();
+  }catch(e){alert(e.message);}
+}
+
+async function createUser(){
+  try{
+    await api("/api/users",{
+      method:"POST",
+      body:JSON.stringify({
+        email:$("newEmail").value.trim(),
+        password:$("newPass").value,
+        days:Math.max(1,Number($("days").value||30))
+      })
+    });
+    $("newEmail").value="";
+    $("newPass").value="";
+    await loadUsers();
+    alert("CLIENTE creado correctamente.");
+  }catch(e){alert(e.message);}
+}
+
+async function renew(id){
+  try{
+    const days=prompt("Â¿CuÃ¡ntos dÃ­as quieres agregar?","30");
+    if(days===null)return;
+    await api("/api/users/"+id+"/license",{
+      method:"PATCH",
+      body:JSON.stringify({days:Math.max(1,Number(days))})
+    });
+    await loadUsers();
+  }catch(e){alert(e.message);}
+}
+
+async function setUserStatus(id,active){
+  try{
+    if(!confirm(active?"Â¿Activar este cliente?":"Â¿Desactivar este cliente?"))return;
+    await api("/api/users/"+id+"/status",{
+      method:"PATCH",
+      body:JSON.stringify({active:Boolean(active)})
+    });
+    await loadUsers();
+  }catch(e){alert(e.message);}
+}
+
+async function deleteUser(id,email){
+  try{
+    if(!confirm("Â¿Eliminar definitivamente a "+email+"?"))return;
+    await api("/api/users/"+id,{method:"DELETE"});
+    await loadUsers();
+  }catch(e){alert(e.message);}
+}
 boot();
 </script>
 <script>
