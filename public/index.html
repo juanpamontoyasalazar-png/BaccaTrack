@@ -2947,7 +2947,120 @@ section.card.full.bt33-panel{
 
 </style></head><body>
 <div id="login" class="wrap login card"><div class="brand"><img class="logo" src="/baccatrack-logo.jpg" alt="BaccaTrack"><div><h1>BaccaTrack</h1><div class="muted">Acceso privado</div></div></div><h2>Iniciar sesión</h2><input id="email" class="input" placeholder="Correo" type="email"><input id="pass" class="input" placeholder="Contraseña" type="password"><button class="btn primary" style="width:100%" onclick="login()">Entrar</button>
+
+<button
+  type="button"
+  id="forgotPasswordBtn"
+  class="btn"
+  style="width:100%;margin-top:10px;background:transparent;border:0;color:#60a5fa;text-decoration:underline;"
+  onclick="showForgotPassword()"
+>
+  ¿Olvidaste tu contraseña?
+</button>
 <button id="showRegisterBtn" class="btn" type="button" style="width:100%;margin-top:10px;color:#fff;border-color:#fff;background:#111722;" onclick="showRegister()">Crear una cuenta</button><p id="err" class="muted"></p></div>
+<div id="forgotPassword" class="wrap login card hidden">
+
+  <div class="brand">
+    <img class="logo" src="/baccatrack-logo.jpg" alt="BaccaTrack">
+    <div>
+      <h1>BaccaTrack</h1>
+      <div class="muted">Recuperación de contraseña</div>
+    </div>
+  </div>
+
+  <h2>¿Olvidaste tu contraseña?</h2>
+
+  <p class="muted" style="line-height:1.5;">
+    Ingresa el correo electrónico asociado a tu cuenta y te enviaremos
+    las instrucciones para crear una nueva contraseña.
+  </p>
+
+  <input
+    id="forgotEmail"
+    class="input"
+    placeholder="Correo electrónico"
+    type="email"
+    autocomplete="email"
+  >
+
+  <button
+    class="btn primary"
+    type="button"
+    style="width:100%;margin-top:10px;"
+    onclick="requestPasswordReset()"
+  >
+    ENVIAR ENLACE
+  </button>
+
+  <button
+    class="btn"
+    type="button"
+    style="width:100%;margin-top:10px;color:#fff;border-color:#fff;background:#111722;"
+    onclick="hideForgotPassword()"
+  >
+    ← VOLVER A INICIAR SESIÓN
+  </button>
+
+  <p id="forgotMsg" class="muted" style="margin-top:15px;line-height:1.5;"></p>
+
+</div>
+<div id="resetPassword" class="wrap login card hidden">
+
+  <div class="brand">
+    <img class="logo" src="/baccatrack-logo.jpg" alt="BaccaTrack">
+    <div>
+      <h1>BaccaTrack</h1>
+      <div class="muted">Nueva contraseña</div>
+    </div>
+  </div>
+
+  <h2>Restablecer contraseña</h2>
+
+  <p class="muted" style="line-height:1.5;">
+    Crea una nueva contraseña para acceder nuevamente a tu cuenta.
+  </p>
+
+  <input
+    id="resetPass"
+    class="input"
+    placeholder="Nueva contraseña (mínimo 6 caracteres)"
+    type="password"
+    autocomplete="new-password"
+  >
+
+  <input
+    id="resetPass2"
+    class="input"
+    placeholder="Confirmar nueva contraseña"
+    type="password"
+    autocomplete="new-password"
+  >
+
+  <button
+    class="btn primary"
+    type="button"
+    style="width:100%;margin-top:10px;"
+    onclick="submitPasswordReset()"
+  >
+    RESTABLECER CONTRASEÑA
+  </button>
+
+  <button
+    class="btn"
+    type="button"
+    style="width:100%;margin-top:10px;color:#fff;border-color:#fff;background:#111722;"
+    onclick="cancelPasswordReset()"
+  >
+    ← VOLVER A INICIAR SESIÓN
+  </button>
+
+  <p
+    id="resetMsg"
+    class="muted"
+    style="margin-top:15px;line-height:1.5;"
+  ></p>
+
+</div>
 <div id="register" class="wrap login card hidden">
 
   <div class="brand">
@@ -4387,6 +4500,119 @@ async function deleteUser(id,email){
     await loadUsers();
   }catch(e){alert(e.message);}
 }
+function checkPasswordResetLink(){
+
+  const params=new URLSearchParams(window.location.search);
+  const resetToken=params.get('reset');
+
+  if(!resetToken)return;
+
+  const login=document.getElementById('login');
+  const register=document.getElementById('register');
+  const forgot=document.getElementById('forgotPassword');
+  const reset=document.getElementById('resetPassword');
+
+  if(login)login.classList.add('hidden');
+  if(register)register.classList.add('hidden');
+  if(forgot)forgot.classList.add('hidden');
+  if(reset)reset.classList.remove('hidden');
+
+  const msg=document.getElementById('resetMsg');
+  if(msg)msg.textContent='';
+
+  const pass=document.getElementById('resetPass');
+  if(pass)pass.focus();
+
+  return true;
+}
+
+async function submitPasswordReset(){
+
+  const params=new URLSearchParams(window.location.search);
+  const token=params.get('reset');
+
+  const password=document.getElementById('resetPass').value;
+  const password2=document.getElementById('resetPass2').value;
+  const msg=document.getElementById('resetMsg');
+
+  if(!token){
+    if(msg)msg.textContent='El enlace de recuperación no es válido.';
+    return;
+  }
+
+  if(password.length<6){
+    if(msg)msg.textContent='La contraseña debe tener mínimo 6 caracteres.';
+    return;
+  }
+
+  if(password!==password2){
+    if(msg)msg.textContent='Las contraseñas no coinciden.';
+    return;
+  }
+
+  if(msg)msg.textContent='Actualizando contraseña...';
+
+  try{
+
+    const data=await api("/api/reset-password",{
+      method:"POST",
+      body:JSON.stringify({
+        token,
+        password
+      })
+    });
+
+    if(msg){
+      msg.textContent=data.message ||
+        'Contraseña actualizada correctamente. Ahora puedes iniciar sesión.';
+    }
+
+    document.getElementById('resetPass').value='';
+    document.getElementById('resetPass2').value='';
+
+    // El token ya fue utilizado. Eliminamos el parámetro de la URL.
+    window.history.replaceState({},document.title,window.location.pathname);
+
+    setTimeout(()=>{
+      const reset=document.getElementById('resetPassword');
+      const login=document.getElementById('login');
+
+      if(reset)reset.classList.add('hidden');
+      if(login)login.classList.remove('hidden');
+
+      const loginMsg=document.getElementById('err');
+      if(loginMsg){
+        loginMsg.textContent=
+          'Contraseña actualizada. Ya puedes iniciar sesión.';
+      }
+    },1200);
+
+  }catch(e){
+
+    if(msg){
+      msg.textContent=
+        e.message ||
+        'No se pudo restablecer la contraseña.';
+    }
+
+  }
+}
+
+function cancelPasswordReset(){
+
+  const reset=document.getElementById('resetPassword');
+  const login=document.getElementById('login');
+
+  if(reset)reset.classList.add('hidden');
+  if(login)login.classList.remove('hidden');
+
+  const msg=document.getElementById('resetMsg');
+  if(msg)msg.textContent='';
+
+  window.history.replaceState({},document.title,window.location.pathname);
+}
+
+checkPasswordResetLink();
 boot();
 </script>
 <script>
@@ -4422,6 +4648,68 @@ boot();
 </script>
 <script>document.addEventListener('keydown',function(e){if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'&&!e.shiftKey){e.preventDefault();if(typeof undoLast==='function'&&hands.length)undoLast();}});</script>
 <script id="bt-register-functions">
+function showForgotPassword(){
+
+  const login=document.getElementById('login');
+  const register=document.getElementById('register');
+  const forgot=document.getElementById('forgotPassword');
+
+  if(login) login.classList.add('hidden');
+  if(register) register.classList.add('hidden');
+  if(forgot) forgot.classList.remove('hidden');
+
+  const msg=document.getElementById('forgotMsg');
+  if(msg) msg.textContent='';
+
+  const email=document.getElementById('forgotEmail');
+  if(email) email.focus();
+}
+
+function hideForgotPassword(){
+
+  const forgot=document.getElementById('forgotPassword');
+  const login=document.getElementById('login');
+
+  if(forgot) forgot.classList.add('hidden');
+  if(login) login.classList.remove('hidden');
+
+  const msg=document.getElementById('forgotMsg');
+  if(msg) msg.textContent='';
+}
+
+async function requestPasswordReset(){
+
+  const email=document.getElementById('forgotEmail').value.trim().toLowerCase();
+  const msg=document.getElementById('forgotMsg');
+
+  if(!email || !email.includes('@')){
+    if(msg) msg.textContent='Ingresa un correo electrónico válido.';
+    return;
+  }
+
+  if(msg) msg.textContent='Procesando solicitud...';
+
+  try{
+
+    const data=await api("/api/forgot-password",{
+      method:"POST",
+      body:JSON.stringify({email})
+    });
+
+    if(msg){
+      msg.textContent=data.message ||
+        'Si el correo está registrado, recibirás instrucciones para restablecer tu contraseña.';
+    }
+
+  }catch(e){
+
+    if(msg){
+      msg.textContent=e.message ||
+        'No se pudo procesar la solicitud.';
+    }
+
+  }
+}
 function showRegister(){
   const login=document.getElementById('login');
   const register=document.getElementById('register');
