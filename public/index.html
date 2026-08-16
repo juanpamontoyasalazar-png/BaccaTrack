@@ -1,4 +1,4 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080a0f"><link rel="icon" type="image/jpeg" href="/baccatrack-logo.jpg"><link rel="apple-touch-icon" href="/baccatrack-logo.jpg"><title>BaccaTrack · Análisis estadístico de sesión</title><style>
+﻿<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080a0f"><link rel="icon" type="image/jpeg" href="/baccatrack-logo.jpg"><link rel="apple-touch-icon" href="/baccatrack-logo.jpg"><title>BaccaTrack · Análisis estadístico de sesión</title><style>
 :root{--bg:#05060b;--card:#0b0d15e8;--line:#24283a;--txt:#f7f7fb;--muted:#9aa0b5;--red:#ff2bb5;--blue:#168cff;--green:#18d889;--yellow:#ffd24a;--purple:#b52cff;--cyan:#20d8ff}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 0,#17132b,#05060b 45%),radial-gradient(circle at 100% 20%,#071a31,#05060b 35%);color:var(--txt);font-family:Inter,system-ui,sans-serif;min-height:100vh}.wrap{max-width:1180px;margin:auto;padding:18px}.hidden{display:none!important}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.brand{display:flex;gap:13px;align-items:center}.logo{width:58px;height:58px;border-radius:50%;object-fit:cover;border:1px solid #20d8ff88;box-shadow:0 0 18px #ff2bb566,0 0 24px #168cff44;background:#05060b}.brand h1{font-size:21px;margin:0}.brand-logo{width:64px;height:64px;border-radius:50%;object-fit:cover;border:1px solid #ff2bb588;box-shadow:0 0 20px #ff2bb544,0 0 28px #168cff33}.brand h1{font-size:21px;margin:0}.muted{color:var(--muted);font-size:13px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 18px 45px #0005}.login{max-width:420px;margin:9vh auto;box-shadow:0 0 40px #b52cff12}.login .brand{margin-bottom:10px}.input{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:#0b0f15;color:var(--txt);margin:7px 0 12px}.btn{padding:11px 14px;border-radius:10px;background:#202936;color:white;font-weight:800;border:1px solid var(--line);cursor:pointer}.primary{background:linear-gradient(135deg,var(--blue),#2455b7)}.grid{display:grid;grid-template-columns:1.25fr .75fr;gap:15px}.full{grid-column:1/-1}.signal{padding:20px;border:1px solid var(--line);border-radius:16px;background:#171e29;min-height:180px}.big{font-size:30px;font-weight:900;margin:9px 0}.controls{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}.res{border:0;border-radius:13px;padding:17px;color:white;font-weight:900;cursor:pointer}.r{background:linear-gradient(135deg,#e84b5f,#a82037)}.b{background:linear-gradient(135deg,#3d8cff,#2056b7)}.g{background:linear-gradient(135deg,#31d18b,#168b5a)}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.stat{padding:13px;border:1px solid var(--line);border-radius:12px;background:#0b0f15}.stat b{display:block;font-size:21px;margin-top:4px}.hist{display:grid;grid-auto-flow:column;grid-template-rows:repeat(6,33px);grid-auto-columns:33px;gap:6px;align-items:start;justify-content:start}.chip{width:33px;height:33px;border-radius:9px;display:grid;place-items:center;font-size:11px;font-weight:900}.table{width:100%;border-collapse:collapse}.table td,.table th{padding:9px;border-bottom:1px solid var(--line);text-align:left;font-size:13px}.formrow{display:grid;grid-template-columns:1fr 1fr 120px;gap:8px}.score{height:12px;background:#262d38;border-radius:9px;overflow:hidden}.score>div{height:100%;background:linear-gradient(90deg,var(--yellow),var(--green));transition:.25s}.factors{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:12px}.factor{padding:10px;border:1px solid var(--line);border-radius:12px;background:#0b0f15}.factor b{display:block;font-size:16px;margin-top:3px}.tag{display:inline-block;padding:4px 8px;border-radius:999px;font-size:11px;font-weight:800;background:#232b38}.tag.red{background:#4b1d29}.tag.blue{background:#172e57}.tag.yellow{background:#4a3b12}.tag.green{background:#123e2c}.why{margin-top:12px;padding:12px;border-radius:12px;background:#0b0f15;border:1px dashed var(--line)}.legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.empty{padding:12px;border:1px dashed var(--line);border-radius:12px}.brand-showcase{margin-top:14px;padding:14px;border:1px solid var(--line);border-radius:16px;background:radial-gradient(circle at 50% 0,#17112b,#090b12 62%);text-align:center;overflow:hidden}.brand-showcase img{width:min(100%,280px);aspect-ratio:1;object-fit:cover;border-radius:50%;border:1px solid #20d8ff77;box-shadow:0 0 28px #ff2bb544,0 0 40px #168cff33}.brand-showcase strong{display:block;margin-top:10px;letter-spacing:2px;color:#fff}.brand-showcase span{display:block;margin-top:4px;color:var(--muted);font-size:12px;letter-spacing:1px}.undo{grid-column:1/-1;border-color:#ff2bb588!important;background:linear-gradient(180deg,#110b19,#0b0d15)!important;color:#ff65c9!important;box-shadow:0 0 18px #ff2bb51a}.res.r{background:linear-gradient(135deg,#ff2bb5,#b51670);box-shadow:0 0 18px #ff2bb522}.res.b{background:linear-gradient(135deg,#168cff,#1650c9);box-shadow:0 0 18px #168cff22}.res.g{background:linear-gradient(135deg,#18d889,#087e55);box-shadow:0 0 18px #18d88922}.danger{color:#ff9aa7}@media(max-width:800px){.grid{grid-template-columns:1fr}.full{grid-column:auto}}@media(max-width:500px){.controls{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.formrow{grid-template-columns:1fr}.factors{grid-template-columns:1fr}}
 
 /* BaccaTrack 2.5 — polished product UI */
@@ -3330,7 +3330,7 @@ section.card.full.bt33-panel{
 </section>
 </div></div>
 <script>
-var token=localStorage.bt_token||"", currentUser=null, hands=[], signals=[], pendingSignal=null, cooldownRemaining=0;
+var token=localStorage.bt_token||"", currentUser=null, hands=[], signals=[], pendingSignal=null, cooldownRemaining=0, ruptureCooldownRemaining=0;
 
 function getSessionKey(){
   if(!currentUser || !currentUser.id)return null;
@@ -3345,7 +3345,8 @@ function saveSession(){
       hands:hands,
       signals:signals,
       pendingId:pendingSignal ? pendingSignal.id : null,
-      cooldownRemaining:cooldownRemaining
+      cooldownRemaining:cooldownRemaining,
+      ruptureCooldownRemaining:ruptureCooldownRemaining
     }));
   }catch(e){
     console.warn('No se pudo guardar la sesión',e);
@@ -3365,6 +3366,7 @@ function restoreSession(){
     if(Array.isArray(data.hands))hands=data.hands;
     if(Array.isArray(data.signals))signals=data.signals;
     if(Number.isFinite(data.cooldownRemaining))cooldownRemaining=data.cooldownRemaining;
+    if(Number.isFinite(data.ruptureCooldownRemaining))ruptureCooldownRemaining=data.ruptureCooldownRemaining;
 
     if(data.pendingId!==null && data.pendingId!==undefined){
       pendingSignal=signals.find(s=>s.id===data.pendingId) || null;
@@ -3490,6 +3492,28 @@ async function btServerAnalyze(sequence){
   }
 }
 function analyzeSequence(a){
+  // BACCATRACK_RACHA3_V6
+  // Racha exacta de 3: generar entrada inmediatamente.
+  if(a.length>=3){
+    const last=a[a.length-1];
+    const lastLen=currentStreak(a,last);
+
+    if((last==='B'||last==='J') && lastLen===3){
+      return {
+        s:last,
+        score:100,
+        reason:`Racha exacta de 3 en ${last==='B'?'BANCA':'JUGADOR'}. Entrada 1/6. Si cambia el color, cortar inmediatamente.`,
+        extreme:false,
+        mode:'three_streak_entry',
+        threeStreakEntry:true,
+        factors:{
+          streak:3,
+          pattern:'racha_3_protegida'
+        }
+      };
+    }
+  }
+
 
   if(a.length < 4){
     return {
@@ -3670,6 +3694,23 @@ if(a.length>=35){
 }
 function analyze(){
 
+  // ==========================================================
+  // ESPERA POST-CORTE PROTEGIDO
+  // ==========================================================
+  if(ruptureCooldownRemaining>0){
+
+    return {
+      s:'W',
+      reason:'Corte protegido. Faltan '+ruptureCooldownRemaining+' rondas para volver a analizar una posible entrada.',
+      extreme:false,
+      mode:'rupture_cooldown',
+      factors:{
+        ruptureCooldown:ruptureCooldownRemaining
+      }
+    };
+  }
+
+
   // Después de un acierto, bloquear nuevas señales
   // durante 3 rondas sin empate.
   if(cooldownRemaining>0){
@@ -3706,22 +3747,30 @@ function openSignal(a){
   const sig={
     id:signals.length+1,
     s:a.s,
+    score:a.score,
     handIndex:hands.length-1,
     outcome:null,
     correct:null,
     round:0,
-    maxRounds:MAX_SIGNAL_ROUNDS,
+    maxRounds:typeof MAX_SIGNAL_ROUNDS!=='undefined'
+      ? MAX_SIGNAL_ROUNDS
+      : 6,
     reason:a.reason,
     closedReason:null,
-    mode:a.mode||"normal"
+    mode:a.mode||"normal",
+    threeStreakEntry:
+      a.mode==='three_streak_entry' ||
+      a.threeStreakEntry===true,
+    breakTriggered:false
   };
 
   signals.push(sig);
   pendingSignal=sig;
-  saveSession();
-}
 
-function resolvePending(x){
+  if(typeof saveSession==='function'){
+    saveSession();
+  }
+}function resolvePending(x){
 
   if(!pendingSignal || x==='E') return null;
 
@@ -3786,136 +3835,87 @@ function resolvePending(x){
 function add(x){
 
   // ==========================================================
-  // 1. SI EXISTE UNA ENTRADA ACTIVA
+  // ESPERA POST-CORTE PROTEGIDO
   // ==========================================================
-  // La entrada activa tiene prioridad absoluta.
-  // El nuevo resultado solamente puede:
-  //   - ganar la entrada
-  //   - avanzar una martingala
-  //   - cerrar definitivamente en 6/6
-  //
-  // Nunca se genera una señal nueva mientras exista pendingSignal.
-
-  if(pendingSignal){
-
-    const resolved=resolvePending(x);
+  // Después de romper una racha de 3:
+  // - B/J consume una ronda.
+  // - Empate NO consume una ronda.
+  // - No se abre ninguna entrada durante la espera.
+  // ==========================================================
+  if(ruptureCooldownRemaining>0){
 
     hands.push(x);
 
-    // ==========================================================
-    // ACIERTO
-    // ==========================================================
-    if(resolved==='win'){
-      saveSession();
-      render();
-      refreshServerAnalysis();
-      return;
+    if(x!=='E'){
+      ruptureCooldownRemaining=Math.max(
+        0,
+        ruptureCooldownRemaining-1
+      );
     }
 
-    // ==========================================================
-    // PERDIDA DEFINITIVA
-    // ==========================================================
-    if(resolved==='loss'){
+    if(typeof saveSession==='function'){
       saveSession();
-      render();
-      refreshServerAnalysis();
-      return;
     }
 
-    // ==========================================================
-    // PERDIDA PARCIAL
-    // ==========================================================
-    // La entrada SIGUE ACTIVA.
-    // La martingala NO vuelve a 1.
-    //
-    // Después de registrar la pérdida analizamos la nueva
-    // secuencia y, si el modelo cambió de color, cambiamos
-    // solamente el objetivo.
-    //
-    // Ejemplo:
-    // BANCA 1/6 -> pierde
-    // JUGADOR 2/6 -> pierde
-    // BANCA 3/6
-    //
-    // El contador siempre pertenece a la misma entrada.
-    if(resolved==='continue'){
-
-      const nextAnalysis=analyze();
-
-      if(
-        pendingSignal &&
-        (nextAnalysis.s==='B'||nextAnalysis.s==='J') &&
-        nextAnalysis.s!==pendingSignal.s
-      ){
-        pendingSignal.s=nextAnalysis.s;
-        pendingSignal.reason=nextAnalysis.reason;
-        pendingSignal.mode=nextAnalysis.mode||pendingSignal.mode;
-      }
-
-      saveSession();
-      render();
-      refreshServerAnalysis();
-      return;
-    }
-
-    // ==========================================================
-    // EMPATE
-    // ==========================================================
-    // El empate no consume martingala ni cambia el objetivo.
-    saveSession();
     render();
     return;
   }
 
-  // ==========================================================
-  // 2. NO HAY ENTRADA ACTIVA
-  // ==========================================================
+  // Racha de 3 protegida:
+  // si cambia el color, cortar inmediatamente.
+  // NO M2 / NO M3.
+  if(pendingSignal && pendingSignal.threeStreakEntry && x!==pendingSignal.s){
 
+    pendingSignal.outcome=x;
+    pendingSignal.correct=false;
+    pendingSignal.breakTriggered=true;
+
+    pendingSignal.closedReason=
+      'Corte inmediato: ruptura de racha de 3. Reiniciar en entrada 1.';
+
+    pendingSignal=null;
+
+    if(typeof cooldownRemaining!=='undefined'){
+      cooldownRemaining=0;
+    }
+
+    ruptureCooldownRemaining=3;
+
+    hands.push(x);
+
+    if(typeof saveSession==='function'){
+      saveSession();
+    }
+
+    render();
+    return;
+  }
+
+  // Señales normales conservan su progresión.
+  resolvePending(x);
   hands.push(x);
-
-  // ==========================================================
-  // 3. COOLDOWN DESPUÉS DE ACIERTO
-  // ==========================================================
-
-  if(x!=='E' && cooldownRemaining>0){
-
-    cooldownRemaining--;
-
-    saveSession();
-    render();
-    refreshServerAnalysis();
-    return;
-  }
-
-  // ==========================================================
-  // 4. BUSCAR NUEVA SEÑAL
-  // ==========================================================
 
   const a=analyze();
 
-  // Una racha extrema bloquea una nueva entrada.
   if(a.s==='X'){
 
-    cooldownRemaining=0;
+    if(pendingSignal){
+      pendingSignal.correct=false;
+      pendingSignal.closedReason='Cancelada por racha extrema';
+      pendingSignal=null;
+    }
 
-    saveSession();
-    render();
-    refreshServerAnalysis();
-    return;
-  }
+  }else if(!pendingSignal && a.s!=='W'){
 
-  // Crear una nueva entrada solamente cuando
-  // NO existe ninguna pendiente.
-  if(a.s!=='W'){
     openSignal(a);
   }
 
-  saveSession();
-  render();
-  refreshServerAnalysis();
-}
+  if(typeof saveSession==='function'){
+    saveSession();
+  }
 
-function roundSummary(){
+  render();
+}function roundSummary(){
   const r=signals.filter(s=>s.correct!==null);
   const r1=r.filter(s=>s.correct&&s.round===1).length;
   const r2=r.filter(s=>s.correct&&s.round===2).length;
@@ -4173,17 +4173,60 @@ function render(){
     'signal-esperar'
   );
 
-  if(a.s==='B'){
-    sigBig.textContent='SEÑAL BANCA '+Math.min(Math.max((Number(pendingSignal?.round)||0)+1,1),MAX_SIGNAL_ROUNDS)+'/'+MAX_SIGNAL_ROUNDS;
+  // ==========================================================
+  // ESTADO VISUAL DE CORTE PROTEGIDO
+  // ==========================================================
+  const lastSignal = signals.length
+    ? signals[signals.length-1]
+    : null;
+
+  const protectedCut =
+    !pendingSignal &&
+    lastSignal &&
+    lastSignal.breakTriggered === true;
+
+  if(protectedCut){
+
+    $('sigLabel').textContent='🛡️ CORTE PROTEGIDO';
+
+    sigBig.textContent='CORTE INMEDIATO — NO M2';
+    sigBig.classList.add('signal-esperar');
+
+    $('reason').textContent=
+      'Ruptura de racha de 3 detectada. Entrada cerrada inmediatamente. Siguiente oportunidad: Entrada 1/6.';
+
+  }
+  else if(a.s==='B'){
+
+    sigBig.textContent=
+      'SEÑAL BANCA '+
+      Math.min(
+        Math.max((Number(pendingSignal?.round)||0)+1,1),
+        MAX_SIGNAL_ROUNDS
+      )+
+      '/'+MAX_SIGNAL_ROUNDS;
+
     sigBig.classList.add('signal-banca');
+
   }
   else if(a.s==='J'){
-    sigBig.textContent='SEÑAL JUGADOR '+Math.min(Math.max((Number(pendingSignal?.round)||0)+1,1),MAX_SIGNAL_ROUNDS)+'/'+MAX_SIGNAL_ROUNDS;
+
+    sigBig.textContent=
+      'SEÑAL JUGADOR '+
+      Math.min(
+        Math.max((Number(pendingSignal?.round)||0)+1,1),
+        MAX_SIGNAL_ROUNDS
+      )+
+      '/'+MAX_SIGNAL_ROUNDS;
+
     sigBig.classList.add('signal-jugador');
+
   }
   else{
+
     sigBig.textContent='ESPERAR';
     sigBig.classList.add('signal-esperar');
+
   }
 
   $('reason').textContent=a.reason;
@@ -4841,6 +4884,16 @@ function updateAccountPanel(u){
 }
 </script>
 </body></html>
+
+
+
+
+
+
+
+
+
+
 
 
 
