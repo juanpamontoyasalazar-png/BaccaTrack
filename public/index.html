@@ -3330,7 +3330,7 @@ section.card.full.bt33-panel{
 </section>
 </div></div>
 <script>
-var token=localStorage.bt_token||"", currentUser=null, hands=[], signals=[], pendingSignal=null, cooldownRemaining=0, ruptureCooldownRemaining=0;
+var token=localStorage.bt_token||"", currentUser=null, hands=[], signals=[], pendingSignal=null, cooldownRemaining=0;
 
 function getSessionKey(){
   if(!currentUser || !currentUser.id)return null;
@@ -3346,7 +3346,6 @@ function saveSession(){
       signals:signals,
       pendingId:pendingSignal ? pendingSignal.id : null,
       cooldownRemaining:cooldownRemaining,
-      ruptureCooldownRemaining:ruptureCooldownRemaining
     }));
   }catch(e){
     console.warn('No se pudo guardar la sesión',e);
@@ -3366,7 +3365,6 @@ function restoreSession(){
     if(Array.isArray(data.hands))hands=data.hands;
     if(Array.isArray(data.signals))signals=data.signals;
     if(Number.isFinite(data.cooldownRemaining))cooldownRemaining=data.cooldownRemaining;
-    if(Number.isFinite(data.ruptureCooldownRemaining))ruptureCooldownRemaining=data.ruptureCooldownRemaining;
 
     if(data.pendingId!==null && data.pendingId!==undefined){
       pendingSignal=signals.find(s=>s.id===data.pendingId) || null;
@@ -3492,67 +3490,14 @@ async function btServerAnalyze(sequence){
   }
 }
 function analyzeSequence(a){
-  // BACCATRACK_RACHA3_V6
-  // Racha exacta de 3: generar entrada inmediatamente.
-  if(a.length>=3){
-    const last=a[a.length-1];
-    const lastLen=currentStreak(a,last);
 
-    if((last==='B'||last==='J') && lastLen===3){
-      return {
-        s:last,
-        score:100,
-        reason:`Racha exacta de 3 en ${last==='B'?'BANCA':'JUGADOR'}. Entrada 1/6. Si cambia el color, cortar inmediatamente.`,
-        extreme:false,
-        mode:'three_streak_entry',
-        threeStreakEntry:true,
-        factors:{
-          streak:3,
-          pattern:'racha_3_protegida'
-        }
-      };
-    }
-  }
-
-
-  if(a.length < 4){
+  if(a.length < 1){
     return {
       s:'W',
-      reason:'Esperar: registra al menos 4 manos sin empate.',
+      reason:'Esperar: registra resultados.',
       extreme:false,
       mode:'wait',
       factors:null
-    };
-  }
-
-  // ==========================================================
-  // REGLA 1 — RACHA EXTREMA 9+
-  // ==========================================================
-
-  const ex=extreme(a);
-
-  if(!pendingSignal && cooldownRemaining>0){
-
-    $('bt33Active').innerHTML=
-      `<b>ESPERAR DESPUÉS DE ACIERTO</b>
-       <div class="muted" style="margin-top:6px">
-       Faltan ${cooldownRemaining} rondas para buscar una nueva entrada.
-       </div>`;
-
-}
-else if(ex.active){
-    return {
-      s:'X',
-      reason:`NO SEGUIR OPERANDO EN ESTE CUADRO. Racha extrema de ${ex.len} ${ex.color==='B'?'BANCA':'JUGADOR'}.`,
-      extreme:true,
-      extremeColor:ex.color,
-      extremeLen:ex.len,
-      mode:'extreme',
-      factors:{
-        streak:ex.len,
-        banca:a.filter(x=>x==='B').length,
-        jugador:a.filter(x=>x==='J').length
-      }
     };
   }
 
@@ -3563,170 +3508,57 @@ else if(ex.active){
   const jugador=a.filter(x=>x==='J').length;
 
   // ==========================================================
-  // REGLA 2 — ALTERNANCIA 1-1
+  // REGLA PRINCIPAL — RACHA DE 3 A 6
+  // ==========================================================
+  //
+  // Si la racha actual es de 3, 4, 5 o 6:
+  //
+  // BANCA  -> señal BANCA
+  // JUGADOR -> señal JUGADOR
+  //
+  // No hay seguro.
+  // No hay corte protegido.
+  // La martingala normal decidirá M1-M6.
   // ==========================================================
 
-  if(isAlternating(a)){
-
-    if(lastLen>=3){
-      return {
-        s:'W',
-        reason:'Alternancia cortada por racha de 3. Señal cancelada; buscar nueva entrada.',
-        extreme:false,
-        mode:'alternancia_cortada',
-        factors:{
-          streak:lastLen,
-          banca,
-          jugador,
-          pattern:'1-1'
-        }
-      };
-    }
-
-    const pick=altExpected(a);
-
-    return {
-      s:pick,
-      reason:`Alternancia 1-1 detectada. Seguir con ${pick==='B'?'BANCA':'JUGADOR'} mientras continúe el patrón.`,
-      extreme:false,
-      mode:'alternating',
-      factors:{
-        streak:lastLen,
-        banca,
-        jugador,
-        pattern:'1-1'
-      }
-    };
-  }
-
-  // ==========================================================
-  // REGLA 3 — RACHA LARGA + CAMBIO CORTO
-  // ==========================================================
-
-  if(lastLen<=2){
-
-    const previousStreak=lastStreakBeforeSwitch(a,last);
-
-    if(previousStreak>=3){
-
-      const oldColor=last==='B'?'J':'B';
-
-      return {
-        s:oldColor,
-        reason:`Racha larga de ${previousStreak} en ${oldColor==='B'?'BANCA':'JUGADOR'} seguida por cambio de ${lastLen}. Mantener ${oldColor==='B'?'BANCA':'JUGADOR'}.`,
-        extreme:false,
-        mode:'long_streak',
-        factors:{
-          streak:lastLen,
-          previousStreak,
-          banca,
-          jugador,
-          pattern:'racha_larga'
-        }
-      };
-    }
-  }
-
-  // ==========================================================
-// REGLA 4 — DESDE LA MANO 35
-// ==========================================================
-//
-// Desde la mano 35:
-// mantener el lado dominante.
-// No utiliza score.
-// No utiliza diferencia de puntos.
-// ==========================================================
-
-if(a.length>=35){
-
-  const pick=banca>=jugador?'B':'J';
-
-  return {
-    s:pick,
-    reason:`Después de 35 manos: Banca ${banca} / Jugador ${jugador}. Se mantiene el dominante: ${pick==='B'?'BANCA':'JUGADOR'}.`,
-    extreme:false,
-    mode:'balance_dominant',
-    factors:{
-      streak:lastLen,
-      banca:banca,
-      jugador:jugador,
-      pattern:'balance_dominante'
-    }
-  };
-}
-
-// ==========================================================
-// REGLA 5 — RACHA ACTUAL
-  // ==========================================================
-
-  if(lastLen>=3){
+  if(
+    (last==='B' || last==='J') &&
+    lastLen>=3 &&
+    lastLen<=6
+  ){
 
     return {
       s:last,
-      reason:`Racha activa de ${lastLen} en ${last==='B'?'BANCA':'JUGADOR'}. Mantener el color.`,
+      score:100,
+      reason:
+        `Racha de ${lastLen} en `+
+        `${last==='B'?'BANCA':'JUGADOR'}. `+
+        `Entrada 1/6.`,
+
       extreme:false,
-      mode:'streak',
+      mode:'streak_entry',
+
       factors:{
         streak:lastLen,
-        banca,
-        jugador,
-        pattern:'racha_actual'
+        banca:banca,
+        jugador:jugador,
+        pattern:'racha_3_a_6'
       }
     };
   }
 
-  // ==========================================================
-  // SIN PATRON
-  // ==========================================================
-
   return {
     s:'W',
-    reason:'Esperar nueva confirmación de patrón.',
+    reason:'Esperar nueva confirmación de racha de 3 o más.',
     extreme:false,
     mode:'wait',
     factors:{
       streak:lastLen,
-      banca,
-      jugador,
+      banca:banca,
+      jugador:jugador,
       pattern:'sin_patron'
     }
   };
-}
-function analyze(){
-
-  // ==========================================================
-  // ESPERA POST-CORTE PROTEGIDO
-  // ==========================================================
-  if(ruptureCooldownRemaining>0){
-
-    return {
-      s:'W',
-      reason:'Corte protegido. Faltan '+ruptureCooldownRemaining+' rondas para volver a analizar una posible entrada.',
-      extreme:false,
-      mode:'rupture_cooldown',
-      factors:{
-        ruptureCooldown:ruptureCooldownRemaining
-      }
-    };
-  }
-
-
-  // Después de un acierto, bloquear nuevas señales
-  // durante 3 rondas sin empate.
-  if(cooldownRemaining>0){
-
-    return {
-      s:'W',
-      reason:`Esperar después de acierto. Faltan ${cooldownRemaining} rondas para buscar una nueva entrada.`,
-      extreme:false,
-      mode:'cooldown',
-      factors:{
-        cooldown:cooldownRemaining
-      }
-    };
-  }
-
-  return analyzeSequence(nonTies());
 }
 function backtest(){
   const a=nonTies(),total=Math.max(0,a.length-5);
@@ -3770,86 +3602,136 @@ function openSignal(a){
   if(typeof saveSession==='function'){
     saveSession();
   }
-}function resolvePending(x){
+}function analyze(){
 
-  if(!pendingSignal || x==='E') return null;
+  return analyzeSequence(hands);
 
-  // Guardamos la misma referencia de la entrada.
-  // Esta entrada NO se reinicia mientras esté dentro de las 6 martingalas.
+}
+function resolvePending(x){
+
+  if(!pendingSignal || x==='E'){
+    return null;
+  }
+
   const sig=pendingSignal;
 
-  // Cada B/J registrado consume exactamente una martingala.
+  // ==========================================================
+  // MARTINGALA FIJA M1-M6
+  // ==========================================================
+  //
+  // M1 = COLOR ORIGINAL
+  // M2 = COLOR CONTRARIO
+  // M3 = COLOR ORIGINAL
+  // M4 = COLOR CONTRARIO
+  // M5 = COLOR ORIGINAL
+  // M6 = COLOR CONTRARIO
+  //
+  // NINGUNA RACHA, CAMBIO DE COLOR O PATRON INTERRUMPE
+  // LA SEÑAL MIENTRAS pendingSignal ESTE ACTIVA.
+  // ==========================================================
+
   sig.round=(Number(sig.round)||0)+1;
+
+  // M1 = señal
+  // M2 = señal
+  // M3 = contrario
+  // M4 = señal
+  // M5 = contrario
+  // M6 = señal
+
+  const opposite =
+    sig.s==='B' ? 'J' : 'B';
+
+  const expected =
+    sig.round===1 || sig.round===2 || sig.round===4 || sig.round===6
+      ? sig.s
+      : opposite;
 
   // ==========================================================
   // ACIERTO
   // ==========================================================
-  if(x===sig.s){
+
+  if(x===expected){
 
     sig.outcome=x;
     sig.correct=true;
     sig.closedRound=sig.round;
-    sig.closedReason=`Acertó en martingala ${sig.round}`;
 
-    // La entrada queda cerrada, pero permanece dentro de
-    // signals para que el historial la muestre como ACIERTO.
+    sig.closedReason=
+      `Acertó en martingala ${sig.round}`;
+
     pendingSignal=null;
 
-    // Después de ganar, esperar 3 resultados B/J.
-    cooldownRemaining=WIN_COOLDOWN_ROUNDS;
+    // SIN COOLDOWN.
+    cooldownRemaining=0;
 
-    saveSession();
+    if(typeof saveSession==='function'){
+      saveSession();
+    }
 
     return 'win';
   }
 
   // ==========================================================
-  // PÉRDIDA PARCIAL
+  // PERDIDA PARCIAL
   // ==========================================================
+
   if(sig.round < MAX_SIGNAL_ROUNDS){
 
-    // IMPORTANTE:
-    // sig sigue siendo pendingSignal.
-    // No se crea otra entrada.
-    saveSession();
+    // NO cerrar.
+    // NO analizar patrones.
+    // NO generar ESPERAR.
+    // NO cambiar la señal.
+    //
+    // La siguiente mano será automáticamente:
+    //
+    // M1 B -> M2 J -> M3 B -> M4 J...
+    //
+    // o:
+    //
+    // M1 J -> M2 B -> M3 J -> M4 B...
+
+    if(typeof saveSession==='function'){
+      saveSession();
+    }
 
     return 'continue';
   }
 
   // ==========================================================
-  // PÉRDIDA DEFINITIVA 6/6
+  // PERDIDA DEFINITIVA M6
   // ==========================================================
+
   sig.outcome=x;
   sig.correct=false;
   sig.closedRound=sig.round;
-  sig.closedReason='Se agotaron las 6 martingalas';
+
+  sig.closedReason=
+    'Se agotaron las 6 martingalas';
 
   pendingSignal=null;
   cooldownRemaining=0;
 
-  saveSession();
+  if(typeof saveSession==='function'){
+    saveSession();
+  }
 
   return 'loss';
 }
-
 function add(x){
 
   // ==========================================================
-  // ESPERA POST-CORTE PROTEGIDO
+  // ESPERA POST-ACIERTO
   // ==========================================================
-  // Después de romper una racha de 3:
-  // - B/J consume una ronda.
-  // - Empate NO consume una ronda.
-  // - No se abre ninguna entrada durante la espera.
-  // ==========================================================
-  if(ruptureCooldownRemaining>0){
+
+  if(cooldownRemaining>0){
 
     hands.push(x);
 
     if(x!=='E'){
-      ruptureCooldownRemaining=Math.max(
+      cooldownRemaining=Math.max(
         0,
-        ruptureCooldownRemaining-1
+        cooldownRemaining-1
       );
     }
 
@@ -3861,49 +3743,108 @@ function add(x){
     return;
   }
 
-  // Racha de 3 protegida:
-  // si cambia el color, cortar inmediatamente.
-  // NO M2 / NO M3.
-  if(pendingSignal && pendingSignal.threeStreakEntry && x!==pendingSignal.s){
+  // ==========================================================
+  // SEÑAL ACTIVA — MARTINGALA M1-M6
+  // ==========================================================
+  //
+  // M1 = color de la señal
+  // M2 = contrario
+  // M3 = color de la señal
+  // M4 = contrario
+  // M5 = color de la señal
+  // M6 = contrario
+  //
+  // NO HAY CORTE POR RUPTURA DE RACHA.
+  // NO HAY CANCELACION POR RACHA CONTRARIA.
+  // NO HAY CORTE PROTEGIDO.
+  // ==========================================================
 
-    pendingSignal.outcome=x;
-    pendingSignal.correct=false;
-    pendingSignal.breakTriggered=true;
+  if(pendingSignal){
 
-    pendingSignal.closedReason=
-      'Corte inmediato: ruptura de racha de 3. Reiniciar en entrada 1.';
-
-    pendingSignal=null;
-
-    if(typeof cooldownRemaining!=='undefined'){
-      cooldownRemaining=0;
-    }
-
-    ruptureCooldownRemaining=3;
+    const result=resolvePending(x);
 
     hands.push(x);
 
-    if(typeof saveSession==='function'){
-      saveSession();
+    // ========================================================
+    // ACIERTO
+    // ========================================================
+    //
+    // La mano que acaba de acertar pertenece exclusivamente
+    // a la señal que acaba de cerrarse.
+    //
+    // NO se vuelve a analizar esa misma mano.
+    // NO puede abrir una nueva señal con el mismo resultado.
+    // ========================================================
+
+    if(result==='win'){
+
+      // ======================================================
+      // MANO GANADORA CERRADA
+      // ======================================================
+      //
+      // No reutilizar inmediatamente la racha que produjo
+      // el acierto para abrir otra señal.
+      //
+      // M1-M6 NO cambia.
+      // No hay corte por racha.
+      // No hay cancelación por racha contraria.
+      //
+      // Solo se consume 1 mano después del acierto antes
+      // de volver a analizar una nueva entrada.
+      // ======================================================
+
+      cooldownRemaining=1;
+
+      if(typeof saveSession==='function'){
+        saveSession();
+      }
+
+      render();
+      return;
     }
 
-    render();
-    return;
+    // ========================================================
+    // M1-M5 PERDIDA PARCIAL
+    // ========================================================
+    //
+    // La señal sigue activa.
+    // resolvePending() ya dejó preparado el siguiente M.
+    // ========================================================
+
+    if(pendingSignal){
+
+      if(typeof saveSession==='function'){
+        saveSession();
+      }
+
+      render();
+      return;
+    }
+
+    // ========================================================
+    // M6 PERDIDA DEFINITIVA
+    // ========================================================
+    //
+    // pendingSignal quedó null.
+    // Ahora sí se permite analizar la secuencia completa
+    // para buscar una NUEVA señal.
+    // ========================================================
+  }
+  else{
+
+    // No había señal activa.
+    hands.push(x);
   }
 
-  // Señales normales conservan su progresión.
-  resolvePending(x);
-  hands.push(x);
+  // ==========================================================
+  // ANALISIS DE NUEVA ENTRADA
+  // ==========================================================
 
   const a=analyze();
 
   if(a.s==='X'){
 
-    if(pendingSignal){
-      pendingSignal.correct=false;
-      pendingSignal.closedReason='Cancelada por racha extrema';
-      pendingSignal=null;
-    }
+    pendingSignal=null;
 
   }else if(!pendingSignal && a.s!=='W'){
 
@@ -4136,12 +4077,49 @@ function render(){
   const a = pendingSignal
     ? {
         ...baseAnalysis,
-        s: pendingSignal.s,
+
+        // COLOR DE LA MARTINGALA ACTUAL
+        //
+        // M1 = señal original
+        // M2 = señal original
+        // M3 = contrario
+        // M4 = señal original
+        // M5 = contrario
+        // M6 = señal original
+        //
+        // La interfaz debe mostrar exactamente
+        // el mismo color que espera resolvePending().
+        s:
+          (() => {
+            const nextRound =
+              (Number(pendingSignal.round)||0) + 1;
+
+            const original = pendingSignal.s;
+            const contrario =
+              original === 'B' ? 'J' : 'B';
+
+            return (
+              nextRound === 1 ||
+              nextRound === 2 ||
+              nextRound === 4 ||
+              nextRound === 6
+            )
+              ? original
+              : contrario;
+          })(),
+
         reason: pendingSignal.reason || baseAnalysis.reason,
         mode: pendingSignal.mode || baseAnalysis.mode
       }
     : (cooldownRemaining>0
-        ? analyze()
+        ? {
+            s:'W',
+            score:0,
+            reason:'Espera post-acierto.',
+            extreme:false,
+            mode:'wait',
+            factors:null
+          }
         : baseAnalysis);
 
   const rs=roundSummary();
@@ -4884,6 +4862,32 @@ function updateAccountPanel(u){
 }
 </script>
 </body></html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
